@@ -38,12 +38,53 @@ export type Cars = {
 
 export type CarsListDTO = Omit<Cars, "description">;
 
-export type CreateCarsDTO = Omit<Cars, "id" | "slug" | "created_at"> & {
+export type CreateCarsDTO = {
+  category: string;
+  title: string;
+  brand: string;
+  model: string;
+  year: number;
+  price: number;
+  mileage: number;
+  transmission: Transmission;
+  fuel_type: FuelType;
+  condition: CarCondition;
+  seats: number;
+  engine_cc?: number | null;
+  color: string;
+  status: CarStatus;
+  is_featured: boolean;
+  description: string;
+  images: File[];
+};
+
+export type UpdateCarsDTO = {
+  category?: string;
+  title?: string;
+  brand?: string;
+  model?: string;
+  year?: number;
+  price?: number;
+  mileage?: number;
+  transmission?: Transmission;
+  fuel_type?: FuelType;
+  condition?: CarCondition;
+  seats?: number;
+  engine_cc?: number | null;
+  color?: string;
+  status?: CarStatus;
+  is_featured?: boolean;
+  description?: string;
   images?: File[];
 };
 
-export type UpdateCarsDTO = Partial<
-  Omit<Cars, "id" | "slug" | "created_at">
-> & {
-  images?: File[];
+export type CarsResponse = {
+  message: string;
+  data: Cars[];
+  pagenation: {
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPages: number;
+  };
 };

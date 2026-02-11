@@ -1,5 +1,5 @@
-import { baseApi } from "@/src/app/data/const/base-api";
-import { RestEndpoint } from "@/src/app/data/const/rest-endpoint";
+import { baseApi } from "@/src/const/base-api";
+import { RestEndpoint } from "@/src/const/rest-endpoint";
 import { LoginDTO, LoginResponse } from "@/src/types/user.type";
 
 export const AuthService = {

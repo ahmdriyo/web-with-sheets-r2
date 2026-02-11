@@ -1,5 +1,5 @@
-import { baseApiToken } from "@/src/app/data/const/base-api";
-import { RestEndpoint } from "@/src/app/data/const/rest-endpoint";
+import { baseApi, baseApiToken } from "@/src/const/base-api";
+import { RestEndpoint } from "@/src/const/rest-endpoint";
 import {
   Categories,
   CategoriesResponse,
@@ -12,14 +12,14 @@ export const CategoriesService = {
     page?: number,
     limit?: number,
   ): Promise<{ data: CategoriesResponse }> =>
-    baseApiToken.get(RestEndpoint.GetAllCategories, {
+    baseApi.get(RestEndpoint.GetAllCategories, {
       params: { page, limit },
     }),
 
   getCategoryById: (
     id: string,
   ): Promise<{ data: { message: string; data: Categories } }> =>
-    baseApiToken.get(RestEndpoint.GetCategoryById.replace("{id}", id)),
+    baseApi.get(RestEndpoint.GetCategoryById.replace("{id}", id)),
 
   createCategory: (
     data: CreateCategoriesDTO,

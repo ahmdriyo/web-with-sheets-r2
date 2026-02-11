@@ -1,5 +1,5 @@
-import { baseApiToken } from "@/src/app/data/const/base-api";
-import { RestEndpoint } from "@/src/app/data/const/rest-endpoint";
+import { baseApiToken } from "@/src/const/base-api";
+import { RestEndpoint } from "@/src/const/rest-endpoint";
 import {
   SiteSettings,
   SiteSettingsResponse,

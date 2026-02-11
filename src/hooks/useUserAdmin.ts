@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { UserAdminService } from "@/src/app/data/services/user-admin.service";
+import { UserAdminService } from "../services/user-admin.service";
 
 export const USER_ADMIN_QUERY_KEYS = {
   all: ["user-admins"] as const,

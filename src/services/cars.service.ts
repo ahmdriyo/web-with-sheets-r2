@@ -1,17 +1,17 @@
-import { baseApiToken } from "@/src/app/data/const/base-api";
-import { RestEndpoint } from "@/src/app/data/const/rest-endpoint";
+import { baseApi, baseApiToken } from "@/src/const/base-api";
+import { RestEndpoint } from "@/src/const/rest-endpoint";
 import { Cars, CarsResponse } from "@/src/types/cars.type";
 
 export const CarsService = {
   getCars: (page?: number, limit?: number): Promise<{ data: CarsResponse }> =>
-    baseApiToken.get(RestEndpoint.GetAllCars, {
+    baseApi.get(RestEndpoint.GetAllCars, {
       params: { page, limit },
     }),
 
   getCarById: (
     id: string,
   ): Promise<{ data: { message: string; data: Cars } }> =>
-    baseApiToken.get(RestEndpoint.GetCarById.replace("{id}", id)),
+    baseApi.get(RestEndpoint.GetCarById.replace("{id}", id)),
 
   createCar: (
     formData: FormData,

@@ -18,8 +18,7 @@ export async function findAllCars(page: number, limit: number) {
 
   const data: CarsListDTO[] = paginatedRows.map((row) => {
     const car = mapRowToCar(row);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { description, ...carWithoutDescription } = car;
+    const { ...carWithoutDescription } = car;
     return carWithoutDescription;
   });
 

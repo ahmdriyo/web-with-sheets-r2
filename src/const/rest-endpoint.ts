@@ -1,4 +1,4 @@
-const prefix = "/v1";
+const prefix = "/api";
 
 export enum RestEndpoint {
   // Authentication

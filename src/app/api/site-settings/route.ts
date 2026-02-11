@@ -3,9 +3,6 @@ import { getSiteSettings } from "@/src/server/service/site-settings/get-all-site
 import { createSiteSetting } from "@/src/server/service/site-settings/create-site-settings.service";
 
 export async function GET(req: Request) {
-  const auth = authMiddleware(req);
-  if (!auth.authorized) return auth.response!;
-
   return getSiteSettings(req);
 }
 

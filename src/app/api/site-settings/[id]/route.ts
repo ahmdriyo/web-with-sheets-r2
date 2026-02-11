@@ -7,9 +7,6 @@ export async function GET(
   req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const auth = authMiddleware(req);
-  if (!auth.authorized) return auth.response!;
-
   const { id } = await params;
   return getOneSiteSetting(id);
 }

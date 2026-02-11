@@ -3,9 +3,6 @@ import { getCategories } from "@/src/server/service/categories/get-all-categorie
 import { createCategory } from "@/src/server/service/categories/create-categories.service";
 
 export async function GET(req: Request) {
-  const auth = authMiddleware(req);
-  if (!auth.authorized) return auth.response!;
-
   return getCategories(req);
 }
 

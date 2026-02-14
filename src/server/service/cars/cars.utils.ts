@@ -2,13 +2,14 @@ export function generateSlug(
   brand: string,
   model: string,
   title: string,
+  year: number,
 ): string {
-  const combined = `${brand} ${model} ${title}`
+  const combined = `${brand} ${model} ${title} ${year}`
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, "") // Remove special characters
-    .replace(/\s+/g, "-") // Replace spaces with hyphens
-    .replace(/-+/g, "-"); // Replace multiple hyphens with single hyphen
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
 
   return combined;
 }

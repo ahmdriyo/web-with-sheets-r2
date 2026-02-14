@@ -67,7 +67,7 @@ export async function updateCar(id: string, req: Request) {
       (formData.get("description") as string) || existingCar.description;
 
     // Regenerate slug if brand, model, or title changed
-    const slug = generateSlug(brand, model, title);
+    const slug = generateSlug(brand, model, title, year);
 
     // Update car in repository
     await updateCarRepo(id, {

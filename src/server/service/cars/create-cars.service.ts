@@ -55,7 +55,7 @@ export async function createCar(req: Request) {
 
     // Generate ID and slug
     const id = `CAR-${Date.now()}`;
-    const slug = generateSlug(brand, model, title);
+    const slug = generateSlug(brand, model, title, year);
     const created_at = new Date().toISOString();
 
     // Create car in repository

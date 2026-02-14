@@ -43,7 +43,7 @@ export const CarsView = () => {
     new Set(carsData?.data?.map((car) => car.brand) || []),
   );
 
-  const totalPages = carsData?.pagenation?.totalPages || 1;
+  const totalPages = carsData?.pagination?.totalPages || 1;
 
   return (
     <div className="min-h-screen bg-black">
@@ -64,13 +64,13 @@ export const CarsView = () => {
             Our Collection
           </h1>
           <p className="text-xl text-gray-200 drop-shadow-lg">
-            Browse {carsData?.pagenation?.totalItems || 0} premium vehicles
+            Browse {carsData?.pagination?.totalItems || 0} premium vehicles
           </p>
         </Container>
       </div>
 
       {/* Search & Filters */}
-      <Section className="bg-zinc-900 shadow-sm py-8">
+      <Section className="bg-zinc-900 shadow-sm py-4">
         <Container>
           <div className="space-y-4">
             {/* Search */}
@@ -124,7 +124,7 @@ export const CarsView = () => {
       </Section>
 
       {/* Cars Grid */}
-      <Section className="bg-zinc-800!">
+      <Section className="bg-zinc-900! pt-4!">
         <Container>
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

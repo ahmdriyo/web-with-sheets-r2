@@ -29,10 +29,10 @@ export const Navbar = () => {
           : "bg-black border-b border-white/20"
       }`}
     >
-      <Container>
+      <Container className="px-0!">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-white">
+          <Link href="/" className="px-4 text-2xl font-bold text-white">
             AutoPremium
           </Link>
 
@@ -84,7 +84,9 @@ export const Navbar = () => {
 
         {/* Mobile Menu Drawer */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-white/20 bg-black/95">
+          <div
+            className={`md:hidden py-4 border-t px-4 ${isScrolled ? "bg-transparent backdrop-blur-sm border-b border-white/5" : "bg-black border-b border-white/20"}`}
+          >
             <div className="flex flex-col gap-4">
               <Link
                 href="/"

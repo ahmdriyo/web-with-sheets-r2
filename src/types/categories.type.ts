@@ -21,7 +21,7 @@ export type CategoriesResponse = {
     created_at: string;
     updated_at: string;
   }[];
-  pagenation: {
+  pagination: {
     page: number;
     limit: number;
     totalItems: number;

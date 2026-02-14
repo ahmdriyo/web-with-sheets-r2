@@ -81,7 +81,7 @@ export type UpdateCarsDTO = {
 export type CarsResponse = {
   message: string;
   data: Cars[];
-  pagenation: {
+  pagination: {
     page: number;
     limit: number;
     totalItems: number;

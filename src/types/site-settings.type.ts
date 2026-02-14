@@ -39,7 +39,7 @@ export type SiteSettingsResponse = {
     opening_hours: string;
     created_at: string;
   }[];
-  pagenation: {
+  pagination: {
     page: number;
     limit: number;
     totalItems: number;

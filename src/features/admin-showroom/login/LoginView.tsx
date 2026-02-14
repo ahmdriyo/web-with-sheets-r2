@@ -56,7 +56,14 @@ const LoginView = () => {
           response.data.data.token.refreshToken,
         );
       }
-      router.push("/");
+
+      // Store user info for profile page
+      if (response.data.data.user) {
+        localStorage.setItem("userName", response.data.data.user.name);
+        localStorage.setItem("userUsername", response.data.data.user.username);
+      }
+
+      router.push("/admin-showroom/categories");
     } catch (error) {
       console.error("Login failed:", error);
     }

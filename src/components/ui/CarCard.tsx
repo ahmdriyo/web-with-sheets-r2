@@ -21,9 +21,9 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
 
   return (
     <Link href={`/cars/${car.slug}`} className="group block">
-      <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
+      <div className="bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-700">
         {/* Image */}
-        <div className="relative aspect-4/3 overflow-hidden bg-gray-100">
+        <div className="relative aspect-4/3 overflow-hidden bg-gray-800">
           <img
             src={car.primary_image_url || car.image_urls[0]}
             alt={car.title}
@@ -44,17 +44,17 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
         {/* Content */}
         <div className="p-5">
           {/* Price */}
-          <div className="text-2xl font-bold text-black mb-2">
+          <div className="text-2xl font-bold text-white mb-2">
             {formatPrice(car.price)}
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-1 group-hover:text-gray-600 transition-colors">
+          <h3 className="text-lg font-semibold text-gray-100 mb-3 line-clamp-1 group-hover:text-gray-300 transition-colors">
             {car.brand} {car.model} {car.title}
           </h3>
 
           {/* Specs */}
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-gray-400">
             <span>{car.year}</span>
             <span>•</span>
             <span className="capitalize">{car.transmission}</span>
@@ -63,7 +63,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
           </div>
 
           {/* Mileage */}
-          <div className="mt-3 text-sm text-gray-500">
+          <div className="mt-3 text-sm text-gray-400">
             {car.mileage.toLocaleString("id-ID")} km
           </div>
         </div>

@@ -12,7 +12,7 @@ export function getTokenFromRequest(req: Request): string | null {
   if (!cookieHeader) return null;
 
   const cookies = cookieHeader.split(";").map((c) => c.trim());
-  const authCookie = cookies.find((c) => c.startsWith("authToken="));
+  const authCookie = cookies.find((c) => c.startsWith("accessToken="));
 
   return authCookie?.split("=")[1] ?? null;
 }

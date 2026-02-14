@@ -50,7 +50,7 @@ export async function loginUser(req: Request) {
       },
     });
 
-    responseData.cookies.set("authToken", token, {
+    responseData.cookies.set("accessToken", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",

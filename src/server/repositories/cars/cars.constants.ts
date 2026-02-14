@@ -1,0 +1,26 @@
+export const CARS_SHEET_NAME = "cars";
+export const CARS_RANGE = `${CARS_SHEET_NAME}!A2:U`;
+
+export const CARS_COLUMNS = {
+  ID: 0,
+  CATEGORY: 1,
+  TITLE: 2,
+  SLUG: 3,
+  BRAND: 4,
+  MODEL: 5,
+  YEAR: 6,
+  PRICE: 7,
+  MILEAGE: 8,
+  TRANSMISSION: 9,
+  FUEL_TYPE: 10,
+  CONDITION: 11,
+  SEATS: 12,
+  ENGINE_CC: 13,
+  COLOR: 14,
+  STATUS: 15,
+  IS_FEATURED: 16,
+  PRIMARY_IMAGE_URL: 17,
+  IMAGE_URLS: 18,
+  DESCRIPTION: 19,
+  CREATED_AT: 20,
+} as const;

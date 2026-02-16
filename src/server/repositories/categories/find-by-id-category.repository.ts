@@ -22,6 +22,5 @@ export async function findCategoryById(id: string) {
     created_at: new Date(categoryRow[2] ?? Date.now()),
     updated_at: new Date(categoryRow[3] ?? Date.now()),
   };
-
   return data;
 }

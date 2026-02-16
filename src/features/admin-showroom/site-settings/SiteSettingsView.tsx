@@ -171,7 +171,7 @@ const SiteSettingsView = () => {
                   name="whatsapp_number"
                   value={formData.whatsapp_number}
                   onChange={handleChange}
-                  placeholder="e.g., +62812345678"
+                  placeholder="e.g., 081234567890"
                   className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border ${
                     errors.whatsapp_number
                       ? "border-red-500"

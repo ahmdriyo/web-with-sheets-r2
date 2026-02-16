@@ -63,7 +63,7 @@ const LoginView = () => {
         localStorage.setItem("userUsername", response.data.data.user.username);
       }
 
-      router.push("/admin-showroom/categories");
+      router.push("/admin-showroom/cars");
     } catch (error) {
       console.error("Login failed:", error);
     }

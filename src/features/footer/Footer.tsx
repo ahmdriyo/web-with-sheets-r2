@@ -17,10 +17,10 @@ export const Footer = () => {
           <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold">AutoPremium</h3>
+              <h3 className="text-2xl font-bold">Our Showroom</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Mitra terpercaya Anda dalam menemukan kendaraan yang sempurna.
-                Pilihan premium, layanan berkualitas.
+                Your trusted partner in finding the perfect vehicle. Premium
+                selection, quality service.
               </p>
             </div>
 
@@ -168,7 +168,7 @@ export const Footer = () => {
         <Container>
           <div className="py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
             <p>
-              &copy; {new Date().getFullYear()} AutoPremium. All rights
+              &copy; {new Date().getFullYear()} Our Showroom . All rights
               reserved.
             </p>
             <div className="flex gap-6">

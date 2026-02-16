@@ -33,7 +33,7 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="px-4 text-2xl font-bold text-white">
-            AutoPremium
+            Our Showroom
           </Link>
 
           {/* Desktop Menu */}

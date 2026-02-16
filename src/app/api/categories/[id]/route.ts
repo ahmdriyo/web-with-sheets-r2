@@ -1,7 +1,7 @@
 import { authMiddleware } from "@/src/server/auth";
-import { getOneCategory } from "@/src/server/service/categories/get-one-categories.service";
-import { updateCategory } from "@/src/server/service/categories/update-categories.service";
-import { deleteCategory } from "@/src/server/service/categories/delete-categories.service";
+import { deleteCategory } from "@/src/server/service/categories/delete-category.service";
+import { getOneCategory } from "@/src/server/service/categories/get-one-category.service";
+import { updateCategory } from "@/src/server/service/categories/update-category.service";
 
 export async function GET(
   req: Request,

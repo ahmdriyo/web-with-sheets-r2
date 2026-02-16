@@ -14,7 +14,7 @@ export async function getCategories(req: Request) {
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { message: "Failed to fetch categories" },
+      { message: "Failed to fetch categories." },
       { status: 500 },
     );
   }

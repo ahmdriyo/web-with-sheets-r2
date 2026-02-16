@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { deleteCategory as deleteCategoryRepo } from "../../repositories/categories/delete-categories.repository";
+import { deleteCategory as deleteCategoryRepo } from "../../repositories/categories/delete-category.repository";
 
 export async function deleteCategory(id: string) {
   try {

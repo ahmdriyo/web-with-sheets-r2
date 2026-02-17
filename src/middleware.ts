@@ -30,7 +30,6 @@ export async function middleware(request: NextRequest) {
   // For protected routes, verify authentication
   if (isProtectedRoute) {
     const accessToken = await getToken();
-    console.log("Access Token from cookie:", accessToken);
     if (accessToken === null) {
       const loginUrl = new URL("/admin-showroom/login", request.url);
       loginUrl.searchParams.set("redirect", pathname);

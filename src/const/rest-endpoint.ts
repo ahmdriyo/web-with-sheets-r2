@@ -11,6 +11,10 @@ export enum RestEndpoint {
   PutUpdateCategory = `${prefix}/categories/{id}`,
   DeleteCategory = `${prefix}/categories/{id}`,
 
+  // About
+  GetAllAbout = `${prefix}/about`,
+  PutUpdateAbout = `${prefix}/about/{id}`,
+
   // User Admin
   GetAllUserAdmins = `${prefix}/user-admin`,
   GetUserAdminByUsername = `${prefix}/user-admin/{username}`,

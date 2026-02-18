@@ -1,13 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/src/components/ui";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
+import { ModalPrivacyPolicy } from "./ModalPrivacyPolicy";
+import { ModalTermsofService } from "./ModalTermsofService";
 
 export const Footer = () => {
   const { data: settingsData } = useSiteSettings(1, 1);
   const settings = settingsData?.data?.[0];
+
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   return (
     <footer id="contact" className="bg-gray-900 text-white">
@@ -172,16 +177,32 @@ export const Footer = () => {
               reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="hover:text-white transition-colors">
+              <button
+                onClick={() => setIsPrivacyModalOpen(true)}
+                className="hover:text-white transition-colors"
+              >
                 Privacy Policy
-              </Link>
-              <Link href="#" className="hover:text-white transition-colors">
+              </button>
+              <button
+                onClick={() => setIsTermsModalOpen(true)}
+                className="hover:text-white transition-colors"
+              >
                 Terms of Service
-              </Link>
+              </button>
             </div>
           </div>
         </Container>
       </div>
+
+      {/* Modals */}
+      <ModalPrivacyPolicy
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+      <ModalTermsofService
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
+      />
     </footer>
   );
 };

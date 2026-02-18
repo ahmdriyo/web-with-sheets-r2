@@ -4,17 +4,23 @@ import { Container, Section, Button, CarCard } from "@/src/components/ui";
 import { WhatsAppButton } from "@/src/components/ui/WhatsAppButton";
 import { useCars } from "@/src/hooks/useCars";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
+import { useEffect, useState } from "react";
 
 export const HomeView = () => {
   const { data: carsData, isLoading } = useCars(1, 6);
   const { data: settingsData } = useSiteSettings(1, 1);
+  const [isVisible, setIsVisible] = useState(false);
 
   const whatsappNumber = settingsData?.data?.[0]?.whatsapp_number || "";
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <div className="min-h-screen">
       {/* Hero Section with Background */}
-      <div className="relative min-h-[85vh] flex items-center">
+      <div className="relative min-h-[85vh] flex items-center overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <div
@@ -22,18 +28,35 @@ export const HomeView = () => {
             style={{ backgroundImage: "url(/back1.png)" }}
           />
           <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/40" />
+
+          {/* Animated circles */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute top-1/2 -right-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          </div>
         </div>
 
         {/* Hero Content */}
         <Container className="relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-block mb-4 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+          <div
+            className={`max-w-3xl transform transition-all duration-1000 ${
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-10 opacity-0"
+            }`}
+          >
+            <div className="inline-block mb-4 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 animate-fade-in">
               <span className="text-white text-sm font-medium">
                 Premium Car Showroom
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-              Find Your Dream Car Today
+              Find Your{" "}
+              <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
+                Dream Car
+              </span>{" "}
+              Today
             </h1>
             <p className="text-xl md:text-2xl text-gray-100 mb-8 leading-relaxed drop-shadow-lg">
               Premium selection of quality vehicles. Every car checked, every
@@ -43,7 +66,7 @@ export const HomeView = () => {
               <Link href="/cars">
                 <Button
                   size="lg"
-                  className="shadow-2xl text-black hover:bg-gray-100"
+                  className="shadow-2xl text-black hover:bg-gray-100 hover:scale-105 transition-transform duration-300"
                 >
                   View All Cars
                 </Button>
@@ -52,7 +75,7 @@ export const HomeView = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="shadow-2xl border-white text-white hover:bg-white/10"
+                  className="shadow-2xl border-white text-white hover:bg-white/10 hover:scale-105 transition-transform duration-300"
                 >
                   Explore Collection
                 </Button>
@@ -78,7 +101,14 @@ export const HomeView = () => {
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
         </div>
         <Container className="relative z-10">
-          <div id="featured" className="mb-12 text-center">
+          <div
+            id="featured"
+            className={`mb-12 text-center transform transition-all duration-1000 ${
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-10 opacity-0"
+            }`}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
               Featured Collection
             </h2>
@@ -98,53 +128,38 @@ export const HomeView = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {carsData?.data?.slice(0, 6).map((car) => (
-                <CarCard key={car.id} car={car} />
+              {carsData?.data?.slice(0, 6).map((car, index) => (
+                <div
+                  key={car.id}
+                  className={`transform transition-all duration-700 ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-10 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
+                  <CarCard car={car} />
+                </div>
               ))}
             </div>
           )}
 
-          <div className="text-center mt-12">
+          <div
+            className={`text-center mt-12 transform transition-all duration-1000 delay-1000 ${
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-10 opacity-0"
+            }`}
+          >
             <Link href="/cars">
               <Button
                 size="lg"
                 variant="outline"
-                className="shadow-2xl border-white text-white hover:bg-white/10"
+                className="shadow-2xl border-white text-white hover:bg-white/10 hover:scale-105 transition-all duration-300"
               >
                 View All Inventory
               </Button>
             </Link>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Trust Section */}
-      <Section className="bg-linear-to-br from-gray-900 to-black text-white">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-3 p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-              <div className="text-5xl font-bold bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
-                200+
-              </div>
-              <h3 className="text-xl font-semibold text-white">
-                Quality Vehicles
-              </h3>
-              <p className="text-gray-300">Ready to drive home</p>
-            </div>
-            <div className="space-y-3 p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-              <div className="text-5xl font-bold bg-linear-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
-                100%
-              </div>
-              <h3 className="text-xl font-semibold text-white">Checked</h3>
-              <p className="text-gray-300">Every detail inspected</p>
-            </div>
-            <div className="space-y-3 p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-              <div className="text-5xl font-bold bg-linear-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                24/7
-              </div>
-              <h3 className="text-xl font-semibold text-white">Support</h3>
-              <p className="text-gray-300">Always here to help</p>
-            </div>
           </div>
         </Container>
       </Section>

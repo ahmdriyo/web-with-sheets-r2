@@ -244,9 +244,9 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 | Method | Endpoint         | Auth | Description            |
 | ------ | ---------------- | ---- | ---------------------- |
-| GET    | `/api/cars`      | ✅   | List cars (paginated)  |
+| GET    | `/api/cars`      | ❌   | List cars (paginated)  |
 | POST   | `/api/cars`      | ✅   | Create car with images |
-| GET    | `/api/cars/[id]` | ✅   | Get single car         |
+| GET    | `/api/cars/[id]` | ❌   | Get single car         |
 | PUT    | `/api/cars/[id]` | ✅   | Update car             |
 | DELETE | `/api/cars/[id]` | ✅   | Delete car             |
 
@@ -254,9 +254,9 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 | Method | Endpoint               | Auth | Description     |
 | ------ | ---------------------- | ---- | --------------- |
-| GET    | `/api/categories`      | ✅   | List categories |
+| GET    | `/api/categories`      | ❌   | List categories |
 | POST   | `/api/categories`      | ✅   | Create category |
-| GET    | `/api/categories/[id]` | ✅   | Get category    |
+| GET    | `/api/categories/[id]` | ❌   | Get category    |
 | PUT    | `/api/categories/[id]` | ✅   | Update category |
 | DELETE | `/api/categories/[id]` | ✅   | Delete category |
 
@@ -264,7 +264,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 | Method | Endpoint                  | Auth | Description     |
 | ------ | ------------------------- | ---- | --------------- |
-| GET    | `/api/site-settings`      | ✅   | Get settings    |
+| GET    | `/api/site-settings`      | ❌   | Get settings    |
 | POST   | `/api/site-settings`      | ✅   | Create settings |
 | PUT    | `/api/site-settings/[id]` | ✅   | Update settings |
 | DELETE | `/api/site-settings/[id]` | ✅   | Delete settings |

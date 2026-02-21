@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { clearTokens } from "@/src/utils/action";
 
 interface MenuItem {
   label: string;
@@ -150,15 +151,37 @@ export const Sidebar: React.FC = () => {
 
       {/* Footer */}
       <div className="px-6 py-4 border-t border-zinc-800">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-full bg-linear-to-br from-purple-600 to-purple-800 flex items-center justify-center text-white text-sm font-semibold">
             A
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-white truncate">Admin</p>
-            <p className="text-xs text-zinc-500 truncate">admin@showroom.com</p>
+            <p className="text-xs text-zinc-500 truncate">Administrator</p>
           </div>
         </div>
+        <button
+          onClick={async () => {
+            await clearTokens();
+            window.location.href = "/admin-showroom/login";
+          }}
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-white transition-all text-sm font-medium"
+        >
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            />
+          </svg>
+          Logout
+        </button>
       </div>
     </aside>
   );

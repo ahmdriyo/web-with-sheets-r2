@@ -7,6 +7,8 @@ import { WhatsAppButton } from "@/src/components/ui/WhatsAppButton";
 import { useCars } from "@/src/hooks/useCars";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
 import type { Cars } from "@/src/types/cars.type";
+import { CarSkeleton } from "@/src/components/ui/CarSkeleton";
+import CarNotfound from "@/src/components/ui/CarNotfound";
 
 interface CarDetailViewProps {
   slug: string;
@@ -17,13 +19,13 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
 
   // Fetch cars and filter by slug
   const { data: carsData, isLoading } = useCars(1, 100);
-  const { data: settingsData } = useSiteSettings(1, 1);
+  const { data: settingsData } = useSiteSettings();
 
   const car = useMemo((): Cars | undefined => {
     return carsData?.data?.find((c) => c.slug === slug);
   }, [carsData, slug]);
 
-  const whatsappNumber = settingsData?.data?.[0]?.whatsapp_number || "";
+  const whatsappNumber = settingsData?.data?.whatsapp_number || "";
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -34,31 +36,11 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Loading...</h2>
-          <p className="text-gray-600">
-            Please wait while we fetch the car details
-          </p>
-        </div>
-      </div>
-    );
+    return <CarSkeleton />;
   }
 
   if (!car) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Car Not Found
-          </h2>
-          <p className="text-gray-600">
-            The car you&#39;re looking for doesn&#39;t exist
-          </p>
-        </div>
-      </div>
-    );
+    return <CarNotfound />;
   }
 
   const allImages = car.image_urls || [car.primary_image_url];

@@ -252,7 +252,7 @@ export const sheetsData = google.sheets({ version: "v4", auth });
 
 - **Access Token:** Short-lived (configurable via `JWT_EXPIRES_IN`)
 - **Refresh Token:** 7 days (604800 seconds)
-- **Storage:** Both `Authorization: Bearer {token}` header AND `authToken` HttpOnly cookie
+- **Storage:** Both `Authorization: Bearer {token}` header AND `accessToken` HttpOnly cookie
 - **Verification:** `verifyToken()` checks signature and expiration
 
 **Security Features:**

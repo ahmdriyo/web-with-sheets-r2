@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { updateCategory as updateCategoryRepo } from "../../repositories/categories/update-categories.repository";
+import { updateCategory as updateCategoryRepo } from "../../repositories/categories/update-category.repository";
 
 export async function updateCategory(id: string, req: Request) {
   try {

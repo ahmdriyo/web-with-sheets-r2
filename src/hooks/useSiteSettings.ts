@@ -7,17 +7,15 @@ import { SiteSettingsService } from "../services/site-settings.service";
 
 export const SITE_SETTINGS_QUERY_KEYS = {
   all: ["site-settings"] as const,
-  lists: () => [...SITE_SETTINGS_QUERY_KEYS.all, "list"] as const,
-  list: (page?: number, limit?: number) =>
-    [...SITE_SETTINGS_QUERY_KEYS.lists(), { page, limit }] as const,
+  settings: () => [...SITE_SETTINGS_QUERY_KEYS.all, "settings"] as const,
   details: () => [...SITE_SETTINGS_QUERY_KEYS.all, "detail"] as const,
   detail: (id: string) => [...SITE_SETTINGS_QUERY_KEYS.details(), id] as const,
 };
 
-export const useSiteSettings = (page?: number, limit?: number) => {
+export const useSiteSettings = () => {
   return useQuery({
-    queryKey: SITE_SETTINGS_QUERY_KEYS.list(page, limit),
-    queryFn: () => SiteSettingsService.getSiteSettings(page, limit),
+    queryKey: SITE_SETTINGS_QUERY_KEYS.settings(),
+    queryFn: () => SiteSettingsService.getSiteSettings(),
     select: (data) => data.data,
   });
 };

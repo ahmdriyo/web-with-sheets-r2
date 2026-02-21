@@ -3,7 +3,7 @@ import React from "react";
 interface SectionProps {
   children: React.ReactNode;
   className?: string;
-  background?: "white" | "gray" | "brown";
+  background?: "white" | "gray" | "brown" | "dark";
 }
 
 export const Section: React.FC<SectionProps> = ({
@@ -15,6 +15,7 @@ export const Section: React.FC<SectionProps> = ({
     white: "bg-white",
     gray: "bg-gray-50",
     brown: "!bg-gray-800",
+    dark: "bg-gray-900",
   };
 
   return (

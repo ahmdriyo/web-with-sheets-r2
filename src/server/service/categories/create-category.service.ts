@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createCategory as createCategoryRepo } from "../../repositories/categories/create-categories.repository";
+import { createCategory as createCategoryRepo } from "../../repositories/categories/create-category.repository";
 
 export async function createCategory(req: Request) {
   try {
@@ -18,7 +18,7 @@ export async function createCategory(req: Request) {
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { message: "Failed to add category" },
+      { message: "Failed to add category." },
       { status: 500 },
     );
   }

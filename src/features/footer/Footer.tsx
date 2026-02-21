@@ -1,13 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/src/components/ui";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
+import { ModalPrivacyPolicy } from "./ModalPrivacyPolicy";
+import { ModalTermsofService } from "./ModalTermsofService";
 
 export const Footer = () => {
-  const { data: settingsData } = useSiteSettings(1, 1);
-  const settings = settingsData?.data?.[0];
+  const { data: settingsData } = useSiteSettings();
+  const settings = settingsData?.data;
+
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   return (
     <footer id="contact" className="bg-gray-900 text-white">
@@ -17,10 +22,10 @@ export const Footer = () => {
           <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold">AutoPremium</h3>
+              <h3 className="text-2xl font-bold">Our Showroom</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Mitra terpercaya Anda dalam menemukan kendaraan yang sempurna.
-                Pilihan premium, layanan berkualitas.
+                Your trusted partner in finding the perfect vehicle. Premium
+                selection, quality service.
               </p>
             </div>
 
@@ -168,20 +173,36 @@ export const Footer = () => {
         <Container>
           <div className="py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
             <p>
-              &copy; {new Date().getFullYear()} AutoPremium. All rights
+              &copy; {new Date().getFullYear()} Our Showroom . All rights
               reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="#" className="hover:text-white transition-colors">
+              <button
+                onClick={() => setIsPrivacyModalOpen(true)}
+                className="hover:text-white transition-colors"
+              >
                 Privacy Policy
-              </Link>
-              <Link href="#" className="hover:text-white transition-colors">
+              </button>
+              <button
+                onClick={() => setIsTermsModalOpen(true)}
+                className="hover:text-white transition-colors"
+              >
                 Terms of Service
-              </Link>
+              </button>
             </div>
           </div>
         </Container>
       </div>
+
+      {/* Modals */}
+      <ModalPrivacyPolicy
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+      <ModalTermsofService
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
+      />
     </footer>
   );
 };

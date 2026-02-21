@@ -2,7 +2,7 @@ import { SiteSettings } from "@/src/types/site-settings.type";
 import { sheetsData } from "../../infra/google.sheets.client";
 
 export async function findSiteSettingById(id: string) {
-  const range = `site-settings!A2:H`;
+  const range = `site-settings!A2:I`;
 
   const response = await sheetsData.spreadsheets.values.get({
     spreadsheetId: process.env.GOOGLE_SHEET_ID,
@@ -22,9 +22,10 @@ export async function findSiteSettingById(id: string) {
     showroom_address: settingRow[2] ?? "",
     instagram: settingRow[3] ?? "",
     google_maps: settingRow[4] ?? "",
-    email: settingRow[5] ?? "",
-    opening_hours: settingRow[6] ?? "",
-    created_at: new Date(settingRow[7] ?? Date.now()),
+    embed_maps: settingRow[5] ?? "",
+    email: settingRow[6] ?? "",
+    opening_hours: settingRow[7] ?? "",
+    created_at: new Date(settingRow[8] ?? Date.now()),
   };
 
   return data;

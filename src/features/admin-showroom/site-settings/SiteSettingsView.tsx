@@ -32,8 +32,8 @@ const SiteSettingsView = () => {
 
   // Load existing settings
   useEffect(() => {
-    if (settingsData?.data && settingsData.data.length > 0) {
-      const settings = settingsData.data[0];
+    if (settingsData?.data) {
+      const settings = settingsData.data;
       setFormData({
         whatsapp_number: settings.whatsapp_number || "",
         showroom_address: settings.showroom_address || "",
@@ -77,7 +77,7 @@ const SiteSettingsView = () => {
     if (!validateForm()) return;
 
     try {
-      const existingSettings = settingsData?.data?.[0];
+      const existingSettings = settingsData?.data;
 
       if (existingSettings) {
         // Update existing settings
@@ -98,7 +98,7 @@ const SiteSettingsView = () => {
   };
 
   const handleDelete = async () => {
-    const existingSettings = settingsData?.data?.[0];
+    const existingSettings = settingsData?.data;
     if (!existingSettings) return;
 
     try {
@@ -171,7 +171,7 @@ const SiteSettingsView = () => {
                   name="whatsapp_number"
                   value={formData.whatsapp_number}
                   onChange={handleChange}
-                  placeholder="e.g., +62812345678"
+                  placeholder="e.g., 081234567890"
                   className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border ${
                     errors.whatsapp_number
                       ? "border-red-500"
@@ -270,15 +270,16 @@ const SiteSettingsView = () => {
               {/* Actions */}
               <div className="flex items-center justify-between pt-6 border-t border-zinc-800">
                 <div>
-                  {settingsData?.data && settingsData.data.length > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => setIsDeleteDialogOpen(true)}
-                      className="px-5 py-2.5 bg-linear-to-r text-sm hover:text-red-300 transition-colors from-red-600 to-red-700 text-white rounded-lg font-medium hover:from-red-700 hover:to-red-800 cursor-pointer flex items-center gap-2"
-                    >
-                      Delete Settings
-                    </button>
-                  )}
+                  {settingsData?.data === undefined ||
+                    (settingsData?.data === null && (
+                      <button
+                        type="button"
+                        onClick={() => setIsDeleteDialogOpen(true)}
+                        className="px-5 py-2.5 bg-linear-to-r text-sm hover:text-red-300 transition-colors from-red-600 to-red-700 text-white rounded-lg font-medium hover:from-red-700 hover:to-red-800 cursor-pointer flex items-center gap-2"
+                      >
+                        Delete Settings
+                      </button>
+                    ))}
                 </div>
                 <div className="flex gap-3">
                   <button

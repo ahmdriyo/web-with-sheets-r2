@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AutoPremium - Premium Car Showroom",
+  title: "Our Showroom - Premium Car Showroom",
   description:
     "Find your dream car from our premium collection of quality vehicles",
 };

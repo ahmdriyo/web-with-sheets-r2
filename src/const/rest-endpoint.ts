@@ -32,4 +32,7 @@ export enum RestEndpoint {
   PostCreateSiteSetting = `${prefix}/site-settings`,
   PutUpdateSiteSetting = `${prefix}/site-settings/{id}`,
   DeleteSiteSetting = `${prefix}/site-settings/{id}`,
+
+  // Contact
+  PostContact = `${prefix}/contact`,
 }

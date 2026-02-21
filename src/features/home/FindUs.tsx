@@ -2,11 +2,13 @@
 import React, { useState } from "react";
 import { Container, Section, Button, Input } from "@/src/components/ui";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
+import { useContact } from "@/src/hooks/useContact";
 import { Toast } from "@/src/components/ui/Toast";
 
 const FindUs = () => {
-  const { data: settingsData, isLoading } = useSiteSettings();
+  const { data: settingsData } = useSiteSettings();
   const settings = settingsData?.data;
+  const { mutate: sendContact, isPending } = useContact();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -14,7 +16,6 @@ const FindUs = () => {
     phone: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState<{
     show: boolean;
     message: string;
@@ -24,7 +25,6 @@ const FindUs = () => {
     message: "",
     type: "success",
   });
-  console.log("Site settings data:", settings);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -33,7 +33,61 @@ const FindUs = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {};
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!settings?.email) {
+      setToast({
+        show: true,
+        message: "Recipient email is not configured. Please try again later.",
+        type: "error",
+      });
+      return;
+    }
+
+    // Validate message length
+    if (formData.message.trim().length < 10) {
+      setToast({
+        show: true,
+        message: "Message must be at least 10 characters long.",
+        type: "error",
+      });
+      return;
+    }
+
+    sendContact(
+      {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        recipientEmail: settings.email,
+      },
+      {
+        onSuccess: () => {
+          setToast({
+            show: true,
+            message: "Message sent successfully! We'll get back to you soon.",
+            type: "success",
+          });
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            message: "",
+          });
+        },
+        onError: (error: unknown) => {
+          console.error("Error sending contact message:", error);
+          setToast({
+            show: true,
+            message: "Failed to send message. Please try again.",
+            type: "error",
+          });
+        },
+      },
+    );
+  };
 
   return (
     <Section background="dark" className="relative overflow-hidden">
@@ -156,9 +210,9 @@ const FindUs = () => {
                 type="submit"
                 size="lg"
                 className="w-full bg-gray-800 text-white hover:bg-gray-900"
-                disabled={isSubmitting}
+                disabled={isPending}
               >
-                {isSubmitting ? (
+                {isPending ? (
                   <span className="flex items-center justify-center gap-2">
                     <svg
                       className="animate-spin h-5 w-5"

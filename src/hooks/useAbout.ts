@@ -5,17 +5,15 @@ import { AboutService } from "../services/about.service";
 
 export const ABOUT_QUERY_KEYS = {
   all: ["about"] as const,
-  lists: () => [...ABOUT_QUERY_KEYS.all, "list"] as const,
-  list: (page?: number, limit?: number) =>
-    [...ABOUT_QUERY_KEYS.lists(), { page, limit }] as const,
+  about: () => [...ABOUT_QUERY_KEYS.all, "about"] as const,
   details: () => [...ABOUT_QUERY_KEYS.all, "detail"] as const,
   detail: (id: string) => [...ABOUT_QUERY_KEYS.details(), id] as const,
 };
 
-export const useAbout = (page?: number, limit?: number) => {
+export const useAbout = () => {
   return useQuery({
-    queryKey: ABOUT_QUERY_KEYS.list(page, limit),
-    queryFn: () => AboutService.getAbout(page, limit),
+    queryKey: ABOUT_QUERY_KEYS.about(),
+    queryFn: () => AboutService.getAbout(),
     select: (data) => data.data,
   });
 };

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { updateAbout as updateAboutRepo } from "../../repositories/about/update-about.repository";
 
-export async function updateAbouts(id: string, req: Request) {
+export async function updateAbout(id: string, req: Request) {
   try {
     const body = await req.json();
     const {
@@ -13,7 +13,6 @@ export async function updateAbouts(id: string, req: Request) {
       happyCustomers,
       yearsExperience,
     } = body;
-
     const setting = await updateAboutRepo(id, {
       title,
       description,
@@ -26,7 +25,6 @@ export async function updateAbouts(id: string, req: Request) {
     if (!setting) {
       return NextResponse.json({ message: "About not found" }, { status: 404 });
     }
-
     return NextResponse.json({
       message: "About updated!",
       data: setting,

@@ -1,15 +1,17 @@
 import { NextResponse } from "next/server";
 import { findAbout } from "../../repositories/about/find-about.repository";
 
-export async function getAbout(req: Request) {
+export async function getAbout() {
   try {
-    const { searchParams } = new URL(req.url);
-    const page = Number(searchParams.get("page")) || 1;
-    const limit = Number(searchParams.get("limit")) || 10;
-    const result = await findAbout(page, limit);
+    const result = await findAbout();
+
+    if (!result) {
+      return NextResponse.json({ message: "About not found" }, { status: 404 });
+    }
+
     return NextResponse.json({
       message: "About fetched!",
-      ...result,
+      data: result,
     });
   } catch (error) {
     console.error(error);

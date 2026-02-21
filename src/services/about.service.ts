@@ -3,10 +3,8 @@ import { RestEndpoint } from "@/src/const/rest-endpoint";
 import { About, AboutResponse, UpdateAboutDTO } from "../types/about.type";
 
 export const AboutService = {
-  getAbout: (page?: number, limit?: number): Promise<{ data: AboutResponse }> =>
-    baseApi.get(RestEndpoint.GetAllAbout, {
-      params: { page, limit },
-    }),
+  getAbout: (): Promise<{ data: AboutResponse }> =>
+    baseApi.get(RestEndpoint.GetAllAbout),
 
   updateAbout: (
     id: string,

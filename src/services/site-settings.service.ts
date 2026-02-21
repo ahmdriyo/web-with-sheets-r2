@@ -8,13 +8,8 @@ import {
 } from "@/src/types/site-settings.type";
 
 export const SiteSettingsService = {
-  getSiteSettings: (
-    page?: number,
-    limit?: number,
-  ): Promise<{ data: SiteSettingsResponse }> =>
-    baseApiToken.get(RestEndpoint.GetAllSiteSettings, {
-      params: { page, limit },
-    }),
+  getSiteSettings: (): Promise<{ data: SiteSettingsResponse }> =>
+    baseApiToken.get(RestEndpoint.GetAllSiteSettings),
 
   getSiteSettingById: (
     id: string,

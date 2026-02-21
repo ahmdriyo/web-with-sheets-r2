@@ -3,7 +3,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { Badge } from "./Badge";
 import type { Cars } from "@/src/types/cars.type";
 
 interface CarCardProps {
@@ -31,17 +30,6 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
           />
           {/* Gradient Overlay on Hover */}
           <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-          {car.is_featured && (
-            <div className="absolute top-3 left-3 animate-fade-in">
-              <Badge variant="warning">Featured</Badge>
-            </div>
-          )}
-          {car.status === "sold" && (
-            <div className="absolute top-3 right-3 animate-fade-in">
-              <Badge variant="default">Sold</Badge>
-            </div>
-          )}
         </div>
 
         {/* Content */}

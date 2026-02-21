@@ -1,7 +1,7 @@
 import { sheetsData } from "../../infra/google.sheets.client";
 import { About } from "@/src/types/about.type";
 
-export async function findAbout(page: number, limit: number) {
+export async function findAbout() {
   const range = `about!A2:H`;
 
   const response = await sheetsData.spreadsheets.values.get({
@@ -11,29 +11,23 @@ export async function findAbout(page: number, limit: number) {
 
   const rows = (response.data.values ?? []) as string[][];
 
-  const totalItems = rows.length;
-  const startIndex = (page - 1) * limit;
+  // Get the first row (about should be a singleton)
+  const firstRow = rows[0];
 
-  const paginatedRows = rows.slice(startIndex, startIndex + limit);
+  if (!firstRow) {
+    return null;
+  }
 
-  const data: About[] = paginatedRows.map((row) => ({
-    id: row[0] ?? "",
-    title: row[1] ?? "",
-    description: row[2] ?? "",
-    ourMission: row[3] ?? "",
-    ourVision: row[4] ?? "",
-    carsSold: row[5] ?? "",
-    happyCustomers: row[6] ?? "",
-    yearsExperience: row[7] ?? "",
-  }));
-
-  return {
-    data,
-    pagination: {
-      page,
-      limit,
-      totalItems,
-      totalPages: Math.ceil(totalItems / limit),
-    },
+  const data: About = {
+    id: firstRow[0] ?? "",
+    title: firstRow[1] ?? "",
+    description: firstRow[2] ?? "",
+    ourMission: firstRow[3] ?? "",
+    ourVision: firstRow[4] ?? "",
+    carsSold: firstRow[5] ?? "",
+    happyCustomers: firstRow[6] ?? "",
+    yearsExperience: firstRow[7] ?? "",
   };
+
+  return data;
 }

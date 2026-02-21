@@ -1,7 +1,7 @@
 import { sheetsData } from "../../infra/google.sheets.client";
 
 export async function deleteSiteSetting(id: string) {
-  const range = `site-settings!A2:H`;
+  const range = `site-settings!A2:I`;
 
   const response = await sheetsData.spreadsheets.values.get({
     spreadsheetId: process.env.GOOGLE_SHEET_ID,

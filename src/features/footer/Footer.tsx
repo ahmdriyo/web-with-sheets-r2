@@ -8,8 +8,8 @@ import { ModalPrivacyPolicy } from "./ModalPrivacyPolicy";
 import { ModalTermsofService } from "./ModalTermsofService";
 
 export const Footer = () => {
-  const { data: settingsData } = useSiteSettings(1, 1);
-  const settings = settingsData?.data?.[0];
+  const { data: settingsData } = useSiteSettings();
+  const settings = settingsData?.data;
 
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);

@@ -5,13 +5,14 @@ import { WhatsAppButton } from "@/src/components/ui/WhatsAppButton";
 import { useCars } from "@/src/hooks/useCars";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
 import { useEffect, useState } from "react";
+import FindUs from "./FindUs";
 
 export const HomeView = () => {
   const { data: carsData, isLoading } = useCars(1, 6);
-  const { data: settingsData } = useSiteSettings(1, 1);
+  const { data: settingsData } = useSiteSettings();
   const [isVisible, setIsVisible] = useState(false);
 
-  const whatsappNumber = settingsData?.data?.[0]?.whatsapp_number || "";
+  const whatsappNumber = settingsData?.data?.whatsapp_number;
 
   useEffect(() => {
     setIsVisible(true);
@@ -122,8 +123,28 @@ export const HomeView = () => {
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="bg-gray-100 rounded-xl h-96 animate-pulse"
-                />
+                  className="bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-700 shadow-lg"
+                >
+                  <div className="relative">
+                    {/* Image Skeleton */}
+                    <div className="w-full h-56 bg-zinc-700 animate-pulse relative overflow-hidden">
+                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-zinc-600/50 to-transparent animate-shimmer"></div>
+                    </div>
+                    {/* Badge Skeleton */}
+                    <div className="absolute top-4 left-4 w-20 h-6 bg-zinc-600 rounded-full animate-pulse"></div>
+                  </div>
+                  <div className="p-5 space-y-4">
+                    {/* Category Badge Skeleton */}
+                    <div className="w-16 h-5 bg-zinc-700 rounded-full animate-pulse"></div>
+                    {/* Brand & Model Skeleton */}
+                    <div className="space-y-2">
+                      <div className="h-6 bg-zinc-700 rounded-lg w-3/4 animate-pulse"></div>
+                      <div className="h-8 bg-zinc-700 rounded-lg w-full animate-pulse"></div>
+                    </div>
+                    {/* Button Skeleton */}
+                    <div className="h-11 bg-zinc-700 rounded-lg w-full animate-pulse mt-4"></div>
+                  </div>
+                </div>
               ))}
             </div>
           ) : (
@@ -163,6 +184,7 @@ export const HomeView = () => {
           </div>
         </Container>
       </Section>
+      <FindUs />
 
       {/* WhatsApp Button */}
       {whatsappNumber && <WhatsAppButton phoneNumber={whatsappNumber} />}

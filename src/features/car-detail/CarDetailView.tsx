@@ -19,13 +19,13 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
 
   // Fetch cars and filter by slug
   const { data: carsData, isLoading } = useCars(1, 100);
-  const { data: settingsData } = useSiteSettings(1, 1);
+  const { data: settingsData } = useSiteSettings();
 
   const car = useMemo((): Cars | undefined => {
     return carsData?.data?.find((c) => c.slug === slug);
   }, [carsData, slug]);
 
-  const whatsappNumber = settingsData?.data?.[0]?.whatsapp_number || "";
+  const whatsappNumber = settingsData?.data?.whatsapp_number || "";
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("id-ID", {

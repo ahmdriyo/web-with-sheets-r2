@@ -2,19 +2,58 @@
 import { Container, Section, Button } from "@/src/components/ui";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAbout } from "@/src/hooks/useAbout";
+import { SkeletonAbout } from "./SkeletonAbout";
 
 export const AboutView = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { data: aboutData, isLoading, isError } = useAbout();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  // Get the about data from the API
+  const about = aboutData?.data;
+
+  // Use API data or fallback to defaults
   const statistics = [
-    { number: "500+", label: "Cars Sold", icon: "🚗" },
-    { number: "95%", label: "Happy Customers", icon: "😊" },
-    { number: "10+", label: "Years Experience", icon: "⭐" },
+    {
+      number: about?.carsSold,
+      label: "Cars Sold",
+      icon: "🚗",
+    },
+    {
+      number: about?.happyCustomers,
+      label: "Happy Customers",
+      icon: "😊",
+    },
+    {
+      number: about?.yearsExperience,
+      label: "Years Experience",
+      icon: "⭐",
+    },
   ];
+
+  if (isLoading) {
+    return <SkeletonAbout />;
+  }
+  if (isError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md">
+          <div className="text-6xl mb-4">⚠️</div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Error Loading Content
+          </h2>
+          <p className="text-gray-600 mb-4">
+            Unable to load about page content. Please try again later.
+          </p>
+          <Button onClick={() => window.location.reload()}>Reload Page</Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -47,19 +86,15 @@ export const AboutView = () => {
           >
             <div className="inline-block mb-6 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 animate-fade-in">
               <span className="text-white text-sm font-semibold tracking-wider">
-                ABOUT OUR SHOWROOM
+                Premium Car Showroom
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Your Trusted Partner in{" "}
-              <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-                Premium Vehicles
-              </span>
+              {about?.title || "Your Trusted Partner in"}{" "}
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed max-w-3xl mx-auto">
-              We&apos;re passionate about connecting you with your dream car.
-              Experience excellence, quality, and service that goes beyond
-              expectations.
+              {about?.description ||
+                "We're passionate about connecting you with your dream car. Experience excellence, quality, and service that goes beyond expectations."}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/cars">
@@ -85,29 +120,27 @@ export const AboutView = () => {
       </div>
 
       {/* Mission & Vision Section */}
-      <Section className="bg-white">
+      <Section className="bg-linear-to-br from-gray-800 via-[#00001a] to-gray-800">
         <Container>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-stretch">
             {/* Mission */}
             <div
-              className={`transform transition-all duration-1000 delay-200 ${
+              className={`h-full transform transition-all duration-1000 delay-200 ${
                 isVisible
                   ? "translate-x-0 opacity-100"
                   : "-translate-x-10 opacity-0"
               }`}
             >
-              <div className="relative p-8 rounded-2xl bg-linear-to-br from-blue-50 to-purple-50 border border-blue-100 overflow-hidden group hover:shadow-2xl transition-shadow duration-300">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200/30 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="relative h-full p-8 rounded-2xl bg-linear-to-br from-blue-950/50 to-purple-950/50 border border-blue-800/30 overflow-hidden group hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 backdrop-blur-sm">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="relative">
                   <div className="text-5xl mb-4">🎯</div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-3xl font-bold text-white mb-4">
                     Our Mission
                   </h2>
-                  <p className="text-gray-700 text-lg leading-relaxed">
-                    To provide an exceptional car buying experience by offering
-                    premium quality vehicles, transparent service, and building
-                    lasting relationships with our customers through trust and
-                    excellence.
+                  <p className="text-gray-300 text-lg leading-relaxed">
+                    {about?.ourMission ||
+                      "To provide an exceptional car buying experience by offering premium quality vehicles, transparent service, and building lasting relationships with our customers through trust and excellence."}
                   </p>
                 </div>
               </div>
@@ -115,24 +148,22 @@ export const AboutView = () => {
 
             {/* Vision */}
             <div
-              className={`transform transition-all duration-1000 delay-400 ${
+              className={`h-full transform transition-all duration-1000 delay-400 ${
                 isVisible
                   ? "translate-x-0 opacity-100"
                   : "translate-x-10 opacity-0"
               }`}
             >
-              <div className="relative p-8 rounded-2xl bg-linear-to-br from-purple-50 to-pink-50 border border-purple-100 overflow-hidden group hover:shadow-2xl transition-shadow duration-300">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-200/30 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="relative h-full p-8 rounded-2xl bg-linear-to-br from-purple-950/50 to-pink-950/50 border border-purple-800/30 overflow-hidden group hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 backdrop-blur-sm">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
                 <div className="relative">
                   <div className="text-5xl mb-4">🚀</div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-3xl font-bold text-white mb-4">
                     Our Vision
                   </h2>
-                  <p className="text-gray-700 text-lg leading-relaxed">
-                    To become the most trusted and preferred automotive
-                    showroom, known for our integrity, innovation, and
-                    unwavering commitment to customer satisfaction in the
-                    premium car market.
+                  <p className="text-gray-300 text-lg leading-relaxed">
+                    {about?.ourVision ||
+                      "To become the most trusted and preferred automotive showroom, known for our integrity, innovation, and unwavering commitment to customer satisfaction in the premium car market."}
                   </p>
                 </div>
               </div>

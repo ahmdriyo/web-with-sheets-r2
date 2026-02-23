@@ -28,10 +28,7 @@ export enum RestEndpoint {
 
   // Site Settings
   GetAllSiteSettings = `${prefix}/site-settings`,
-  GetSiteSettingById = `${prefix}/site-settings/{id}`,
-  PostCreateSiteSetting = `${prefix}/site-settings`,
-  PutUpdateSiteSetting = `${prefix}/site-settings/{id}`,
-  DeleteSiteSetting = `${prefix}/site-settings/{id}`,
+  PutUpdateSiteSetting = `${prefix}/site-settings`,
 
   // Contact
   PostContact = `${prefix}/contact`,

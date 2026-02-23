@@ -5,6 +5,7 @@ import { Container, Section, Input, CarCard } from "@/src/components/ui";
 import { WhatsAppButton } from "@/src/components/ui/WhatsAppButton";
 import { useCars } from "@/src/hooks/useCars";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
+import { useDebounce } from "@/src/hooks/useDebounce";
 
 export const CarsView = () => {
   const [page, setPage] = useState(1);
@@ -12,38 +13,46 @@ export const CarsView = () => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [selectedFuel, setSelectedFuel] = useState("");
   const [selectedTransmission, setSelectedTransmission] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const limit = 5;
-  const { data: carsData, isLoading } = useCars(page, limit);
+  const limit = 8;
+
+  // Debounce search query
+  const debouncedSearch = useDebounce(searchQuery, 500);
+
+  // Build filters object
+  const filters = {
+    search: debouncedSearch || undefined,
+    brand: selectedBrand || undefined,
+    fuelType: selectedFuel || undefined,
+    transmission: selectedTransmission || undefined,
+    category: selectedCategory || undefined,
+  };
+
+  const { data: carsData, isLoading } = useCars(page, limit, filters);
   const { data: settingsData } = useSiteSettings();
 
   const whatsappNumber = settingsData?.data?.whatsapp_number || "";
 
-  // Filter cars based on selections
-  const filteredCars =
-    carsData?.data?.filter((car) => {
-      const matchesSearch =
-        !searchQuery ||
-        car.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        car.model.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        car.title.toLowerCase().includes(searchQuery.toLowerCase());
-
-      const matchesBrand = !selectedBrand || car.brand === selectedBrand;
-      const matchesFuel = !selectedFuel || car.fuel_type === selectedFuel;
-      const matchesTransmission =
-        !selectedTransmission || car.transmission === selectedTransmission;
-
-      return (
-        matchesSearch && matchesBrand && matchesFuel && matchesTransmission
-      );
-    }) || [];
-
-  // Get unique brands
+  // Get unique brands from all cars (we'll need to fetch this separately or cache it)
   const uniqueBrands = Array.from(
     new Set(carsData?.data?.map((car) => car.brand) || []),
   );
 
+  // Get unique categories
+  const uniqueCategories = Array.from(
+    new Set(carsData?.data?.map((car) => car.category) || []),
+  );
+
   const totalPages = carsData?.pagination?.totalPages || 1;
+  const totalItems = carsData?.pagination?.totalItems || 0;
+
+  // Reset to page 1 when filters change
+  const handleFilterChange =
+    (setter: (value: string) => void) => (value: string) => {
+      setter(value);
+      setPage(1);
+    };
 
   return (
     <div className="min-h-screen bg-black">
@@ -61,10 +70,10 @@ export const CarsView = () => {
         {/* Header Content */}
         <Container className="relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-2xl">
-            Our Collection
+            Koleksi Kami
           </h1>
           <p className="text-xl text-gray-200 drop-shadow-lg">
-            Browse {carsData?.pagination?.totalItems || 0} premium vehicles
+            Cari {totalItems} Kendaraan Premium Impian Anda
           </p>
         </Container>
       </div>
@@ -76,20 +85,25 @@ export const CarsView = () => {
             {/* Search */}
             <Input
               type="text"
-              placeholder="Search by brand, model, or title..."
+              placeholder="Cari berdasarkan merek, model, atau judul..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setPage(1); // Reset to first page on search
+              }}
               className="w-full bg-zinc-800 border-zinc-700 text-white placeholder:text-gray-400 focus:ring-white focus:border-white"
             />
 
             {/* Filters */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <select
                 value={selectedBrand}
-                onChange={(e) => setSelectedBrand(e.target.value)}
+                onChange={(e) =>
+                  handleFilterChange(setSelectedBrand)(e.target.value)
+                }
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
               >
-                <option value="">All Brands</option>
+                <option value="">Semua Merek</option>
                 {uniqueBrands.map((brand) => (
                   <option key={brand} value={brand}>
                     {brand}
@@ -98,11 +112,28 @@ export const CarsView = () => {
               </select>
 
               <select
-                value={selectedFuel}
-                onChange={(e) => setSelectedFuel(e.target.value)}
+                value={selectedCategory}
+                onChange={(e) =>
+                  handleFilterChange(setSelectedCategory)(e.target.value)
+                }
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
               >
-                <option value="">All Fuel Types</option>
+                <option value="">Semua Kategori</option>
+                {uniqueCategories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+
+              <select
+                value={selectedFuel}
+                onChange={(e) =>
+                  handleFilterChange(setSelectedFuel)(e.target.value)
+                }
+                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
+              >
+                <option value="">Semua Jenis Bahan Bakar</option>
                 <option value="bensin">Bensin</option>
                 <option value="diesel">Diesel</option>
                 <option value="hybrid">Hybrid</option>
@@ -111,14 +142,28 @@ export const CarsView = () => {
 
               <select
                 value={selectedTransmission}
-                onChange={(e) => setSelectedTransmission(e.target.value)}
+                onChange={(e) =>
+                  handleFilterChange(setSelectedTransmission)(e.target.value)
+                }
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
               >
-                <option value="">All Transmissions</option>
+                <option value="">Semua Jenis Transmisi</option>
                 <option value="manual">Manual</option>
                 <option value="automatic">Automatic</option>
               </select>
             </div>
+
+            {/* Active Filters Info */}
+            {(debouncedSearch ||
+              selectedBrand ||
+              selectedFuel ||
+              selectedTransmission ||
+              selectedCategory) && (
+              <div className="text-sm text-gray-400">
+                Menampilkan {totalItems} hasil
+                {debouncedSearch && ` untuk "${debouncedSearch}"`}
+              </div>
+            )}
           </div>
         </Container>
       </Section>
@@ -155,16 +200,17 @@ export const CarsView = () => {
                 </div>
               ))}
             </div>
-          ) : filteredCars.length > 0 ? (
+          ) : carsData?.data && carsData.data.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredCars.map((car) => (
+              {carsData.data.map((car) => (
                 <CarCard key={car.id} car={car} />
               ))}
             </div>
           ) : (
             <div className="text-center py-12">
               <p className="text-xl text-gray-400">
-                No cars found matching your criteria
+                Tidak ada mobil yang cocok dengan kriteria Anda. Coba ubah kata
+                kunci pencarian atau filter Anda.
               </p>
             </div>
           )}
@@ -177,17 +223,17 @@ export const CarsView = () => {
                 disabled={page === 1}
                 className="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white disabled:opacity-50 hover:bg-zinc-800 transition-colors"
               >
-                Previous
+                Sebelumnya
               </button>
               <div className="flex items-center px-4 py-2 text-sm text-gray-300">
-                Page {page} of {totalPages}
+                Halaman {page} dari {totalPages}
               </div>
               <button
                 onClick={() => setPage(Math.min(totalPages, page + 1))}
                 disabled={page === totalPages}
                 className="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white disabled:opacity-50 hover:bg-zinc-800 transition-colors"
               >
-                Next
+                Selanjutnya
               </button>
             </div>
           )}

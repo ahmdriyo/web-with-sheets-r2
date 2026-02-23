@@ -6,7 +6,7 @@ import { CarsFilters } from "./CarsFilters";
 import { CarsTable } from "./CarsTable";
 import { CarForm } from "./CarForm";
 import { Dialog } from "@/src/components/ui/Dialog";
-import { useToast } from "@/src/components/ui/Toast";
+import { Toast, useToast } from "@/src/components/ui/Toast";
 import {
   useCars,
   useCreateCar,
@@ -20,7 +20,7 @@ export const CarsView: React.FC = () => {
   const createCarMutation = useCreateCar();
   const updateCarMutation = useUpdateCar();
   const deleteCarMutation = useDeleteCar();
-  const { showToast } = useToast();
+  const { toast, showToast, hideToast } = useToast();
 
   // Modal states
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -188,6 +188,14 @@ export const CarsView: React.FC = () => {
         message={`Are you sure you want to delete "${selectedCar?.title}"? This action cannot be undone.`}
         confirmText="Delete"
         isLoading={deleteCarMutation.isPending}
+      />
+
+      {/* Toast Notification */}
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
       />
     </AdminLayout>
   );

@@ -20,17 +20,17 @@ export const AboutView = () => {
   const statistics = [
     {
       number: about?.carsSold,
-      label: "Cars Sold",
+      label: "Mobil Terjual",
       icon: "🚗",
     },
     {
       number: about?.happyCustomers,
-      label: "Happy Customers",
+      label: "Pelanggan Bahagia",
       icon: "😊",
     },
     {
       number: about?.yearsExperience,
-      label: "Years Experience",
+      label: "Tahun Pengalaman",
       icon: "⭐",
     },
   ];
@@ -136,11 +136,10 @@ export const AboutView = () => {
                 <div className="relative">
                   <div className="text-5xl mb-4">🎯</div>
                   <h2 className="text-3xl font-bold text-white mb-4">
-                    Our Mission
+                    Misi Kami
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    {about?.ourMission ||
-                      "To provide an exceptional car buying experience by offering premium quality vehicles, transparent service, and building lasting relationships with our customers through trust and excellence."}
+                    {about?.ourMission}
                   </p>
                 </div>
               </div>
@@ -159,11 +158,10 @@ export const AboutView = () => {
                 <div className="relative">
                   <div className="text-5xl mb-4">🚀</div>
                   <h2 className="text-3xl font-bold text-white mb-4">
-                    Our Vision
+                    Visi Kami
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    {about?.ourVision ||
-                      "To become the most trusted and preferred automotive showroom, known for our integrity, innovation, and unwavering commitment to customer satisfaction in the premium car market."}
+                    {about?.ourVision}
                   </p>
                 </div>
               </div>
@@ -183,13 +181,12 @@ export const AboutView = () => {
         <Container className="relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Our Track Record
+              Rekam Jejak Kami
             </h2>
             <p className="text-gray-300 text-lg">
-              Numbers that speak for our excellence
+              Angka-angka yang berbicara tentang keunggulan kami
             </p>
           </div>
-
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {statistics.map((stat, index) => (
               <div

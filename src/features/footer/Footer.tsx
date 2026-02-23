@@ -24,14 +24,14 @@ export const Footer = () => {
             <div className="space-y-4">
               <h3 className="text-2xl font-bold">Our Showroom</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Your trusted partner in finding the perfect vehicle. Premium
-                selection, quality service.
+                Mitra terpercaya Anda dalam menemukan kendaraan yang sempurna.
+                Pilihan premium, layanan berkualitas.
               </p>
             </div>
 
             {/* Quick Links */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold">Quick Links</h4>
+              <h4 className="text-lg font-semibold">Akses Cepat</h4>
               <ul className="space-y-2">
                 <li>
                   <Link
@@ -46,7 +46,7 @@ export const Footer = () => {
                     href="/cars"
                     className="text-gray-400 hover:text-white transition-colors text-sm"
                   >
-                    Browse Cars
+                    Cari Mobil
                   </Link>
                 </li>
                 <li>
@@ -54,7 +54,7 @@ export const Footer = () => {
                     href="#contact"
                     className="text-gray-400 hover:text-white transition-colors text-sm"
                   >
-                    Contact Us
+                    Kontak Kami
                   </Link>
                 </li>
               </ul>
@@ -62,7 +62,7 @@ export const Footer = () => {
 
             {/* Contact Info */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold">Contact</h4>
+              <h4 className="text-lg font-semibold">Kontak</h4>
               <ul className="space-y-3">
                 {settings?.whatsapp_number && (
                   <li className="flex items-start gap-2 text-sm">
@@ -151,7 +151,7 @@ export const Footer = () => {
 
             {/* Opening Hours */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold">Opening Hours</h4>
+              <h4 className="text-lg font-semibold">Jam Buka</h4>
               {settings?.opening_hours ? (
                 <p className="text-gray-400 text-sm whitespace-pre-line">
                   {settings.opening_hours}

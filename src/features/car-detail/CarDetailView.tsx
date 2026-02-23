@@ -63,16 +63,10 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
                 />
                 {car.is_featured && (
                   <div className="absolute top-4 left-4">
-                    <Badge variant="warning">Featured</Badge>
-                  </div>
-                )}
-                {car.status === "sold" && (
-                  <div className="absolute top-4 right-4">
-                    <Badge variant="default">Sold</Badge>
+                    <Badge variant="warning">Unggulan</Badge>
                   </div>
                 )}
               </div>
-
               {/* Thumbnail Gallery */}
               {allImages.length > 1 && (
                 <div className="grid grid-cols-4 gap-3">
@@ -105,10 +99,14 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
                   {formatPrice(car.price)}
                 </div>
                 <Badge
-                  variant={car.status === "available" ? "success" : "default"}
+                  variant={car.status === "available" ? "success" : "denger"}
                   className="text-sm"
                 >
-                  {car.status === "available" ? "Available" : car.status}
+                  {car.status === "available"
+                    ? "Tersedia"
+                    : car.status === "sold"
+                      ? "Terjual"
+                      : car.status}
                 </Badge>
               </div>
 
@@ -181,7 +179,7 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
               {/* Description */}
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Description
+                  Deskripsi
                 </h2>
                 <p className="text-gray-700 leading-relaxed whitespace-pre-line">
                   {car.description}

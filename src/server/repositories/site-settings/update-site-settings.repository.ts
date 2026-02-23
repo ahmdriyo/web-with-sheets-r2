@@ -1,29 +1,24 @@
 import { UpdateSiteSettingsDTO } from "@/src/types/site-settings.type";
 import { sheetsData } from "../../infra/google.sheets.client";
 
-export async function updateSiteSetting(
-  id: string,
-  data: UpdateSiteSettingsDTO,
-) {
-  const range = `site-settings!A2:I`;
+export async function updateSiteSetting(data: UpdateSiteSettingsDTO) {
+  const range = `site-settings!A2:I2`;
 
+  // Get the existing site settings (first and only row)
   const response = await sheetsData.spreadsheets.values.get({
     spreadsheetId: process.env.GOOGLE_SHEET_ID,
     range,
   });
 
   const rows = (response.data.values ?? []) as string[][];
-  const rowIndex = rows.findIndex((row) => row[0] === id);
+  const existingRow = rows[0];
 
-  if (rowIndex === -1) {
+  if (!existingRow) {
     return null;
   }
 
-  const actualRowNumber = rowIndex + 2;
-  const existingRow = rows[rowIndex];
-
   const updatedData = {
-    id,
+    id: existingRow[0],
     whatsapp_number: data.whatsapp_number ?? existingRow[1],
     showroom_address: data.showroom_address ?? existingRow[2],
     instagram: data.instagram ?? existingRow[3],
@@ -36,11 +31,12 @@ export async function updateSiteSetting(
 
   await sheetsData.spreadsheets.values.update({
     spreadsheetId: process.env.GOOGLE_SHEET_ID!,
-    range: `site-settings!A${actualRowNumber}:I${actualRowNumber}`,
+    range: `site-settings!A2:I2`,
     valueInputOption: "RAW",
     requestBody: {
       values: [
         [
+          updatedData.id,
           updatedData.whatsapp_number,
           updatedData.showroom_address,
           updatedData.instagram,
@@ -56,6 +52,6 @@ export async function updateSiteSetting(
 
   return {
     message: "Site settings updated!",
-    ...updatedData,
+    data: updatedData,
   };
 }

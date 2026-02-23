@@ -2,10 +2,22 @@ import { baseApi, baseApiToken } from "@/src/const/base-api";
 import { RestEndpoint } from "@/src/const/rest-endpoint";
 import { Cars, CarsResponse } from "@/src/types/cars.type";
 
+export interface CarsFilters {
+  search?: string;
+  brand?: string;
+  fuelType?: string;
+  transmission?: string;
+  category?: string;
+}
+
 export const CarsService = {
-  getCars: (page?: number, limit?: number): Promise<{ data: CarsResponse }> =>
+  getCars: (
+    page?: number,
+    limit?: number,
+    filters?: CarsFilters,
+  ): Promise<{ data: CarsResponse }> =>
     baseApi.get(RestEndpoint.GetAllCars, {
-      params: { page, limit },
+      params: { page, limit, ...filters },
     }),
 
   getCarById: (

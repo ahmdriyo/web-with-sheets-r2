@@ -10,16 +10,6 @@ export type SiteSettings = {
   created_at: Date;
 };
 
-export type CreateSiteSettingsDTO = {
-  whatsapp_number: string;
-  email: string;
-  showroom_address?: string;
-  instagram?: string;
-  google_maps?: string;
-  embed_maps?: string;
-  opening_hours?: string;
-};
-
 export type UpdateSiteSettingsDTO = {
   whatsapp_number?: string;
   showroom_address?: string;

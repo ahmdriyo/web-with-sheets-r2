@@ -179,7 +179,7 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
               {/* Description */}
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  Deskripsi
+                  Description
                 </h2>
                 <p className="text-gray-700 leading-relaxed whitespace-pre-line">
                   {car.description}

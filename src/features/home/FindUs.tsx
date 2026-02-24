@@ -105,10 +105,10 @@ const FindUs = () => {
           <div className="space-y-6">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                Temukan Kami
+                Find Us
               </h2>
               <p className="text-gray-300 text-lg">
-                Kunjungi showroom kami atau hubungi kami untuk informasi lebih
+                Visit our showroom or contact us for more information.
               </p>
             </div>
             <div className="w-full h-120 rounded-2xl overflow-hidden shadow-2xl border border-zinc-700">
@@ -127,11 +127,11 @@ const FindUs = () => {
           <div className="space-y-6">
             <div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                Kirim Pesan Kepada Kami
+                Send Message to Us
               </h3>
               <p className="text-gray-300">
-                Punya pertanyaan? Isi formulir di bawah ini dan kami akan segera
-                menghubungi Anda kembali.
+                Have questions? Fill out the form below and well get back to you
+                soon.
               </p>
             </div>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -158,7 +158,7 @@ const FindUs = () => {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  Alamat Email<span className="text-red-400">*</span>
+                  Email Address<span className="text-red-400">*</span>
                 </label>
                 <Input
                   id="email"
@@ -176,7 +176,7 @@ const FindUs = () => {
                   htmlFor="phone"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  Nomor Telpon (Optional)
+                  Phone Number (Optional)
                 </label>
                 <Input
                   id="phone"
@@ -193,7 +193,7 @@ const FindUs = () => {
                   htmlFor="message"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  Pesan Kamu <span className="text-red-400">*</span>
+                  Your Message <span className="text-red-400">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -234,10 +234,10 @@ const FindUs = () => {
                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                       ></path>
                     </svg>
-                    Mengirim...
+                    Sending...
                   </span>
                 ) : (
-                  "Kirim Pesan"
+                  "Send Message"
                 )}
               </Button>
             </form>

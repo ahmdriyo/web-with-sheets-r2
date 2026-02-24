@@ -157,10 +157,10 @@ export const CarsView = () => {
         {/* Header Content */}
         <Container className="relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-2xl">
-            Koleksi Kami
+            Our Collection
           </h1>
           <p className="text-xl text-gray-200 drop-shadow-lg">
-            Cari {totalItems} Kendaraan Premium Impian Anda
+            Search {totalItems} Your Dream Premium Vehicle
           </p>
         </Container>
       </div>
@@ -172,7 +172,7 @@ export const CarsView = () => {
             {/* Search */}
             <Input
               type="text"
-              placeholder="Cari berdasarkan merek, model, atau judul..."
+              placeholder="Search by make, model, or title..."
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value);
@@ -191,7 +191,7 @@ export const CarsView = () => {
                 }
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
               >
-                <option value="">Semua Kategori</option>
+                <option value="">All Category</option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.name}>
                     {category.name}
@@ -205,7 +205,7 @@ export const CarsView = () => {
                 onChange={(e) => handleBrandChange(e.target.value)}
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
               >
-                <option value="">Semua Merek</option>
+                <option value="">All Brands</option>
                 {brands.map((brand) => (
                   <option key={brand.id} value={brand.name}>
                     {brand.name}
@@ -223,7 +223,7 @@ export const CarsView = () => {
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value="">
-                  {selectedBrand ? "Semua Model" : "Pilih Merek Dulu"}
+                  {selectedBrand ? "All Models" : "Select Brand First"}
                 </option>
                 {filteredModels.map((model) => (
                   <option key={model.id} value={model.name}>
@@ -240,7 +240,7 @@ export const CarsView = () => {
                 }
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
               >
-                <option value="">Semua Jenis Bahan Bakar</option>
+                <option value="">All Fuel Types</option>
                 <option value="bensin">Bensin</option>
                 <option value="diesel">Diesel</option>
                 <option value="hybrid">Hybrid</option>
@@ -255,7 +255,7 @@ export const CarsView = () => {
                 }
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
               >
-                <option value="">Semua Jenis Transmisi</option>
+                <option value="">All Transmission Types</option>
                 <option value="manual">Manual</option>
                 <option value="automatic">Automatic</option>
               </select>
@@ -269,8 +269,8 @@ export const CarsView = () => {
               selectedFuel ||
               selectedTransmission) && (
               <div className="text-sm text-gray-400">
-                Menampilkan {totalItems} hasil
-                {debouncedSearch && ` untuk "${debouncedSearch}"`}
+                Showing {totalItems} results
+                {debouncedSearch && ` for "${debouncedSearch}"`}
               </div>
             )}
           </div>
@@ -318,8 +318,8 @@ export const CarsView = () => {
           ) : (
             <div className="text-center py-12">
               <p className="text-xl text-gray-400">
-                Tidak ada mobil yang cocok dengan kriteria Anda. Coba ubah kata
-                kunci pencarian atau filter Anda.
+                No cars match your criteria. Try changing your search keywords
+                or filters.
               </p>
             </div>
           )}
@@ -332,17 +332,17 @@ export const CarsView = () => {
                 disabled={page === 1}
                 className="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white disabled:opacity-50 hover:bg-zinc-800 transition-colors"
               >
-                Sebelumnya
+                Previous
               </button>
               <div className="flex items-center px-4 py-2 text-sm text-gray-300">
-                Halaman {page} dari {totalPages}
+                Page {page} of {totalPages}
               </div>
               <button
                 onClick={() => setPage(Math.min(totalPages, page + 1))}
                 disabled={page === totalPages}
                 className="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white disabled:opacity-50 hover:bg-zinc-800 transition-colors"
               >
-                Selanjutnya
+                Next
               </button>
             </div>
           )}

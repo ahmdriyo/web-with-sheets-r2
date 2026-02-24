@@ -49,18 +49,18 @@ export const HomeView = () => {
           >
             <div className="inline-block mb-4 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 animate-fade-in">
               <span className="text-white text-sm font-medium">
-                Showroom Mobil Premium
+                Premium Car Showroom
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-              Temukan Mobil{" "}
+              Find Cars{" "}
               <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-                Impian Anda Hari Ini
+                Your Dream Vehicle
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-100 mb-8 leading-relaxed drop-shadow-lg">
-              Pilihan kendaraan berkualitas premium. Setiap mobil diperiksa,
-              setiap detail diperhatikan.
+              A selection of premium quality vehicles. Every car is inspected,
+              every detail is taken care of.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/cars">
@@ -68,7 +68,7 @@ export const HomeView = () => {
                   size="lg"
                   className="shadow-2xl text-black hover:bg-gray-100 hover:scale-105 transition-transform duration-300"
                 >
-                  Lihat Semua Mobil
+                  View All Cars
                 </Button>
               </Link>
               <a href="#featured">
@@ -77,7 +77,7 @@ export const HomeView = () => {
                   variant="outline"
                   className="shadow-2xl border-white text-white hover:bg-white/10 hover:scale-105 transition-transform duration-300"
                 >
-                  Jelajahi Koleksi
+                  Explore Collection
                 </Button>
               </a>
             </div>
@@ -110,10 +110,11 @@ export const HomeView = () => {
             }`}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-              Koleksi Unggulan
+              Featured Collection
             </h2>
             <p className="text-gray-100 text-lg">
-              Temukan mobil-mobil terbaik kami yang siap anda bawa pulang
+              Find the best cars in our collection that are ready for you to
+              take home
             </p>
           </div>
 

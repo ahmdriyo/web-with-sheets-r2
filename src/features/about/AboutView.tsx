@@ -20,17 +20,17 @@ export const AboutView = () => {
   const statistics = [
     {
       number: about?.carsSold,
-      label: "Mobil Terjual",
+      label: "Cars Sold",
       icon: "🚗",
     },
     {
       number: about?.happyCustomers,
-      label: "Pelanggan Bahagia",
+      label: "Happy Customers",
       icon: "😊",
     },
     {
       number: about?.yearsExperience,
-      label: "Tahun Pengalaman",
+      label: "Years of Experience",
       icon: "⭐",
     },
   ];
@@ -136,7 +136,7 @@ export const AboutView = () => {
                 <div className="relative">
                   <div className="text-5xl mb-4">🎯</div>
                   <h2 className="text-3xl font-bold text-white mb-4">
-                    Misi Kami
+                    Our Mission
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed">
                     {about?.ourMission}
@@ -158,7 +158,7 @@ export const AboutView = () => {
                 <div className="relative">
                   <div className="text-5xl mb-4">🚀</div>
                   <h2 className="text-3xl font-bold text-white mb-4">
-                    Visi Kami
+                    Our Vision
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed">
                     {about?.ourVision}
@@ -181,10 +181,10 @@ export const AboutView = () => {
         <Container className="relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Rekam Jejak Kami
+              Our Legacy
             </h2>
             <p className="text-gray-300 text-lg">
-              Angka-angka yang berbicara tentang keunggulan kami
+              Numbers that speak about our excellence
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">

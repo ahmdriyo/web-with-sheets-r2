@@ -11,9 +11,9 @@ interface CarCardProps {
 
 export const CarCard: React.FC<CarCardProps> = ({ car }) => {
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("id-ID", {
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: "IDR",
+      currency: "USD",
       minimumFractionDigits: 0,
     }).format(price);
   };

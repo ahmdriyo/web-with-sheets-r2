@@ -30,7 +30,7 @@ export const AboutView = () => {
     },
     {
       number: about?.yearsExperience,
-      label: "Years Experience",
+      label: "Years of Experience",
       icon: "⭐",
     },
   ];
@@ -139,8 +139,7 @@ export const AboutView = () => {
                     Our Mission
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    {about?.ourMission ||
-                      "To provide an exceptional car buying experience by offering premium quality vehicles, transparent service, and building lasting relationships with our customers through trust and excellence."}
+                    {about?.ourMission}
                   </p>
                 </div>
               </div>
@@ -162,8 +161,7 @@ export const AboutView = () => {
                     Our Vision
                   </h2>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    {about?.ourVision ||
-                      "To become the most trusted and preferred automotive showroom, known for our integrity, innovation, and unwavering commitment to customer satisfaction in the premium car market."}
+                    {about?.ourVision}
                   </p>
                 </div>
               </div>
@@ -183,13 +181,12 @@ export const AboutView = () => {
         <Container className="relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Our Track Record
+              Our Legacy
             </h2>
             <p className="text-gray-300 text-lg">
-              Numbers that speak for our excellence
+              Numbers that speak about our excellence
             </p>
           </div>
-
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {statistics.map((stat, index) => (
               <div

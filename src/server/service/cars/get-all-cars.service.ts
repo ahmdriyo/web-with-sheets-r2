@@ -7,7 +7,17 @@ export async function getCars(req: Request) {
     const page = Number(searchParams.get("page")) || 1;
     const limit = Number(searchParams.get("limit")) || 10;
 
-    const result = await findAllCars(page, limit);
+    // Extract filter parameters
+    const filters = {
+      search: searchParams.get("search") || undefined,
+      category: searchParams.get("category") || undefined,
+      brand: searchParams.get("brand") || undefined,
+      model: searchParams.get("model") || undefined,
+      fuelType: searchParams.get("fuelType") || undefined,
+      transmission: searchParams.get("transmission") || undefined,
+    };
+
+    const result = await findAllCars(page, limit, filters);
 
     return NextResponse.json({
       message: "Cars fetched successfully!",

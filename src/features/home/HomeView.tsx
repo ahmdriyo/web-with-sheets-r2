@@ -53,15 +53,14 @@ export const HomeView = () => {
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-              Find Your{" "}
+              Find Cars{" "}
               <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-                Dream Car
-              </span>{" "}
-              Today
+                Your Dream Vehicle
+              </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-100 mb-8 leading-relaxed drop-shadow-lg">
-              Premium selection of quality vehicles. Every car checked, every
-              detail matters.
+              A selection of premium quality vehicles. Every car is inspected,
+              every detail is taken care of.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/cars">
@@ -114,7 +113,8 @@ export const HomeView = () => {
               Featured Collection
             </h2>
             <p className="text-gray-100 text-lg">
-              Handpicked premium vehicles ready for you
+              Find the best cars in our collection that are ready for you to
+              take home
             </p>
           </div>
 
@@ -178,7 +178,7 @@ export const HomeView = () => {
                 variant="outline"
                 className="shadow-2xl border-white text-white hover:bg-white/10 hover:scale-105 transition-all duration-300"
               >
-                View All Inventory
+                Lihat Semua Inventaris
               </Button>
             </Link>
           </div>

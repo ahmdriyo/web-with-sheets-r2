@@ -15,11 +15,39 @@ export async function deleteCategory(id: string) {
     return null;
   }
 
+  // Actual row number in the sheet (add 2 because: 1 for header, 1 for 0-based index)
   const actualRowNumber = rowIndex + 2;
 
-  await sheetsData.spreadsheets.values.clear({
+  // Get the sheet ID first
+  const spreadsheet = await sheetsData.spreadsheets.get({
     spreadsheetId: process.env.GOOGLE_SHEET_ID!,
-    range: `categories!A${actualRowNumber}:D${actualRowNumber}`,
+  });
+
+  const sheet = spreadsheet.data.sheets?.find(
+    (s) => s.properties?.title === "categories",
+  );
+
+  if (!sheet?.properties?.sheetId) {
+    throw new Error("Sheet not found");
+  }
+
+  // Delete the entire row using batchUpdate
+  await sheetsData.spreadsheets.batchUpdate({
+    spreadsheetId: process.env.GOOGLE_SHEET_ID!,
+    requestBody: {
+      requests: [
+        {
+          deleteDimension: {
+            range: {
+              sheetId: sheet.properties.sheetId,
+              dimension: "ROWS",
+              startIndex: actualRowNumber - 1, // 0-based index
+              endIndex: actualRowNumber, // exclusive, so this deletes just one row
+            },
+          },
+        },
+      ],
+    },
   });
 
   return {

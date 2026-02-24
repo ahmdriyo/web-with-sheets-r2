@@ -6,7 +6,8 @@ import { CarsFilters } from "./CarsFilters";
 import { CarsTable } from "./CarsTable";
 import { CarForm } from "./CarForm";
 import { Dialog } from "@/src/components/ui/Dialog";
-import { useToast } from "@/src/components/ui/Toast";
+import { Toast, useToast } from "@/src/components/ui/Toast";
+import { Pagination } from "@/src/components/ui/Pagination";
 import {
   useCars,
   useCreateCar,
@@ -16,11 +17,13 @@ import {
 import type { Cars } from "@/src/types/cars.type";
 
 export const CarsView: React.FC = () => {
-  const { data: carsData, isLoading } = useCars();
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
+  const { data: carsData, isLoading } = useCars(currentPage, limit);
   const createCarMutation = useCreateCar();
   const updateCarMutation = useUpdateCar();
   const deleteCarMutation = useDeleteCar();
-  const { showToast } = useToast();
+  const { toast, showToast, hideToast } = useToast();
 
   // Modal states
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -162,6 +165,16 @@ export const CarsView: React.FC = () => {
           onEdit={handleEditClick}
           onDelete={handleDeleteClick}
         />
+
+        {/* Pagination */}
+        {carsData?.pagination && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={carsData.pagination.totalPages}
+            onPageChange={setCurrentPage}
+            isLoading={isLoading}
+          />
+        )}
       </div>
 
       {/* Car Form Modal */}
@@ -188,6 +201,14 @@ export const CarsView: React.FC = () => {
         message={`Are you sure you want to delete "${selectedCar?.title}"? This action cannot be undone.`}
         confirmText="Delete"
         isLoading={deleteCarMutation.isPending}
+      />
+
+      {/* Toast Notification */}
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
       />
     </AdminLayout>
   );

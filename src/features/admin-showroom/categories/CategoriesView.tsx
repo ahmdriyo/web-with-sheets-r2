@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { AdminLayout } from "@/src/components/ui/AdminLayout";
 import { Dialog } from "@/src/components/ui/Dialog";
 import { Toast, useToast } from "@/src/components/ui/Toast";
+import { Pagination } from "@/src/components/ui/Pagination";
 import { CategoriesTable } from "./CategoriesTable";
 import { CategoryModal } from "./CategoryModal";
 import {
@@ -27,9 +28,11 @@ const CategoriesView = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null,
   );
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
 
   // Queries and Mutations
-  const { data: categoriesData, isLoading } = useCategories();
+  const { data: categoriesData, isLoading } = useCategories(currentPage, limit);
   const createMutation = useCreateCategory();
   const updateMutation = useUpdateCategory();
   const deleteMutation = useDeleteCategory();
@@ -162,6 +165,16 @@ const CategoriesView = () => {
           cancelText="Cancel"
           isLoading={deleteMutation.isPending}
         />
+
+        {/* Pagination */}
+        {categoriesData?.pagination && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={categoriesData.pagination.totalPages}
+            onPageChange={setCurrentPage}
+            isLoading={isLoading}
+          />
+        )}
 
         {/* Toast Notification */}
         <Toast

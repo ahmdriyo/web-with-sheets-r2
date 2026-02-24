@@ -1,19 +1,23 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { CarsService } from "../services/cars.service";
+import { CarsService, CarsFilters } from "../services/cars.service";
 
 export const CARS_QUERY_KEYS = {
   all: ["cars"] as const,
   lists: () => [...CARS_QUERY_KEYS.all, "list"] as const,
-  list: (page?: number, limit?: number) =>
-    [...CARS_QUERY_KEYS.lists(), { page, limit }] as const,
+  list: (page?: number, limit?: number, filters?: CarsFilters) =>
+    [...CARS_QUERY_KEYS.lists(), { page, limit, filters }] as const,
   details: () => [...CARS_QUERY_KEYS.all, "detail"] as const,
   detail: (id: string) => [...CARS_QUERY_KEYS.details(), id] as const,
 };
 
-export const useCars = (page?: number, limit?: number) => {
+export const useCars = (
+  page?: number,
+  limit?: number,
+  filters?: CarsFilters,
+) => {
   return useQuery({
-    queryKey: CARS_QUERY_KEYS.list(page, limit),
-    queryFn: () => CarsService.getCars(page, limit),
+    queryKey: CARS_QUERY_KEYS.list(page, limit, filters),
+    queryFn: () => CarsService.getCars(page, limit, filters),
     select: (data) => data.data,
   });
 };

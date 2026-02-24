@@ -108,7 +108,7 @@ const FindUs = () => {
                 Find Us
               </h2>
               <p className="text-gray-300 text-lg">
-                Visit our showroom or contact us for any inquiries
+                Visit our showroom or contact us for more information.
               </p>
             </div>
             <div className="w-full h-120 rounded-2xl overflow-hidden shadow-2xl border border-zinc-700">
@@ -127,11 +127,11 @@ const FindUs = () => {
           <div className="space-y-6">
             <div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                Send Us a Message
+                Send Message to Us
               </h3>
               <p className="text-gray-300">
-                Have questions? Fill out the form below and we&apos;ll get back
-                to you as soon as possible.
+                Have questions? Fill out the form below and well get back to you
+                soon.
               </p>
             </div>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -158,7 +158,7 @@ const FindUs = () => {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-300 mb-2"
                 >
-                  Email Address <span className="text-red-400">*</span>
+                  Email Address<span className="text-red-400">*</span>
                 </label>
                 <Input
                   id="email"

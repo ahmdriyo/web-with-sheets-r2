@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { updateSiteSetting as updateSiteSettingRepo } from "../../repositories/site-settings/update-site-settings.repository";
 
-export async function updateSiteSetting(id: string, req: Request) {
+export async function updateSiteSetting(req: Request) {
   try {
     const body = await req.json();
     const {
@@ -9,15 +9,17 @@ export async function updateSiteSetting(id: string, req: Request) {
       showroom_address,
       instagram,
       google_maps,
+      embed_maps,
       email,
       opening_hours,
     } = body;
 
-    const setting = await updateSiteSettingRepo(id, {
+    const setting = await updateSiteSettingRepo({
       whatsapp_number,
       showroom_address,
       instagram,
       google_maps,
+      embed_maps,
       email,
       opening_hours,
     });

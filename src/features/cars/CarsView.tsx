@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Container, Section, Input, CarCard } from "@/src/components/ui";
 import { WhatsAppButton } from "@/src/components/ui/WhatsAppButton";
@@ -11,7 +11,8 @@ import { useBrands } from "@/src/hooks/useBrands";
 import { useModels } from "@/src/hooks/useModels";
 import { useCategories } from "@/src/hooks/useCategories";
 
-export const CarsView = () => {
+// Create the actual component that uses useSearchParams
+const CarsViewContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -352,5 +353,29 @@ export const CarsView = () => {
       {/* WhatsApp Button */}
       {whatsappNumber && <WhatsAppButton phoneNumber={whatsappNumber} />}
     </div>
+  );
+};
+
+// Loading fallback component
+const CarsViewFallback = () => (
+  <div className="min-h-screen bg-black">
+    <div className="relative min-h-[40vh] flex items-center">
+      <div className="absolute inset-0 z-0">
+        <div className="w-full h-full bg-zinc-800 animate-pulse" />
+      </div>
+      <Container className="relative z-10">
+        <div className="h-12 bg-zinc-700 rounded-lg w-1/2 animate-pulse mb-4" />
+        <div className="h-6 bg-zinc-700 rounded-lg w-1/3 animate-pulse" />
+      </Container>
+    </div>
+  </div>
+);
+
+// Main component wrapped with Suspense
+export const CarsView = () => {
+  return (
+    <Suspense fallback={<CarsViewFallback />}>
+      <CarsViewContent />
+    </Suspense>
   );
 };

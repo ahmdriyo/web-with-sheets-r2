@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React, { useState, useMemo } from "react";
@@ -9,6 +8,7 @@ import { useSiteSettings } from "@/src/hooks/useSiteSettings";
 import type { Cars } from "@/src/types/cars.type";
 import { CarSkeleton } from "@/src/components/ui/CarSkeleton";
 import CarNotfound from "@/src/components/ui/CarNotfound";
+import Image from "next/image";
 
 interface CarDetailViewProps {
   slug: string;
@@ -56,7 +56,7 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
             <div className="space-y-4">
               {/* Main Image */}
               <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-gray-100">
-                <img
+                <Image
                   src={allImages[selectedImage]}
                   alt={carTitle}
                   className="w-full h-full object-cover"
@@ -80,7 +80,7 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
                           : "border-gray-200 hover:border-gray-400"
                       }`}
                     >
-                      <img
+                      <Image
                         src={image}
                         alt={`${carTitle} ${index + 1}`}
                         className="w-full h-full object-cover"

@@ -1,9 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import React from "react";
 import Link from "next/link";
 import type { Cars } from "@/src/types/cars.type";
+import Image from "next/image";
 
 interface CarCardProps {
   car: Cars;
@@ -23,7 +23,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
       <div className="bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-700 hover:border-gray-600">
         {/* Image */}
         <div className="relative aspect-4/3 overflow-hidden bg-gray-800">
-          <img
+          <Image
             src={car.primary_image_url || car.image_urls[0]}
             alt={car.title}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"

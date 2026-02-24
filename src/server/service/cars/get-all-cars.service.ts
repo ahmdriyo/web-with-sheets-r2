@@ -10,10 +10,11 @@ export async function getCars(req: Request) {
     // Extract filter parameters
     const filters = {
       search: searchParams.get("search") || undefined,
+      category: searchParams.get("category") || undefined,
       brand: searchParams.get("brand") || undefined,
+      model: searchParams.get("model") || undefined,
       fuelType: searchParams.get("fuelType") || undefined,
       transmission: searchParams.get("transmission") || undefined,
-      category: searchParams.get("category") || undefined,
     };
 
     const result = await findAllCars(page, limit, filters);

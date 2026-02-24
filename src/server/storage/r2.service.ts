@@ -6,7 +6,7 @@ export async function uploadImages(files: File[]) {
 
   for (const file of files) {
     const buffer = Buffer.from(await file.arrayBuffer());
-    const fileName = `menu/${Date.now()}-${file.name}`;
+    const fileName = `cars/${Date.now()}-${file.name}`;
     await r2.send(
       new PutObjectCommand({
         Bucket: process.env.R2_BUCKET!,

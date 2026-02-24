@@ -5,10 +5,11 @@ import { mapRowToCar } from "./cars.mapper";
 
 interface CarsFilters {
   search?: string;
+  category?: string;
   brand?: string;
+  model?: string;
   fuelType?: string;
   transmission?: string;
-  category?: string;
 }
 
 export async function findAllCars(
@@ -47,6 +48,14 @@ export async function findAllCars(
       if (
         filters.brand &&
         car.brand?.toLowerCase() !== filters.brand.toLowerCase()
+      ) {
+        return false;
+      }
+
+      // Model filter
+      if (
+        filters.model &&
+        car.model?.toLowerCase() !== filters.model.toLowerCase()
       ) {
         return false;
       }

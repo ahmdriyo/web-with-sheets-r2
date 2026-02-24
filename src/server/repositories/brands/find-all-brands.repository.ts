@@ -1,8 +1,8 @@
-import { Menu } from "@/src/types/menu.type";
+import { Brand } from "@/src/types/brand.type";
 import { sheetsData } from "../../infra/google.sheets.client";
 
-export async function findAllMenu(page: number, limit: number) {
-  const range = `menu!A2:F`;
+export async function findAllBrands(page: number, limit: number) {
+  const range = `brands!A2:D`;
 
   const response = await sheetsData.spreadsheets.values.get({
     spreadsheetId: process.env.GOOGLE_SHEET_ID,
@@ -16,13 +16,11 @@ export async function findAllMenu(page: number, limit: number) {
 
   const paginatedRows = rows.slice(startIndex, startIndex + limit);
 
-  const data: Menu[] = paginatedRows.map((row) => ({
+  const data: Brand[] = paginatedRows.map((row) => ({
     id: row[0] ?? "",
-    title: row[1] ?? "",
-    description: row[2] ?? "",
-    price: Number((row[3] ?? "0").replace(/\./g, "")),
-    category: row[4] ?? "",
-    imageUrl: (row[5] ?? "").split(","),
+    name: row[1] ?? "",
+    created_at: new Date(row[2] ?? Date.now()),
+    updated_at: new Date(row[3] ?? Date.now()),
   }));
 
   return {

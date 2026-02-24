@@ -4,10 +4,11 @@ import { Cars, CarsResponse } from "@/src/types/cars.type";
 
 export interface CarsFilters {
   search?: string;
+  category?: string;
   brand?: string;
+  model?: string;
   fuelType?: string;
   transmission?: string;
-  category?: string;
 }
 
 export const CarsService = {

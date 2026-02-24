@@ -26,6 +26,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
           <Image
             src={car.primary_image_url || car.image_urls[0]}
             alt={car.title}
+            fill
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
           {/* Gradient Overlay on Hover */}

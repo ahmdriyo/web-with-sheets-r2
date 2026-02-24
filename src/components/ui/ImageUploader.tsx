@@ -133,6 +133,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
                 <Image
                   src={image.url}
                   alt={`Upload ${index + 1}`}
+                  fill
                   className="w-full h-full object-cover"
                 />
               </div>

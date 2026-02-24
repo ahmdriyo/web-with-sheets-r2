@@ -59,6 +59,7 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
                 <Image
                   src={allImages[selectedImage]}
                   alt={carTitle}
+                  fill
                   className="w-full h-full object-cover"
                 />
                 {car.is_featured && (
@@ -83,6 +84,7 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
                       <Image
                         src={image}
                         alt={`${carTitle} ${index + 1}`}
+                        fill
                         className="w-full h-full object-cover"
                       />
                     </button>

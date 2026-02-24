@@ -185,7 +185,6 @@ export const HomeView = () => {
         </Container>
       </Section>
       <FindUs />
-
       {/* WhatsApp Button */}
       {whatsappNumber && <WhatsAppButton phoneNumber={whatsappNumber} />}
     </div>

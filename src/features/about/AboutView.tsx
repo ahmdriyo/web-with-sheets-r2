@@ -84,7 +84,7 @@ export const AboutView = () => {
                 : "translate-y-10 opacity-0"
             }`}
           >
-            <div className="inline-block mb-6 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 animate-fade-in">
+            <div className="inline-block mb-6 px-6 py-3 mt-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 animate-fade-in">
               <span className="text-white text-sm font-semibold tracking-wider">
                 Premium Car Showroom
               </span>

@@ -178,14 +178,13 @@ export const HomeView = () => {
                 variant="outline"
                 className="shadow-2xl border-white text-white hover:bg-white/10 hover:scale-105 transition-all duration-300"
               >
-                Lihat Semua Inventaris
+                View All Inventory
               </Button>
             </Link>
           </div>
         </Container>
       </Section>
       <FindUs />
-
       {/* WhatsApp Button */}
       {whatsappNumber && <WhatsAppButton phoneNumber={whatsappNumber} />}
     </div>

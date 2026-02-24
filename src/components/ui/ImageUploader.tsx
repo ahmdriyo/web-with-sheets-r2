@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React, { useState, useRef } from "react";
 
 interface ImageFile {
@@ -129,9 +130,10 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
           {images.map((image, index) => (
             <div key={image.id} className="relative group">
               <div className="aspect-square rounded-lg overflow-hidden bg-zinc-800 border border-zinc-700">
-                <img
+                <Image
                   src={image.url}
                   alt={`Upload ${index + 1}`}
+                  fill
                   className="w-full h-full object-cover"
                 />
               </div>

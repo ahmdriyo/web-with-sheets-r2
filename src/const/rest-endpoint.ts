@@ -11,6 +11,20 @@ export enum RestEndpoint {
   PutUpdateCategory = `${prefix}/categories/{id}`,
   DeleteCategory = `${prefix}/categories/{id}`,
 
+  // Models
+  GetAllModels = `${prefix}/models`,
+  GetModelById = `${prefix}/models/{id}`,
+  PostCreateModel = `${prefix}/models`,
+  PutUpdateModel = `${prefix}/models/{id}`,
+  DeleteModel = `${prefix}/models/{id}`,
+
+  // Brands
+  GetAllBrands = `${prefix}/brands`,
+  GetBrandById = `${prefix}/brands/{id}`,
+  PostCreateBrand = `${prefix}/brands`,
+  PutUpdateBrand = `${prefix}/brands/{id}`,
+  DeleteBrand = `${prefix}/brands/{id}`,
+
   // About
   GetAllAbout = `${prefix}/about`,
   PutUpdateAbout = `${prefix}/about/{id}`,

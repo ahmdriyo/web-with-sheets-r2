@@ -21,3 +21,4 @@ export { AdminLayout } from "./AdminLayout";
 export { Toast, useToast } from "./Toast";
 export type { ToastType } from "./Toast";
 export { Card } from "./Card";
+export { Pagination } from "./Pagination";

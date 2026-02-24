@@ -5,101 +5,99 @@ import { AdminLayout } from "@/src/components/ui/AdminLayout";
 import { Dialog } from "@/src/components/ui/Dialog";
 import { Toast, useToast } from "@/src/components/ui/Toast";
 import { Pagination } from "@/src/components/ui/Pagination";
-import { CategoriesTable } from "./CategoriesTable";
-import { CategoryModal } from "./CategoryModal";
+import { BrandsTable } from "./BrandsTable";
+import { BrandModal } from "./BrandModal";
 import {
-  useCategories,
-  useCreateCategory,
-  useUpdateCategory,
-  useDeleteCategory,
-} from "@/src/hooks/useCategories";
+  useBrands,
+  useCreateBrand,
+  useUpdateBrand,
+  useDeleteBrand,
+} from "@/src/hooks/useBrands";
 
-interface Category {
+interface Brand {
   id: string;
   name: string;
   created_at: string;
   updated_at: string;
 }
 
-const CategoriesView = () => {
+const BrandsView = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
-    null,
-  );
+  const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
 
   // Queries and Mutations
-  const { data: categoriesData, isLoading } = useCategories(currentPage, limit);
-  const createMutation = useCreateCategory();
-  const updateMutation = useUpdateCategory();
-  const deleteMutation = useDeleteCategory();
+  const { data: brandsData, isLoading } = useBrands(currentPage, limit);
+  const createMutation = useCreateBrand();
+  const updateMutation = useUpdateBrand();
+  const deleteMutation = useDeleteBrand();
   const { toast, showToast, hideToast } = useToast();
 
   // Handlers
-  const handleCreateCategory = async (data: { name: string }) => {
+  const handleCreateBrand = async (data: { name: string }) => {
     try {
       await createMutation.mutateAsync(data);
       setIsCreateModalOpen(false);
-      showToast("Category created successfully", "success");
+      showToast("Brand created successfully", "success");
     } catch (error) {
-      showToast("Failed to create category", "error");
-      console.error("Failed to create category:", error);
+      showToast("Failed to create brand", "error");
+      console.error("Failed to create brand:", error);
     }
   };
 
-  const handleEditCategory = async (data: { name: string }) => {
-    if (!selectedCategory) return;
+  const handleEditBrand = async (data: { name: string }) => {
+    if (!selectedBrand) return;
 
     try {
       await updateMutation.mutateAsync({
-        id: selectedCategory.id,
+        id: selectedBrand.id,
         data,
       });
       setIsEditModalOpen(false);
-      setSelectedCategory(null);
-      showToast("Category updated successfully", "success");
+      setSelectedBrand(null);
+      showToast("Brand updated successfully", "success");
     } catch (error) {
-      showToast("Failed to update category", "error");
-      console.error("Failed to update category:", error);
+      showToast("Failed to update brand", "error");
+      console.error("Failed to update brand:", error);
     }
   };
 
-  const handleDeleteCategory = async () => {
-    if (!selectedCategory) return;
+  const handleDeleteBrand = async () => {
+    if (!selectedBrand) return;
 
     try {
-      await deleteMutation.mutateAsync(selectedCategory.id);
+      await deleteMutation.mutateAsync(selectedBrand.id);
       setIsDeleteDialogOpen(false);
-      setSelectedCategory(null);
-      showToast("Category deleted successfully", "success");
+      setSelectedBrand(null);
+      showToast("Brand deleted successfully", "success");
     } catch (error) {
-      showToast("Failed to delete category", "error");
-      console.error("Failed to delete category:", error);
+      showToast("Failed to delete brand", "error");
+      console.error("Failed to delete brand:", error);
     }
   };
 
-  const openEditModal = (category: Category) => {
-    setSelectedCategory(category);
+  const openEditModal = (brand: Brand) => {
+    setSelectedBrand(brand);
     setIsEditModalOpen(true);
   };
 
-  const openDeleteDialog = (category: Category) => {
-    setSelectedCategory(category);
+  const openDeleteDialog = (brand: Brand) => {
+    setSelectedBrand(brand);
     setIsDeleteDialogOpen(true);
   };
 
   return (
-    <AdminLayout title="Categories" subtitle="Manage vehicle categories">
+    <AdminLayout title="Brands" subtitle="Manage vehicle brands">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-2">Categories</h2>
+            <h2 className="text-2xl font-bold text-white mb-2">Brands</h2>
             <p className="text-zinc-400">
-              Manage vehicle categories for your showroom
+              Manage vehicle brands for your showroom
             </p>
           </div>
           <button
@@ -119,35 +117,35 @@ const CategoriesView = () => {
                 d="M12 4v16m8-8H4"
               />
             </svg>
-            Add Category
+            Add Brand
           </button>
         </div>
 
         {/* Table */}
-        <CategoriesTable
-          categories={categoriesData?.data || []}
+        <BrandsTable
+          brands={brandsData?.data || []}
           onEdit={openEditModal}
           onDelete={openDeleteDialog}
           isLoading={isLoading}
         />
 
         {/* Create Modal */}
-        <CategoryModal
+        <BrandModal
           isOpen={isCreateModalOpen}
           onClose={() => setIsCreateModalOpen(false)}
-          onSubmit={handleCreateCategory}
+          onSubmit={handleCreateBrand}
           isLoading={createMutation.isPending}
         />
 
         {/* Edit Modal */}
-        <CategoryModal
+        <BrandModal
           isOpen={isEditModalOpen}
           onClose={() => {
             setIsEditModalOpen(false);
-            setSelectedCategory(null);
+            setSelectedBrand(null);
           }}
-          onSubmit={handleEditCategory}
-          category={selectedCategory}
+          onSubmit={handleEditBrand}
+          brand={selectedBrand}
           isLoading={updateMutation.isPending}
         />
 
@@ -156,21 +154,21 @@ const CategoriesView = () => {
           isOpen={isDeleteDialogOpen}
           onClose={() => {
             setIsDeleteDialogOpen(false);
-            setSelectedCategory(null);
+            setSelectedBrand(null);
           }}
-          onConfirm={handleDeleteCategory}
-          title="Delete Category"
-          message={`Are you sure you want to delete "${selectedCategory?.name}"? This action cannot be undone.`}
+          onConfirm={handleDeleteBrand}
+          title="Delete Brand"
+          message={`Are you sure you want to delete "${selectedBrand?.name}"? This action cannot be undone.`}
           confirmText="Delete"
           cancelText="Cancel"
           isLoading={deleteMutation.isPending}
         />
 
         {/* Pagination */}
-        {categoriesData?.pagination && (
+        {brandsData?.pagination && (
           <Pagination
             currentPage={currentPage}
-            totalPages={categoriesData.pagination.totalPages}
+            totalPages={brandsData.pagination.totalPages}
             onPageChange={setCurrentPage}
             isLoading={isLoading}
           />
@@ -188,4 +186,4 @@ const CategoriesView = () => {
   );
 };
 
-export default CategoriesView;
+export default BrandsView;

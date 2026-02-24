@@ -1,7 +1,7 @@
 import { authMiddleware } from "@/src/server/auth";
-import { deleteMenuById } from "@/src/server/service/menu/delete-menu.service";
-import { getMenuById } from "@/src/server/service/menu/get-one-menu.service";
-import { updateMenuById } from "@/src/server/service/menu/update-menu.service";
+import { deleteModel } from "@/src/server/service/models/delete-model.service";
+import { getOneModel } from "@/src/server/service/models/get-one-model.service";
+import { updateModel } from "@/src/server/service/models/update-model.service";
 
 export async function GET(
   req: Request,
@@ -11,7 +11,7 @@ export async function GET(
   if (!auth.authorized) return auth.response!;
 
   const { id } = await params;
-  return getMenuById(id);
+  return getOneModel(id);
 }
 
 export async function PUT(
@@ -22,7 +22,7 @@ export async function PUT(
   if (!auth.authorized) return auth.response!;
 
   const { id } = await params;
-  return updateMenuById(req, id);
+  return updateModel(id, req);
 }
 
 export async function DELETE(
@@ -33,5 +33,5 @@ export async function DELETE(
   if (!auth.authorized) return auth.response!;
 
   const { id } = await params;
-  return deleteMenuById(id);
+  return deleteModel(id);
 }

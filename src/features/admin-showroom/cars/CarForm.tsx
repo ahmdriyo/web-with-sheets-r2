@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Modal } from "@/src/components/ui/Modal";
 import { Card } from "@/src/components/ui/Card";
 import { ImageUploader } from "@/src/components/ui/ImageUploader";
 import { useCategories } from "@/src/hooks/useCategories";
+import { useBrands } from "@/src/hooks/useBrands";
+import { useModels } from "@/src/hooks/useModels";
 import type { Cars } from "@/src/types/cars.type";
 
 interface ImageFile {
@@ -29,6 +31,8 @@ export const CarForm: React.FC<CarFormProps> = ({
   isLoading,
 }) => {
   const { data: categoriesData } = useCategories();
+  const { data: brandsData } = useBrands(1, 100);
+  const { data: modelsData } = useModels(1, 1000);
 
   const [formData, setFormData] = useState({
     category: "",
@@ -51,11 +55,25 @@ export const CarForm: React.FC<CarFormProps> = ({
 
   const [images, setImages] = useState<ImageFile[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [selectedBrandId, setSelectedBrandId] = useState<string>("");
+
+  // Filter models based on selected brand
+  const filteredModels = useMemo(() => {
+    if (!modelsData?.data || !selectedBrandId) return [];
+    return modelsData.data.filter(
+      (model) => model.id_brand === selectedBrandId,
+    );
+  }, [modelsData?.data, selectedBrandId]);
 
   // Load car data for edit mode
   useEffect(() => {
     if (isOpen) {
       if (car) {
+        // Find brand ID from brand name
+        const brandId =
+          brandsData?.data?.find((b) => b.name === car.brand)?.id || "";
+        setSelectedBrandId(brandId);
+
         setFormData({
           category: car.category || "",
           title: car.title || "",
@@ -84,6 +102,7 @@ export const CarForm: React.FC<CarFormProps> = ({
         setImages(existingImages);
       } else {
         // Reset for create mode
+        setSelectedBrandId("");
         setFormData({
           category: "",
           title: "",
@@ -106,7 +125,7 @@ export const CarForm: React.FC<CarFormProps> = ({
       }
       setErrors({});
     }
-  }, [isOpen, car]);
+  }, [isOpen, car, brandsData?.data]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -228,16 +247,34 @@ export const CarForm: React.FC<CarFormProps> = ({
               <label className="block text-sm font-medium text-zinc-300 mb-2">
                 Brand <span className="text-red-400">*</span>
               </label>
-              <input
-                type="text"
+              <select
                 name="brand"
-                value={formData.brand}
-                onChange={handleChange}
-                placeholder="e.g., Toyota"
+                value={selectedBrandId}
+                onChange={(e) => {
+                  const brandId = e.target.value;
+                  const brandName =
+                    brandsData?.data?.find((b) => b.id === brandId)?.name || "";
+                  setSelectedBrandId(brandId);
+                  setFormData((prev) => ({
+                    ...prev,
+                    brand: brandName,
+                    model: "",
+                  }));
+                  if (errors.brand) {
+                    setErrors((prev) => ({ ...prev, brand: "", model: "" }));
+                  }
+                }}
                 className={`w-full px-4 py-2.5 rounded-lg bg-zinc-900 border ${
                   errors.brand ? "border-red-500" : "border-zinc-700"
-                } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
-              />
+                } text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+              >
+                <option value="">Select a brand</option>
+                {brandsData?.data?.map((brand) => (
+                  <option key={brand.id} value={brand.id}>
+                    {brand.name}
+                  </option>
+                ))}
+              </select>
               {errors.brand && (
                 <p className="mt-1 text-sm text-red-400">{errors.brand}</p>
               )}
@@ -247,18 +284,37 @@ export const CarForm: React.FC<CarFormProps> = ({
               <label className="block text-sm font-medium text-zinc-300 mb-2">
                 Model <span className="text-red-400">*</span>
               </label>
-              <input
-                type="text"
+              <select
                 name="model"
                 value={formData.model}
-                onChange={handleChange}
-                placeholder="e.g., Fortuner"
+                onChange={(e) => {
+                  const modelName = e.target.value;
+                  setFormData((prev) => ({ ...prev, model: modelName }));
+                  if (errors.model) {
+                    setErrors((prev) => ({ ...prev, model: "" }));
+                  }
+                }}
+                disabled={!selectedBrandId}
                 className={`w-full px-4 py-2.5 rounded-lg bg-zinc-900 border ${
                   errors.model ? "border-red-500" : "border-zinc-700"
-                } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
-              />
+                } text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed`}
+              >
+                <option value="">
+                  {selectedBrandId ? "Select a model" : "Select a brand first"}
+                </option>
+                {filteredModels.map((model) => (
+                  <option key={model.id} value={model.name}>
+                    {model.name}
+                  </option>
+                ))}
+              </select>
               {errors.model && (
                 <p className="mt-1 text-sm text-red-400">{errors.model}</p>
+              )}
+              {selectedBrandId && filteredModels.length === 0 && (
+                <p className="mt-1 text-sm text-zinc-400">
+                  No models available for this brand
+                </p>
               )}
             </div>
 

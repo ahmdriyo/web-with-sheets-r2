@@ -7,6 +7,7 @@ import { CarsTable } from "./CarsTable";
 import { CarForm } from "./CarForm";
 import { Dialog } from "@/src/components/ui/Dialog";
 import { Toast, useToast } from "@/src/components/ui/Toast";
+import { Pagination } from "@/src/components/ui/Pagination";
 import {
   useCars,
   useCreateCar,
@@ -16,7 +17,9 @@ import {
 import type { Cars } from "@/src/types/cars.type";
 
 export const CarsView: React.FC = () => {
-  const { data: carsData, isLoading } = useCars();
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
+  const { data: carsData, isLoading } = useCars(currentPage, limit);
   const createCarMutation = useCreateCar();
   const updateCarMutation = useUpdateCar();
   const deleteCarMutation = useDeleteCar();
@@ -162,6 +165,16 @@ export const CarsView: React.FC = () => {
           onEdit={handleEditClick}
           onDelete={handleDeleteClick}
         />
+
+        {/* Pagination */}
+        {carsData?.pagination && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={carsData.pagination.totalPages}
+            onPageChange={setCurrentPage}
+            isLoading={isLoading}
+          />
+        )}
       </div>
 
       {/* Car Form Modal */}

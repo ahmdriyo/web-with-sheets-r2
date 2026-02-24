@@ -1,32 +1,59 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Container, Section, Input, CarCard } from "@/src/components/ui";
 import { WhatsAppButton } from "@/src/components/ui/WhatsAppButton";
 import { useCars } from "@/src/hooks/useCars";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
 import { useDebounce } from "@/src/hooks/useDebounce";
+import { useBrands } from "@/src/hooks/useBrands";
+import { useModels } from "@/src/hooks/useModels";
+import { useCategories } from "@/src/hooks/useCategories";
 
 export const CarsView = () => {
-  const [page, setPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedFuel, setSelectedFuel] = useState("");
-  const [selectedTransmission, setSelectedTransmission] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Initialize state from URL params
+  const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("search") || "",
+  );
+  const [selectedCategory, setSelectedCategory] = useState(
+    searchParams.get("category") || "",
+  );
+  const [selectedBrand, setSelectedBrand] = useState(
+    searchParams.get("brand") || "",
+  );
+  const [selectedModel, setSelectedModel] = useState(
+    searchParams.get("model") || "",
+  );
+  const [selectedFuel, setSelectedFuel] = useState(
+    searchParams.get("fuelType") || "",
+  );
+  const [selectedTransmission, setSelectedTransmission] = useState(
+    searchParams.get("transmission") || "",
+  );
 
   const limit = 8;
 
   // Debounce search query
   const debouncedSearch = useDebounce(searchQuery, 500);
 
+  // Fetch filter data from API
+  const { data: categoriesData } = useCategories(1, 1000); // Get all categories
+  const { data: brandsData } = useBrands(1, 1000); // Get all brands
+  const { data: modelsData } = useModels(1, 1000); // Get all models
+
   // Build filters object
   const filters = {
     search: debouncedSearch || undefined,
+    category: selectedCategory || undefined,
     brand: selectedBrand || undefined,
+    model: selectedModel || undefined,
     fuelType: selectedFuel || undefined,
     transmission: selectedTransmission || undefined,
-    category: selectedCategory || undefined,
   };
 
   const { data: carsData, isLoading } = useCars(page, limit, filters);
@@ -34,18 +61,71 @@ export const CarsView = () => {
 
   const whatsappNumber = settingsData?.data?.whatsapp_number || "";
 
-  // Get unique brands from all cars (we'll need to fetch this separately or cache it)
-  const uniqueBrands = Array.from(
-    new Set(carsData?.data?.map((car) => car.brand) || []),
+  // Get all categories
+  const categories = useMemo(
+    () => categoriesData?.data || [],
+    [categoriesData?.data],
   );
 
-  // Get unique categories
-  const uniqueCategories = Array.from(
-    new Set(carsData?.data?.map((car) => car.category) || []),
-  );
+  // Get all brands
+  const brands = useMemo(() => brandsData?.data || [], [brandsData?.data]);
+
+  // Filter models based on selected brand
+  const filteredModels = useMemo(() => {
+    if (!modelsData?.data) return [];
+    if (!selectedBrand) return modelsData.data;
+
+    // Find the selected brand's ID
+    const selectedBrandObj = brands.find((b) => b.name === selectedBrand);
+    if (!selectedBrandObj) return modelsData.data;
+
+    // Filter models by brand ID
+    return modelsData.data.filter(
+      (model) => model.id_brand === selectedBrandObj.id,
+    );
+  }, [modelsData?.data, selectedBrand, brands]);
 
   const totalPages = carsData?.pagination?.totalPages || 1;
   const totalItems = carsData?.pagination?.totalItems || 0;
+
+  // Update URL params
+  const updateURLParams = (params: Record<string, string | number>) => {
+    const currentParams = new URLSearchParams(searchParams.toString());
+
+    Object.entries(params).forEach(([key, value]) => {
+      if (value) {
+        currentParams.set(key, String(value));
+      } else {
+        currentParams.delete(key);
+      }
+    });
+
+    router.push(`?${currentParams.toString()}`, { scroll: false });
+  };
+
+  // Sync filters to URL whenever they change
+  useEffect(() => {
+    const params: Record<string, string | number> = {
+      page: page > 1 ? page : "",
+      search: debouncedSearch,
+      category: selectedCategory,
+      brand: selectedBrand,
+      model: selectedModel,
+      fuelType: selectedFuel,
+      transmission: selectedTransmission,
+    };
+
+    updateURLParams(params);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    page,
+    debouncedSearch,
+    selectedCategory,
+    selectedBrand,
+    selectedModel,
+    selectedFuel,
+    selectedTransmission,
+  ]);
 
   // Reset to page 1 when filters change
   const handleFilterChange =
@@ -53,6 +133,13 @@ export const CarsView = () => {
       setter(value);
       setPage(1);
     };
+
+  // Handle brand change - reset model when brand changes
+  const handleBrandChange = (value: string) => {
+    setSelectedBrand(value);
+    setSelectedModel(""); // Reset model when brand changes
+    setPage(1);
+  };
 
   return (
     <div className="min-h-screen bg-black">
@@ -95,22 +182,8 @@ export const CarsView = () => {
             />
 
             {/* Filters */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <select
-                value={selectedBrand}
-                onChange={(e) =>
-                  handleFilterChange(setSelectedBrand)(e.target.value)
-                }
-                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
-              >
-                <option value="">Semua Merek</option>
-                {uniqueBrands.map((brand) => (
-                  <option key={brand} value={brand}>
-                    {brand}
-                  </option>
-                ))}
-              </select>
-
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {/* Category Filter */}
               <select
                 value={selectedCategory}
                 onChange={(e) =>
@@ -119,13 +192,47 @@ export const CarsView = () => {
                 className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
               >
                 <option value="">Semua Kategori</option>
-                {uniqueCategories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
+                {categories.map((category) => (
+                  <option key={category.id} value={category.name}>
+                    {category.name}
                   </option>
                 ))}
               </select>
 
+              {/* Brand Filter */}
+              <select
+                value={selectedBrand}
+                onChange={(e) => handleBrandChange(e.target.value)}
+                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
+              >
+                <option value="">Semua Merek</option>
+                {brands.map((brand) => (
+                  <option key={brand.id} value={brand.name}>
+                    {brand.name}
+                  </option>
+                ))}
+              </select>
+
+              {/* Model Filter */}
+              <select
+                value={selectedModel}
+                onChange={(e) =>
+                  handleFilterChange(setSelectedModel)(e.target.value)
+                }
+                disabled={!selectedBrand}
+                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <option value="">
+                  {selectedBrand ? "Semua Model" : "Pilih Merek Dulu"}
+                </option>
+                {filteredModels.map((model) => (
+                  <option key={model.id} value={model.name}>
+                    {model.name}
+                  </option>
+                ))}
+              </select>
+
+              {/* Fuel Type Filter */}
               <select
                 value={selectedFuel}
                 onChange={(e) =>
@@ -140,6 +247,7 @@ export const CarsView = () => {
                 <option value="electric">Electric</option>
               </select>
 
+              {/* Transmission Filter */}
               <select
                 value={selectedTransmission}
                 onChange={(e) =>
@@ -155,10 +263,11 @@ export const CarsView = () => {
 
             {/* Active Filters Info */}
             {(debouncedSearch ||
+              selectedCategory ||
               selectedBrand ||
+              selectedModel ||
               selectedFuel ||
-              selectedTransmission ||
-              selectedCategory) && (
+              selectedTransmission) && (
               <div className="text-sm text-gray-400">
                 Menampilkan {totalItems} hasil
                 {debouncedSearch && ` untuk "${debouncedSearch}"`}

@@ -1,8 +1,10 @@
 import { google } from "googleapis";
-import key_service_account from "@/key_service_account.json";
 
 const auth = new google.auth.GoogleAuth({
-  credentials: key_service_account,
+  credentials: {
+    client_email: process.env.GOOGLE_CLIENT_EMAIL!,
+    private_key: process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
+  },
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 

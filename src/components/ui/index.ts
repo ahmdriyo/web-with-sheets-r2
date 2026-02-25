@@ -22,3 +22,5 @@ export { Toast, useToast } from "./Toast";
 export type { ToastType } from "./Toast";
 export { Card } from "./Card";
 export { Pagination } from "./Pagination";
+export { FilterSelect } from "./FilterSelect";
+export type { FilterOption } from "./FilterSelect";

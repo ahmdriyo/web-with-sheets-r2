@@ -10,6 +10,7 @@ import { useDebounce } from "@/src/hooks/useDebounce";
 import { useBrands } from "@/src/hooks/useBrands";
 import { useModels } from "@/src/hooks/useModels";
 import { useCategories } from "@/src/hooks/useCategories";
+import { FilterSelect } from "@/src/components/ui/FilterSelect";
 
 export const CarsView = () => {
   const router = useRouter();
@@ -35,6 +36,19 @@ export const CarsView = () => {
   const [selectedTransmission, setSelectedTransmission] = useState(
     searchParams.get("transmission") || "",
   );
+  const [selectedYear, setSelectedYear] = useState(
+    searchParams.get("year") || "",
+  );
+
+  // Generate years from 1980 to current year (newest first)
+  const currentYear = new Date().getFullYear();
+  const years = useMemo(() => {
+    const yearList: number[] = [];
+    for (let y = currentYear; y >= 1980; y--) {
+      yearList.push(y);
+    }
+    return yearList;
+  }, [currentYear]);
 
   const limit = 8;
 
@@ -54,6 +68,7 @@ export const CarsView = () => {
     model: selectedModel || undefined,
     fuelType: selectedFuel || undefined,
     transmission: selectedTransmission || undefined,
+    year: selectedYear || undefined,
   };
 
   const { data: carsData, isLoading } = useCars(page, limit, filters);
@@ -113,6 +128,7 @@ export const CarsView = () => {
       model: selectedModel,
       fuelType: selectedFuel,
       transmission: selectedTransmission,
+      year: selectedYear,
     };
 
     updateURLParams(params);
@@ -125,6 +141,7 @@ export const CarsView = () => {
     selectedModel,
     selectedFuel,
     selectedTransmission,
+    selectedYear,
   ]);
 
   // Reset to page 1 when filters change
@@ -166,7 +183,7 @@ export const CarsView = () => {
       </div>
 
       {/* Search & Filters */}
-      <Section className="bg-zinc-900 shadow-sm py-4">
+      <Section className="bg-zinc-900 shadow-sm py-16!">
         <Container>
           <div className="space-y-4">
             {/* Search */}
@@ -182,83 +199,72 @@ export const CarsView = () => {
             />
 
             {/* Filters */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {/* Category Filter */}
-              <select
+              <FilterSelect
                 value={selectedCategory}
-                onChange={(e) =>
-                  handleFilterChange(setSelectedCategory)(e.target.value)
-                }
-                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
-              >
-                <option value="">Semua Kategori</option>
-                {categories.map((category) => (
-                  <option key={category.id} value={category.name}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
+                onChange={handleFilterChange(setSelectedCategory)}
+                placeholder="Semua Kategori"
+                options={categories.map((c) => ({
+                  value: c.name,
+                  label: c.name,
+                }))}
+              />
 
               {/* Brand Filter */}
-              <select
+              <FilterSelect
                 value={selectedBrand}
-                onChange={(e) => handleBrandChange(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
-              >
-                <option value="">Semua Merek</option>
-                {brands.map((brand) => (
-                  <option key={brand.id} value={brand.name}>
-                    {brand.name}
-                  </option>
-                ))}
-              </select>
+                onChange={handleBrandChange}
+                placeholder="Semua Merek"
+                options={brands.map((b) => ({ value: b.name, label: b.name }))}
+              />
 
               {/* Model Filter */}
-              <select
+              <FilterSelect
                 value={selectedModel}
-                onChange={(e) =>
-                  handleFilterChange(setSelectedModel)(e.target.value)
-                }
+                onChange={handleFilterChange(setSelectedModel)}
+                placeholder={selectedBrand ? "Semua Model" : "Pilih Merek Dulu"}
                 disabled={!selectedBrand}
-                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <option value="">
-                  {selectedBrand ? "Semua Model" : "Pilih Merek Dulu"}
-                </option>
-                {filteredModels.map((model) => (
-                  <option key={model.id} value={model.name}>
-                    {model.name}
-                  </option>
-                ))}
-              </select>
+                options={filteredModels.map((m) => ({
+                  value: m.name,
+                  label: m.name,
+                }))}
+              />
 
               {/* Fuel Type Filter */}
-              <select
+              <FilterSelect
                 value={selectedFuel}
-                onChange={(e) =>
-                  handleFilterChange(setSelectedFuel)(e.target.value)
-                }
-                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
-              >
-                <option value="">Semua Jenis Bahan Bakar</option>
-                <option value="bensin">Bensin</option>
-                <option value="diesel">Diesel</option>
-                <option value="hybrid">Hybrid</option>
-                <option value="electric">Electric</option>
-              </select>
+                onChange={handleFilterChange(setSelectedFuel)}
+                placeholder="Semua Jenis Bahan Bakar"
+                options={[
+                  { value: "bensin", label: "Bensin" },
+                  { value: "diesel", label: "Diesel" },
+                  { value: "hybrid", label: "Hybrid" },
+                  { value: "electric", label: "Electric" },
+                ]}
+              />
 
               {/* Transmission Filter */}
-              <select
+              <FilterSelect
                 value={selectedTransmission}
-                onChange={(e) =>
-                  handleFilterChange(setSelectedTransmission)(e.target.value)
-                }
-                className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-white focus:border-white transition-all"
-              >
-                <option value="">Semua Jenis Transmisi</option>
-                <option value="manual">Manual</option>
-                <option value="automatic">Automatic</option>
-              </select>
+                onChange={handleFilterChange(setSelectedTransmission)}
+                placeholder="Semua Jenis Transmisi"
+                options={[
+                  { value: "manual", label: "Manual" },
+                  { value: "automatic", label: "Automatic" },
+                ]}
+              />
+
+              {/* Year Filter */}
+              <FilterSelect
+                value={selectedYear}
+                onChange={handleFilterChange(setSelectedYear)}
+                placeholder="Semua Tahun"
+                options={years.map((y) => ({
+                  value: String(y),
+                  label: String(y),
+                }))}
+              />
             </div>
 
             {/* Active Filters Info */}
@@ -267,7 +273,8 @@ export const CarsView = () => {
               selectedBrand ||
               selectedModel ||
               selectedFuel ||
-              selectedTransmission) && (
+              selectedTransmission ||
+              selectedYear) && (
               <div className="text-sm text-gray-400">
                 Menampilkan {totalItems} hasil
                 {debouncedSearch && ` untuk "${debouncedSearch}"`}

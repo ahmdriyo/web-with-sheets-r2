@@ -9,6 +9,7 @@ interface CarsFilters {
   brand?: string;
   model?: string;
   fuelType?: string;
+  year?: string;
   transmission?: string;
 }
 
@@ -73,6 +74,11 @@ export async function findAllCars(
         filters.transmission &&
         car.transmission?.toLowerCase() !== filters.transmission.toLowerCase()
       ) {
+        return false;
+      }
+
+      // Year filter
+      if (filters.year && car.year?.toString() !== filters.year.toLowerCase()) {
         return false;
       }
 

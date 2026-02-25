@@ -13,7 +13,7 @@ export type Cars = {
   slug: string;
   brand: string;
   model: string;
-  year: number;
+  year: string;
   price: number;
   mileage: number;
 
@@ -43,7 +43,7 @@ export type CreateCarsDTO = {
   title: string;
   brand: string;
   model: string;
-  year: number;
+  year: string;
   price: number;
   mileage: number;
   transmission: Transmission;
@@ -63,7 +63,7 @@ export type UpdateCarsDTO = {
   title?: string;
   brand?: string;
   model?: string;
-  year?: number;
+  year?: string;
   price?: number;
   mileage?: number;
   transmission?: Transmission;

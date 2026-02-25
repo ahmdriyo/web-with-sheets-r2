@@ -14,6 +14,7 @@ export async function getCars(req: Request) {
       brand: searchParams.get("brand") || undefined,
       model: searchParams.get("model") || undefined,
       fuelType: searchParams.get("fuelType") || undefined,
+      year: searchParams.get("year") || undefined,
       transmission: searchParams.get("transmission") || undefined,
     };
 

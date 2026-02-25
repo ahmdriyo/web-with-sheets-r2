@@ -8,6 +8,7 @@ export interface CarsFilters {
   brand?: string;
   model?: string;
   fuelType?: string;
+  year?: string;
   transmission?: string;
 }
 

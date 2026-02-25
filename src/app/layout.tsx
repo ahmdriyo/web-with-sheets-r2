@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Our Showroom - Premium Car Showroom",
+  title: "Showroom Kita - Premium Car Showroom",
   description:
-    "Find your dream car from our premium collection of quality vehicles",
+    "Temukan mobil impian Anda dari koleksi kendaraan berkualitas premium kami",
 };
 
 export default function RootLayout({

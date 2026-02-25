@@ -11,6 +11,7 @@ interface CarsFilters {
   fuelType?: string;
   year?: string;
   transmission?: string;
+  status?: string;
 }
 
 export async function findAllCars(
@@ -86,6 +87,14 @@ export async function findAllCars(
       if (
         filters.category &&
         car.category?.toLowerCase() !== filters.category.toLowerCase()
+      ) {
+        return false;
+      }
+
+      // Status filter
+      if (
+        filters.status &&
+        car.status?.toLowerCase() !== filters.status.toLowerCase()
       ) {
         return false;
       }

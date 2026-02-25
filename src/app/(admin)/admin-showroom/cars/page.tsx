@@ -1,7 +1,7 @@
-import { CarsView } from "@/src/features/admin-showroom/cars";
+import { CarsAdminView } from "@/src/features/admin-showroom/cars/CarsAdminView";
 
 const CarsPage = () => {
-  return <CarsView />;
+  return <CarsAdminView />;
 };
 
 export default CarsPage;

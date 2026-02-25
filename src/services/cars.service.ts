@@ -10,6 +10,7 @@ export interface CarsFilters {
   fuelType?: string;
   year?: string;
   transmission?: string;
+  status?: string;
 }
 
 export const CarsService = {

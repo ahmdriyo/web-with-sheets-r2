@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
+import { FilterSelect } from "@/src/components/ui/FilterSelect";
 
 interface CarsFiltersProps {
   search: string;
@@ -9,6 +10,8 @@ interface CarsFiltersProps {
   onBrandChange: (value: string) => void;
   status: string;
   onStatusChange: (value: string) => void;
+  year: string;
+  onYearChange: (value: string) => void;
   brands: string[];
 }
 
@@ -19,18 +22,31 @@ export const CarsFilters: React.FC<CarsFiltersProps> = ({
   onBrandChange,
   status,
   onStatusChange,
+  year,
+  onYearChange,
   brands,
 }) => {
-  const statuses: { value: string; label: string }[] = [
-    { value: "", label: "All Status" },
+  const statusOptions = [
     { value: "available", label: "Available" },
     { value: "sold", label: "Sold" },
     { value: "booked", label: "Booked" },
   ];
 
+  const brandOptions = brands.map((b) => ({ value: b, label: b }));
+
+  // Generate years from 1980 to current year (newest first)
+  const currentYear = new Date().getFullYear();
+  const yearOptions = useMemo(() => {
+    const list: { value: string; label: string }[] = [];
+    for (let y = currentYear; y >= 1980; y--) {
+      list.push({ value: String(y), label: String(y) });
+    }
+    return list;
+  }, [currentYear]);
+
   return (
     <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 mb-6">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         {/* Search */}
         <div className="md:col-span-2">
           <div className="relative">
@@ -60,35 +76,28 @@ export const CarsFilters: React.FC<CarsFiltersProps> = ({
         </div>
 
         {/* Brand Filter */}
-        <div>
-          <select
-            value={brand}
-            onChange={(e) => onBrandChange(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
-          >
-            <option value="">All Brands</option>
-            {brands.map((b) => (
-              <option key={b} value={b}>
-                {b}
-              </option>
-            ))}
-          </select>
-        </div>
+        <FilterSelect
+          value={brand}
+          onChange={onBrandChange}
+          placeholder="All Brands"
+          options={brandOptions}
+        />
 
         {/* Status Filter */}
-        <div>
-          <select
-            value={status}
-            onChange={(e) => onStatusChange(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-lg bg-zinc-800 border border-zinc-700 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
-          >
-            {statuses.map((s) => (
-              <option key={s.value} value={s.value}>
-                {s.label}
-              </option>
-            ))}
-          </select>
-        </div>
+        <FilterSelect
+          value={status}
+          onChange={onStatusChange}
+          placeholder="All Status"
+          options={statusOptions}
+        />
+
+        {/* Year Filter */}
+        <FilterSelect
+          value={year}
+          onChange={onYearChange}
+          placeholder="All Years"
+          options={yearOptions}
+        />
       </div>
     </div>
   );

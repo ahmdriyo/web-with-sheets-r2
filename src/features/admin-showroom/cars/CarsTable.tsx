@@ -104,6 +104,7 @@ export const CarsTable: React.FC<CarsTableProps> = ({
       <TableHeader>
         <TableRow>
           <TableHead>Vehicle</TableHead>
+          <TableHead>Category</TableHead>
           <TableHead>Brand</TableHead>
           <TableHead>Year</TableHead>
           <TableHead>Price</TableHead>
@@ -148,6 +149,9 @@ export const CarsTable: React.FC<CarsTableProps> = ({
                   <p className="text-sm text-zinc-500">{car.model}</p>
                 </div>
               </div>
+            </TableCell>
+            <TableCell>
+              <span className="text-zinc-300">{car.category}</span>
             </TableCell>
             <TableCell>
               <span className="text-zinc-300">{car.brand}</span>

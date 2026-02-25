@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDebounce } from "@/src/hooks/useDebounce";
 import { AdminLayout } from "@/src/components/ui/AdminLayout";
 import { CarsFilters } from "./CarsFilters";
 import { CarsTable } from "./CarsTable";
@@ -14,56 +16,92 @@ import {
   useUpdateCar,
   useDeleteCar,
 } from "@/src/hooks/useCars";
+import { useBrands } from "@/src/hooks/useBrands";
 import type { Cars } from "@/src/types/cars.type";
 
-export const CarsView: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+export const CarsAdminView: React.FC = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Initialize state from URL params
+  const [currentPage, setCurrentPage] = useState(
+    Number(searchParams.get("page")) || 1,
+  );
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("search") || "",
+  );
+  const [brandFilter, setBrandFilter] = useState(
+    searchParams.get("brand") || "",
+  );
+  const [statusFilter, setStatusFilter] = useState(
+    searchParams.get("status") || "",
+  );
+  const [yearFilter, setYearFilter] = useState(searchParams.get("year") || "");
+
   const limit = 10;
-  const { data: carsData, isLoading } = useCars(currentPage, limit);
+
+  // Debounce search query
+  const debouncedSearch = useDebounce(searchQuery, 500);
+
+  // Build filters object for API
+  const filters = {
+    search: debouncedSearch || undefined,
+    brand: brandFilter || undefined,
+    status: statusFilter || undefined,
+    year: yearFilter || undefined,
+  };
+
+  // Fetch data from API with filters
+  const { data: carsData, isLoading } = useCars(currentPage, limit, filters);
+  const { data: brandsData } = useBrands(1, 1000);
   const createCarMutation = useCreateCar();
   const updateCarMutation = useUpdateCar();
   const deleteCarMutation = useDeleteCar();
   const { toast, showToast, hideToast } = useToast();
+
+  // Get brands list from API
+  const brands = brandsData?.data?.map((b) => b.name) || [];
 
   // Modal states
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedCar, setSelectedCar] = useState<Cars | null>(null);
 
-  // Filter states
-  const [searchQuery, setSearchQuery] = useState("");
-  const [brandFilter, setBrandFilter] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
+  // Update URL params
+  const updateURLParams = (params: Record<string, string | number>) => {
+    const currentParams = new URLSearchParams(searchParams.toString());
 
-  // Get unique brands from cars data
-  const uniqueBrands = useMemo(() => {
-    if (!carsData?.data) return [];
-    const brands = carsData.data
-      .map((car) => car.brand)
-      .filter((brand): brand is string => !!brand);
-    return Array.from(new Set(brands)).sort();
-  }, [carsData?.data]);
-
-  // Filtered and searched cars
-  const filteredCars = useMemo(() => {
-    if (!carsData?.data) return [];
-
-    return carsData.data.filter((car) => {
-      const matchesSearch =
-        car.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        car.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        car.model?.toLowerCase().includes(searchQuery.toLowerCase());
-
-      const matchesBrand =
-        !brandFilter || car.brand?.toLowerCase() === brandFilter.toLowerCase();
-
-      const matchesStatus =
-        !statusFilter ||
-        car.status?.toLowerCase() === statusFilter.toLowerCase();
-
-      return matchesSearch && matchesBrand && matchesStatus;
+    Object.entries(params).forEach(([key, value]) => {
+      if (value) {
+        currentParams.set(key, String(value));
+      } else {
+        currentParams.delete(key);
+      }
     });
-  }, [carsData?.data, searchQuery, brandFilter, statusFilter]);
+
+    router.push(`?${currentParams.toString()}`, { scroll: false });
+  };
+
+  // Sync filters to URL whenever they change
+  useEffect(() => {
+    const params: Record<string, string | number> = {
+      page: currentPage > 1 ? currentPage : "",
+      search: debouncedSearch,
+      brand: brandFilter,
+      status: statusFilter,
+      year: yearFilter,
+    };
+
+    updateURLParams(params);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage, debouncedSearch, brandFilter, statusFilter, yearFilter]);
+
+  // Reset to page 1 when filters change
+  const handleFilterChange =
+    (setter: (value: string) => void) => (value: string) => {
+      setter(value);
+      setCurrentPage(1);
+    };
 
   // Handlers
   const handleAddClick = () => {
@@ -84,14 +122,12 @@ export const CarsView: React.FC = () => {
   const handleFormSubmit = async (formData: FormData) => {
     try {
       if (selectedCar) {
-        // Update existing car
         await updateCarMutation.mutateAsync({
           id: selectedCar.id!,
           formData,
         });
         showToast("Car updated successfully", "success");
       } else {
-        // Create new car
         await createCarMutation.mutateAsync(formData);
         showToast("Car added successfully", "success");
       }
@@ -117,10 +153,12 @@ export const CarsView: React.FC = () => {
     }
   };
 
+  const totalPages = carsData?.pagination?.totalPages || 1;
+
   return (
     <AdminLayout title="Cars" subtitle="Manage showroom vehicles">
       <div className="space-y-6">
-        {/* Filters */}
+        {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-white mb-2">Cars</h2>
@@ -148,29 +186,36 @@ export const CarsView: React.FC = () => {
             Add Car
           </button>
         </div>
+
+        {/* Filters */}
         <CarsFilters
           search={searchQuery}
-          onSearchChange={setSearchQuery}
+          onSearchChange={(v) => {
+            setSearchQuery(v);
+            setCurrentPage(1);
+          }}
           brand={brandFilter}
-          onBrandChange={setBrandFilter}
+          onBrandChange={handleFilterChange(setBrandFilter)}
           status={statusFilter}
-          onStatusChange={setStatusFilter}
-          brands={uniqueBrands}
+          onStatusChange={handleFilterChange(setStatusFilter)}
+          year={yearFilter}
+          onYearChange={handleFilterChange(setYearFilter)}
+          brands={brands}
         />
 
         {/* Table */}
         <CarsTable
-          cars={filteredCars}
+          cars={carsData?.data || []}
           isLoading={isLoading}
           onEdit={handleEditClick}
           onDelete={handleDeleteClick}
         />
 
         {/* Pagination */}
-        {carsData?.pagination && (
+        {totalPages > 1 && (
           <Pagination
             currentPage={currentPage}
-            totalPages={carsData.pagination.totalPages}
+            totalPages={totalPages}
             onPageChange={setCurrentPage}
             isLoading={isLoading}
           />

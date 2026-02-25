@@ -13,200 +13,219 @@ export const ModalPrivacyPolicy: React.FC<ModalPrivacyPolicyProps> = ({
   onClose,
 }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Privacy Policy" size="lg">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Kebijakan Privasi"
+      size="lg"
+    >
       <div className="space-y-6 text-gray-300">
-        {/* Last Updated */}
+        {/* Terakhir Diperbarui */}
         <div className="text-sm text-gray-400">
-          <p>Last Updated: February 17, 2026</p>
+          <p>Terakhir Diperbarui: 17 Februari 2026</p>
         </div>
 
-        {/* Introduction */}
+        {/* Pendahuluan */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">1. Introduction</h2>
+          <h2 className="text-xl font-semibold text-white">1. Pendahuluan</h2>
           <p className="text-sm leading-relaxed">
-            Welcome to Our Showroom (&quot;we&quot;, &quot;us&quot;, or
-            &quot;our&quot;). We are committed to protecting your personal
-            information and your right to privacy. This Privacy Policy explains
-            how we collect, use, disclose, and safeguard your information when
-            you visit our website and use our services.
+            Selamat datang di Showroom Kami (&quot;kami&quot;, &quot;kita&quot;,
+            atau &quot;milik kami&quot;). Kami berkomitmen untuk melindungi
+            informasi pribadi Anda dan hak privasi Anda. Kebijakan Privasi ini
+            menjelaskan bagaimana kami mengumpulkan, menggunakan, mengungkapkan,
+            dan melindungi informasi Anda saat Anda mengunjungi situs web kami
+            dan menggunakan layanan kami.
           </p>
         </section>
 
-        {/* Information We Collect */}
+        {/* Informasi yang Kami Kumpulkan */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            2. Information We Collect
+            2. Informasi yang Kami Kumpulkan
           </h2>
           <p className="text-sm leading-relaxed">
-            We collect information that you provide directly to us, including:
+            Kami mengumpulkan informasi yang Anda berikan langsung kepada kami,
+            termasuk:
           </p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
-              <strong className="text-white">Personal Information:</strong>{" "}
-              Name, email address, phone number, and other contact details when
-              you inquire about our vehicles or services.
+              <strong className="text-white">Informasi Pribadi:</strong> Nama,
+              alamat email, nomor telepon, dan detail kontak lainnya saat Anda
+              menanyakan tentang kendaraan atau layanan kami.
             </li>
             <li>
-              <strong className="text-white">Communication Data:</strong>{" "}
-              Messages, feedback, and correspondence you send to us via
-              WhatsApp, email, or contact forms.
+              <strong className="text-white">Data Komunikasi:</strong> Pesan,
+              umpan balik, dan korespondensi yang Anda kirimkan kepada kami
+              melalui WhatsApp, email, atau formulir kontak.
             </li>
             <li>
-              <strong className="text-white">Technical Data:</strong> IP
-              address, browser type, device information, and usage data
-              collected through cookies and similar technologies.
+              <strong className="text-white">Data Teknis:</strong> Alamat IP,
+              jenis browser, informasi perangkat, dan data penggunaan yang
+              dikumpulkan melalui cookie dan teknologi serupa.
             </li>
             <li>
-              <strong className="text-white">Transaction Data:</strong>{" "}
-              Information related to vehicle inquiries, test drive requests, and
-              purchase interests.
+              <strong className="text-white">Data Transaksi:</strong> Informasi
+              terkait pertanyaan kendaraan, permintaan test drive, dan minat
+              pembelian.
             </li>
           </ul>
         </section>
 
-        {/* How We Use Your Information */}
+        {/* Bagaimana Kami Menggunakan Informasi Anda */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            3. How We Use Your Information
+            3. Bagaimana Kami Menggunakan Informasi Anda
           </h2>
           <p className="text-sm leading-relaxed">
-            We use the information we collect to:
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-sm pl-4">
-            <li>Respond to your inquiries and provide customer support</li>
-            <li>Process vehicle inquiries and schedule test drives</li>
-            <li>Send you updates about available vehicles and promotions</li>
-            <li>Improve our website and services</li>
-            <li>Prevent fraud and ensure security</li>
-            <li>Comply with legal obligations</li>
-          </ul>
-        </section>
-
-        {/* Information Sharing */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
-            4. Information Sharing and Disclosure
-          </h2>
-          <p className="text-sm leading-relaxed">
-            We do not sell your personal information. We may share your
-            information with:
+            Kami menggunakan informasi yang kami kumpulkan untuk:
           </p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
-              <strong className="text-white">Service Providers:</strong> Third
-              parties who assist us in operating our website and conducting our
-              business.
+              Menanggapi pertanyaan Anda dan memberikan dukungan pelanggan
             </li>
+            <li>Memproses pertanyaan kendaraan dan menjadwalkan test drive</li>
             <li>
-              <strong className="text-white">Legal Requirements:</strong> When
-              required by law or to protect our rights and safety.
+              Mengirimkan informasi terbaru tentang kendaraan dan promosi yang
+              tersedia
             </li>
-            <li>
-              <strong className="text-white">Business Transfers:</strong> In the
-              event of a merger, acquisition, or sale of assets.
-            </li>
+            <li>Meningkatkan situs web dan layanan kami</li>
+            <li>Mencegah penipuan dan memastikan keamanan</li>
+            <li>Mematuhi kewajiban hukum</li>
           </ul>
         </section>
 
-        {/* Data Security */}
+        {/* Pembagian Informasi */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">5. Data Security</h2>
+          <h2 className="text-xl font-semibold text-white">
+            4. Pembagian dan Pengungkapan Informasi
+          </h2>
           <p className="text-sm leading-relaxed">
-            We implement appropriate technical and organizational measures to
-            protect your personal information against unauthorized access, loss,
-            or alteration. However, no method of transmission over the internet
-            is 100% secure, and we cannot guarantee absolute security.
+            Kami tidak menjual informasi pribadi Anda. Kami dapat membagikan
+            informasi Anda kepada:
           </p>
-        </section>
-
-        {/* Your Rights */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">6. Your Rights</h2>
-          <p className="text-sm leading-relaxed">You have the right to:</p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
-            <li>Access, update, or delete your personal information</li>
-            <li>Opt-out of marketing communications</li>
-            <li>Object to processing of your personal data</li>
-            <li>Request data portability</li>
-            <li>Withdraw consent at any time</li>
+            <li>
+              <strong className="text-white">Penyedia Layanan:</strong> Pihak
+              ketiga yang membantu kami dalam mengoperasikan situs web dan
+              menjalankan bisnis kami.
+            </li>
+            <li>
+              <strong className="text-white">Persyaratan Hukum:</strong> Ketika
+              diwajibkan oleh hukum atau untuk melindungi hak dan keselamatan
+              kami.
+            </li>
+            <li>
+              <strong className="text-white">Pengalihan Bisnis:</strong> Dalam
+              hal merger, akuisisi, atau penjualan aset.
+            </li>
           </ul>
         </section>
 
-        {/* Cookies */}
+        {/* Keamanan Data */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">7. Cookies</h2>
+          <h2 className="text-xl font-semibold text-white">5. Keamanan Data</h2>
           <p className="text-sm leading-relaxed">
-            We use cookies and similar tracking technologies to improve your
-            browsing experience, analyze website traffic, and personalize
-            content. You can control cookies through your browser settings.
+            Kami menerapkan langkah-langkah teknis dan organisasi yang tepat
+            untuk melindungi informasi pribadi Anda dari akses yang tidak sah,
+            kehilangan, atau perubahan. Namun, tidak ada metode transmisi
+            melalui internet yang 100% aman, dan kami tidak dapat menjamin
+            keamanan absolut.
           </p>
         </section>
 
-        {/* Third-Party Links */}
+        {/* Hak Anda */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-white">6. Hak Anda</h2>
+          <p className="text-sm leading-relaxed">Anda memiliki hak untuk:</p>
+          <ul className="list-disc list-inside space-y-2 text-sm pl-4">
+            <li>
+              Mengakses, memperbarui, atau menghapus informasi pribadi Anda
+            </li>
+            <li>Berhenti berlangganan dari komunikasi pemasaran</li>
+            <li>Menolak pemrosesan data pribadi Anda</li>
+            <li>Meminta portabilitas data</li>
+            <li>Menarik persetujuan kapan saja</li>
+          </ul>
+        </section>
+
+        {/* Cookie */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-white">7. Cookie</h2>
+          <p className="text-sm leading-relaxed">
+            Kami menggunakan cookie dan teknologi pelacakan serupa untuk
+            meningkatkan pengalaman penjelajahan Anda, menganalisis lalu lintas
+            situs web, dan mempersonalisasi konten. Anda dapat mengontrol cookie
+            melalui pengaturan browser Anda.
+          </p>
+        </section>
+
+        {/* Tautan Pihak Ketiga */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            8. Third-Party Links
+            8. Tautan Pihak Ketiga
           </h2>
           <p className="text-sm leading-relaxed">
-            Our website may contain links to third-party websites. We are not
-            responsible for the privacy practices of these external sites. We
-            encourage you to review their privacy policies.
+            Situs web kami mungkin berisi tautan ke situs web pihak ketiga. Kami
+            tidak bertanggung jawab atas praktik privasi situs eksternal
+            tersebut. Kami menyarankan Anda untuk meninjau kebijakan privasi
+            mereka.
           </p>
         </section>
 
-        {/* Children's Privacy */}
+        {/* Privasi Anak */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-white">9. Privasi Anak</h2>
+          <p className="text-sm leading-relaxed">
+            Layanan kami tidak ditujukan untuk individu di bawah usia 18 tahun.
+            Kami tidak secara sengaja mengumpulkan informasi pribadi dari
+            anak-anak. Jika kami mengetahui bahwa kami telah mengumpulkan data
+            dari anak di bawah umur, kami akan mengambil langkah-langkah untuk
+            menghapus informasi tersebut.
+          </p>
+        </section>
+
+        {/* Perubahan Kebijakan Privasi */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            9. Children&apos;s Privacy
+            10. Perubahan Kebijakan Privasi Ini
           </h2>
           <p className="text-sm leading-relaxed">
-            Our services are not intended for individuals under the age of 18.
-            We do not knowingly collect personal information from children. If
-            we become aware that we have collected data from a child, we will
-            take steps to delete such information.
+            Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu.
+            Kami akan memberi tahu Anda tentang perubahan apa pun dengan
+            memposting Kebijakan Privasi baru di halaman ini dan memperbarui
+            tanggal &quot;Terakhir Diperbarui&quot;.
           </p>
         </section>
 
-        {/* Changes to Privacy Policy */}
+        {/* Hubungi Kami */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
-            10. Changes to This Privacy Policy
-          </h2>
+          <h2 className="text-xl font-semibold text-white">11. Hubungi Kami</h2>
           <p className="text-sm leading-relaxed">
-            We may update this Privacy Policy from time to time. We will notify
-            you of any changes by posting the new Privacy Policy on this page
-            and updating the &quot;Last Updated&quot; date.
-          </p>
-        </section>
-
-        {/* Contact Us */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">11. Contact Us</h2>
-          <p className="text-sm leading-relaxed">
-            If you have any questions about this Privacy Policy or our data
-            practices, please contact us:
+            Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini atau
+            praktik data kami, silakan hubungi kami:
           </p>
           <ul className="list-none space-y-2 text-sm pl-4">
             <li>
-              <strong className="text-white">Email:</strong> Contact us through
-              our website
+              <strong className="text-white">Email:</strong> Hubungi kami
+              melalui situs web kami
             </li>
             <li>
-              <strong className="text-white">WhatsApp:</strong> Use our contact
-              form
+              <strong className="text-white">WhatsApp:</strong> Gunakan formulir
+              kontak kami
             </li>
             <li>
-              <strong className="text-white">Address:</strong> Visit our
-              showroom during business hours
+              <strong className="text-white">Alamat:</strong> Kunjungi showroom
+              kami pada jam kerja
             </li>
           </ul>
         </section>
 
-        {/* Acceptance */}
+        {/* Persetujuan */}
         <section className="space-y-3 border-t border-zinc-800 pt-6">
           <p className="text-sm leading-relaxed text-gray-400">
-            By using our website and services, you acknowledge that you have
-            read and understood this Privacy Policy and agree to its terms.
+            Dengan menggunakan situs web dan layanan kami, Anda mengakui bahwa
+            Anda telah membaca dan memahami Kebijakan Privasi ini dan menyetujui
+            ketentuannya.
           </p>
         </section>
       </div>

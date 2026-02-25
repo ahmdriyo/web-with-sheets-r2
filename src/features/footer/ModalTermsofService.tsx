@@ -13,283 +13,302 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
   onClose,
 }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Terms of Service" size="lg">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Syarat dan Ketentuan"
+      size="lg"
+    >
       <div className="space-y-6 text-gray-300">
-        {/* Last Updated */}
+        {/* Terakhir Diperbarui */}
         <div className="text-sm text-gray-400">
-          <p>Last Updated: February 17, 2026</p>
+          <p>Terakhir Diperbarui: 17 Februari 2026</p>
         </div>
 
-        {/* Introduction */}
+        {/* Pendahuluan */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            1. Agreement to Terms
+            1. Persetujuan terhadap Ketentuan
           </h2>
           <p className="text-sm leading-relaxed">
-            By accessing and using Our Showroom&apos;s website and services, you
-            agree to be bound by these Terms of Service. If you do not agree to
-            these terms, please do not use our services.
+            Dengan mengakses dan menggunakan situs web dan layanan Showroom
+            Kami, Anda setuju untuk terikat oleh Syarat dan Ketentuan ini. Jika
+            Anda tidak menyetujui ketentuan ini, harap jangan menggunakan
+            layanan kami.
           </p>
         </section>
 
-        {/* Use of Services */}
+        {/* Penggunaan Layanan */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            2. Use of Our Services
+            2. Penggunaan Layanan Kami
           </h2>
-          <p className="text-sm leading-relaxed">You agree to:</p>
+          <p className="text-sm leading-relaxed">Anda setuju untuk:</p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
-              Provide accurate and complete information when making inquiries
+              Memberikan informasi yang akurat dan lengkap saat mengajukan
+              pertanyaan
             </li>
-            <li>Use our services only for lawful purposes</li>
-            <li>Not interfere with or disrupt our website or servers</li>
-            <li>Not attempt to gain unauthorized access to our systems</li>
+            <li>Menggunakan layanan kami hanya untuk tujuan yang sah</li>
+            <li>Tidak mengganggu atau merusak situs web atau server kami</li>
+            <li>Tidak berusaha mendapatkan akses tidak sah ke sistem kami</li>
             <li>
-              Not use our services to transmit harmful or malicious content
+              Tidak menggunakan layanan kami untuk mengirimkan konten yang
+              berbahaya atau merugikan
             </li>
           </ul>
         </section>
 
-        {/* Vehicle Information */}
+        {/* Informasi Kendaraan */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            3. Vehicle Information and Availability
+            3. Informasi dan Ketersediaan Kendaraan
           </h2>
           <p className="text-sm leading-relaxed">
-            We strive to provide accurate information about our vehicles.
-            However:
+            Kami berusaha menyediakan informasi yang akurat tentang kendaraan
+            kami. Namun:
           </p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
-              Vehicle specifications, prices, and availability are subject to
-              change without notice
+              Spesifikasi, harga, dan ketersediaan kendaraan dapat berubah tanpa
+              pemberitahuan sebelumnya
             </li>
             <li>
-              Images are for illustration purposes and may not represent the
-              exact vehicle
+              Gambar hanya untuk tujuan ilustrasi dan mungkin tidak mewakili
+              kendaraan yang sebenarnya
             </li>
             <li>
-              All vehicle sales are subject to availability and verification
+              Semua penjualan kendaraan tunduk pada ketersediaan dan verifikasi
             </li>
             <li>
-              We reserve the right to refuse service or cancel inquiries at our
-              discretion
+              Kami berhak menolak layanan atau membatalkan pertanyaan atas
+              kebijakan kami
             </li>
           </ul>
         </section>
 
-        {/* Pricing and Payments */}
+        {/* Harga dan Pembayaran */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            4. Pricing and Payments
+            4. Harga dan Pembayaran
           </h2>
           <p className="text-sm leading-relaxed">
-            All prices displayed on our website are:
+            Semua harga yang ditampilkan di situs web kami:
           </p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
-            <li>Listed in Indonesian Rupiah (IDR)</li>
-            <li>Subject to change without prior notice</li>
+            <li>Tercantum dalam Rupiah Indonesia (IDR)</li>
+            <li>Dapat berubah tanpa pemberitahuan sebelumnya</li>
             <li>
-              Exclusive of additional fees such as registration, insurance, and
-              taxes unless otherwise stated
+              Belum termasuk biaya tambahan seperti registrasi, asuransi, dan
+              pajak kecuali dinyatakan lain
             </li>
             <li>
-              Valid only for the specific vehicle listed and may vary based on
-              condition and features
+              Hanya berlaku untuk kendaraan tertentu yang terdaftar dan dapat
+              bervariasi berdasarkan kondisi dan fitur
             </li>
           </ul>
         </section>
 
-        {/* Test Drives */}
+        {/* Test Drive */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            5. Test Drives and Inspections
+            5. Test Drive dan Inspeksi
           </h2>
           <p className="text-sm leading-relaxed">
-            When participating in test drives:
+            Saat berpartisipasi dalam test drive:
           </p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
-              You must possess a valid driver&apos;s license and be at least 21
-              years old
+              Anda harus memiliki SIM yang valid dan berusia minimal 21 tahun
             </li>
             <li>
-              You are responsible for any damage that occurs during the test
+              Anda bertanggung jawab atas kerusakan yang terjadi selama test
               drive
             </li>
             <li>
-              Test drives are subject to availability and prior appointment
+              Test drive tunduk pada ketersediaan dan perjanjian sebelumnya
             </li>
             <li>
-              We reserve the right to refuse test drive requests at our
-              discretion
+              Kami berhak menolak permintaan test drive atas kebijakan kami
             </li>
           </ul>
         </section>
 
-        {/* Intellectual Property */}
+        {/* Kekayaan Intelektual */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            6. Intellectual Property
+            6. Kekayaan Intelektual
           </h2>
           <p className="text-sm leading-relaxed">
-            All content on our website, including text, graphics, logos, images,
-            and software, is the property of Our Showroom or its licensors and
-            is protected by copyright and intellectual property laws. You may
-            not:
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-sm pl-4">
-            <li>Copy, modify, or distribute our content without permission</li>
-            <li>Use our trademarks or branding without authorization</li>
-            <li>
-              Reproduce or republish any part of our website for commercial
-              purposes
-            </li>
-          </ul>
-        </section>
-
-        {/* Limitation of Liability */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
-            7. Limitation of Liability
-          </h2>
-          <p className="text-sm leading-relaxed">
-            To the fullest extent permitted by law:
+            Semua konten di situs web kami, termasuk teks, grafik, logo, gambar,
+            dan perangkat lunak, adalah milik Showroom Kami atau pemberi
+            lisensinya dan dilindungi oleh hak cipta dan undang-undang kekayaan
+            intelektual. Anda tidak boleh:
           </p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
-              We are not liable for any indirect, incidental, or consequential
-              damages
+              Menyalin, memodifikasi, atau mendistribusikan konten kami tanpa
+              izin
             </li>
-            <li>We do not guarantee uninterrupted or error-free service</li>
+            <li>Menggunakan merek dagang atau branding kami tanpa otorisasi</li>
             <li>
-              We are not responsible for third-party content or external links
-            </li>
-            <li>Your use of our services is at your own risk</li>
-          </ul>
-        </section>
-
-        {/* Warranties */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">8. Warranties</h2>
-          <p className="text-sm leading-relaxed">
-            Unless explicitly stated in writing:
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-sm pl-4">
-            <li>Vehicles are sold &quot;as is&quot; without warranties</li>
-            <li>We recommend independent inspection before purchase</li>
-            <li>
-              Any warranties provided are subject to separate written agreements
-            </li>
-            <li>
-              We do not warrant the accuracy of all information provided by
-              third parties
+              Mereproduksi atau menerbitkan ulang bagian mana pun dari situs web
+              kami untuk tujuan komersial
             </li>
           </ul>
         </section>
 
-        {/* User Communications */}
+        {/* Batasan Tanggung Jawab */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            9. User Communications
+            7. Batasan Tanggung Jawab
           </h2>
           <p className="text-sm leading-relaxed">
-            When you communicate with us via WhatsApp, email, or other channels:
+            Sejauh diizinkan oleh hukum:
           </p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
-              You grant us permission to use your communications for business
-              purposes
+              Kami tidak bertanggung jawab atas kerusakan tidak langsung,
+              insidental, atau konsekuensial
             </li>
             <li>
-              You are responsible for the accuracy of information you provide
+              Kami tidak menjamin layanan yang tidak terputus atau bebas
+              kesalahan
             </li>
             <li>
-              We may record or save communications for quality and training
-              purposes
+              Kami tidak bertanggung jawab atas konten pihak ketiga atau tautan
+              eksternal
+            </li>
+            <li>Penggunaan layanan kami adalah risiko Anda sendiri</li>
+          </ul>
+        </section>
+
+        {/* Garansi */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-white">8. Garansi</h2>
+          <p className="text-sm leading-relaxed">
+            Kecuali dinyatakan secara eksplisit dalam bentuk tertulis:
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-sm pl-4">
+            <li>Kendaraan dijual &quot;apa adanya&quot; tanpa garansi</li>
+            <li>Kami menyarankan inspeksi independen sebelum pembelian</li>
+            <li>
+              Garansi yang diberikan tunduk pada perjanjian tertulis terpisah
+            </li>
+            <li>
+              Kami tidak menjamin keakuratan semua informasi yang diberikan oleh
+              pihak ketiga
             </li>
           </ul>
         </section>
 
-        {/* Governing Law */}
+        {/* Komunikasi Pengguna */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            10. Governing Law
+            9. Komunikasi Pengguna
           </h2>
           <p className="text-sm leading-relaxed">
-            These Terms of Service are governed by the laws of Indonesia. Any
-            disputes shall be resolved in the courts of Indonesia.
+            Ketika Anda berkomunikasi dengan kami melalui WhatsApp, email, atau
+            saluran lainnya:
           </p>
-        </section>
-
-        {/* Changes to Terms */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
-            11. Changes to Terms
-          </h2>
-          <p className="text-sm leading-relaxed">
-            We reserve the right to modify these Terms of Service at any time.
-            Changes will be effective immediately upon posting on this page.
-            Your continued use of our services after changes constitutes
-            acceptance of the modified terms.
-          </p>
-        </section>
-
-        {/* Termination */}
-        <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">12. Termination</h2>
-          <p className="text-sm leading-relaxed">We reserve the right to:</p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
-              Terminate or suspend your access to our services at any time
+              Anda memberikan izin kepada kami untuk menggunakan komunikasi Anda
+              untuk keperluan bisnis
             </li>
-            <li>Remove any content that violates these terms</li>
-            <li>Take legal action against users who violate these terms</li>
+            <li>
+              Anda bertanggung jawab atas keakuratan informasi yang Anda berikan
+            </li>
+            <li>
+              Kami dapat merekam atau menyimpan komunikasi untuk tujuan kualitas
+              dan pelatihan
+            </li>
           </ul>
         </section>
 
-        {/* Contact Information */}
+        {/* Hukum yang Berlaku */}
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-white">
-            13. Contact Information
+            10. Hukum yang Berlaku
           </h2>
           <p className="text-sm leading-relaxed">
-            If you have questions about these Terms of Service, please contact
-            us:
+            Syarat dan Ketentuan ini diatur oleh hukum Indonesia. Segala
+            sengketa akan diselesaikan di pengadilan Indonesia.
+          </p>
+        </section>
+
+        {/* Perubahan Ketentuan */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-white">
+            11. Perubahan Ketentuan
+          </h2>
+          <p className="text-sm leading-relaxed">
+            Kami berhak untuk mengubah Syarat dan Ketentuan ini kapan saja.
+            Perubahan akan berlaku segera setelah diposting di halaman ini.
+            Penggunaan layanan kami yang berkelanjutan setelah perubahan
+            merupakan penerimaan terhadap ketentuan yang dimodifikasi.
+          </p>
+        </section>
+
+        {/* Penghentian */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-white">12. Penghentian</h2>
+          <p className="text-sm leading-relaxed">Kami berhak untuk:</p>
+          <ul className="list-disc list-inside space-y-2 text-sm pl-4">
+            <li>
+              Menghentikan atau menangguhkan akses Anda ke layanan kami kapan
+              saja
+            </li>
+            <li>Menghapus konten apa pun yang melanggar ketentuan ini</li>
+            <li>
+              Mengambil tindakan hukum terhadap pengguna yang melanggar
+              ketentuan ini
+            </li>
+          </ul>
+        </section>
+
+        {/* Informasi Kontak */}
+        <section className="space-y-3">
+          <h2 className="text-xl font-semibold text-white">
+            13. Informasi Kontak
+          </h2>
+          <p className="text-sm leading-relaxed">
+            Jika Anda memiliki pertanyaan tentang Syarat dan Ketentuan ini,
+            silakan hubungi kami:
           </p>
           <ul className="list-none space-y-2 text-sm pl-4">
             <li>
-              <strong className="text-white">Website:</strong> Through our
-              contact form
+              <strong className="text-white">Situs Web:</strong> Melalui
+              formulir kontak kami
             </li>
             <li>
-              <strong className="text-white">WhatsApp:</strong> Available on our
-              website
+              <strong className="text-white">WhatsApp:</strong> Tersedia di
+              situs web kami
             </li>
             <li>
-              <strong className="text-white">Showroom:</strong> Visit us during
-              business hours
+              <strong className="text-white">Showroom:</strong> Kunjungi kami
+              pada jam kerja
             </li>
           </ul>
         </section>
 
-        {/* Severability */}
+        {/* Keterpisahan */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">14. Severability</h2>
+          <h2 className="text-xl font-semibold text-white">14. Keterpisahan</h2>
           <p className="text-sm leading-relaxed">
-            If any provision of these terms is found to be unenforceable or
-            invalid, that provision will be limited or eliminated to the minimum
-            extent necessary, and the remaining provisions will remain in full
-            force and effect.
+            Jika ada ketentuan dalam syarat ini yang dianggap tidak dapat
+            dilaksanakan atau tidak valid, ketentuan tersebut akan dibatasi atau
+            dihilangkan sejauh yang diperlukan, dan ketentuan lainnya akan tetap
+            berlaku sepenuhnya.
           </p>
         </section>
 
-        {/* Acceptance */}
+        {/* Persetujuan */}
         <section className="space-y-3 border-t border-zinc-800 pt-6">
           <p className="text-sm leading-relaxed text-gray-400">
-            By using our website and services, you acknowledge that you have
-            read, understood, and agree to be bound by these Terms of Service.
+            Dengan menggunakan situs web dan layanan kami, Anda mengakui bahwa
+            Anda telah membaca, memahami, dan setuju untuk terikat oleh Syarat
+            dan Ketentuan ini.
           </p>
         </section>
       </div>

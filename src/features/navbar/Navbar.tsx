@@ -33,7 +33,7 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="px-4 text-2xl font-bold text-white">
-            Our Showroom
+            Showroom Kita
           </Link>
 
           {/* Desktop Menu */}
@@ -42,25 +42,25 @@ export const Navbar = () => {
               href="/"
               className="text-gray-300 hover:text-white transition-colors font-bold"
             >
-              Home
+              Beranda
             </Link>
             <Link
               href="/about"
               className="text-gray-300 hover:text-white transition-colors font-bold"
             >
-              About
+              Tentang
             </Link>
             <Link
               href="/cars"
               className="text-gray-300 hover:text-white transition-colors font-bold"
             >
-              Cars
+              Mobil
             </Link>
             <Link
               href="#contact"
               className="text-gray-300 hover:text-white transition-colors font-bold"
             >
-              Contact
+              Kontak
             </Link>
           </div>
 
@@ -99,26 +99,28 @@ export const Navbar = () => {
                 className="text-gray-300 hover:text-white transition-colors font-bold py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Home
+                Beranda
               </Link>
               <Link
                 href="/about"
                 className="text-gray-300 hover:text-white transition-colors font-bold py-2"
                 onClick={() => setIsMenuOpen(false)}
-              ></Link>
+              >
+                Tentang
+              </Link>
               <Link
                 href="/cars"
                 className="text-gray-300 hover:text-white transition-colors font-bold py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Cars
+                Mobil
               </Link>
               <Link
                 href="#contact"
                 className="text-gray-300 hover:text-white transition-colors font-bold py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contact
+                Kontak
               </Link>
             </div>
           </div>

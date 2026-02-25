@@ -84,7 +84,7 @@ export const AboutView = () => {
                 : "translate-y-10 opacity-0"
             }`}
           >
-            <div className="inline-block mb-6 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 animate-fade-in">
+            <div className="inline-block mb-6 px-6 py-3 mt-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 animate-fade-in">
               <span className="text-white text-sm font-semibold tracking-wider">
                 Premium Car Showroom
               </span>
@@ -102,7 +102,7 @@ export const AboutView = () => {
                   size="lg"
                   className="shadow-2xl hover:scale-105 transition-transform duration-300"
                 >
-                  Browse Collection
+                  Cari Koleksi
                 </Button>
               </Link>
               <a href="#contact">
@@ -111,7 +111,7 @@ export const AboutView = () => {
                   variant="outline"
                   className="border-white text-white hover:bg-white/10 hover:scale-105 transition-transform duration-300"
                 >
-                  Contact Us
+                  Kontak Kami
                 </Button>
               </a>
             </div>

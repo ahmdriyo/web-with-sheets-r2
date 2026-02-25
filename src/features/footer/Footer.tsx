@@ -22,7 +22,7 @@ export const Footer = () => {
           <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold">Our Showroom</h3>
+              <h3 className="text-2xl font-bold">Showroom Kita</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Mitra terpercaya Anda dalam menemukan kendaraan yang sempurna.
                 Pilihan premium, layanan berkualitas.
@@ -160,15 +160,9 @@ export const Footer = () => {
             {/* Opening Hours */}
             <div className="space-y-4">
               <h4 className="text-lg font-semibold">Jam Buka</h4>
-              {settings?.opening_hours ? (
+              {settings?.opening_hours && (
                 <p className="text-gray-400 text-sm whitespace-pre-line">
                   {settings.opening_hours}
-                </p>
-              ) : (
-                <p className="text-gray-400 text-sm">
-                  Monday - Sunday
-                  <br />
-                  9:00 AM - 6:00 PM
                 </p>
               )}
             </div>
@@ -181,7 +175,7 @@ export const Footer = () => {
         <Container>
           <div className="py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
             <p>
-              &copy; {new Date().getFullYear()} Our Showroom . All rights
+              &copy; {new Date().getFullYear()} Showroom Kita . All rights
               reserved.
             </p>
             <div className="flex gap-6">

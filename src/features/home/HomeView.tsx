@@ -4,58 +4,59 @@ import { Container, Section, Button, CarCard } from "@/src/components/ui";
 import { WhatsAppButton } from "@/src/components/ui/WhatsAppButton";
 import { useCars } from "@/src/hooks/useCars";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "motion/react";
 import FindUs from "./FindUs";
 import Testimonial from "./Testimonial";
 
 export const HomeView = () => {
   const { data: carsData, isLoading } = useCars(1, 8);
   const { data: settingsData } = useSiteSettings();
-  const [isVisible, setIsVisible] = useState(false);
 
   const whatsappNumber = settingsData?.data?.whatsapp_number;
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  /* ── Rotating headline words ── */
   const words = [
-    "Impian Anda",
-    "Keluarga Anda",
-    "Masa Depan Anda",
-    "Petualangan Anda",
+    "Impian Anda  di Sini",
+    "Keluarga Anda di Sini",
+    "Masa Depan Anda di Sini",
+    "Petualangan Anda di Sini",
   ];
-
-  // 2. State untuk mengontrol urutan kata dan status animasi (fade)
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
-  // 3. Logika interval untuk mengganti teks setiap 3 detik
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false); // Mulai animasi menghilang (fade out)
-
+      setFade(false);
       setTimeout(() => {
-        setIndex((prev) => (prev + 1) % words.length); // Pindah ke kata berikutnya
-        setFade(true); // Mulai animasi muncul (fade in)
-      }, 500); // Waktu 500ms ini harus sinkron dengan durasi transisi di Tailwind
+        setIndex((prev) => (prev + 1) % words.length);
+        setFade(true);
+      }, 800);
     }, 3000);
-
     return () => clearInterval(interval);
   }, [words.length]);
 
+  /* ── Scroll-in refs for sections ── */
+  const featuredRef = useRef<HTMLDivElement>(null);
+  const featuredInView = useInView(featuredRef, {
+    once: true,
+    margin: "-80px",
+  });
+
+  const viewAllRef = useRef<HTMLDivElement>(null);
+  const viewAllInView = useInView(viewAllRef, { once: true, margin: "-40px" });
+
   return (
     <div className="min-h-screen">
-      {/* Hero Section with Background */}
+      {/* ── Hero Section ── */}
       <div className="relative min-h-[85vh] flex items-center overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background */}
         <div className="absolute inset-0 z-0">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url(/back1.png)" }}
           />
           <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/40" />
-
-          {/* Animated circles */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute top-1/2 -right-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -65,25 +66,29 @@ export const HomeView = () => {
 
         {/* Hero Content */}
         <Container className="relative z-10 flex flex-col items-center justify-center">
-          <div
-            // Tambahkan mx-auto dan text-center di sini
-            className={`max-w-4xl mx-auto text-center transform transition-all duration-1000 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-          >
-            <div className="inline-block mb-6 px-5 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 animate-fade-in shadow-lg">
+          <div className="max-w-5xl mx-auto text-center">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-block mb-6 px-5 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
+            >
               <span className="text-white text-sm font-semibold tracking-wide uppercase">
                 Showroom Mobil Premium
               </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-2xl">
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="text-3xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-2xl"
+            >
               Temukan Mobil <br className="hidden md:block" />{" "}
-              {/* Line break agar rapi di layar besar */}
-              {/* Elemen teks yang berganti */}
               <span
-                className={`inline-block transition-all duration-500 bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient ${
+                className={`inline-block transition-all duration-800 bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient ${
                   fade
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 -translate-y-5"
@@ -91,17 +96,29 @@ export const HomeView = () => {
               >
                 {words[index]}
               </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
+            </motion.h1>
+
+            {/* Subtext */}
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-lg"
+            >
               Pilihan kendaraan berkualitas premium. Setiap mobil diperiksa,
               setiap detail diperhatikan.
-            </p>
-            {/* Tambahkan justify-center agar tombol ikut rata tengah */}
-            <div className="flex flex-wrap justify-center gap-5">
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.55 }}
+              className="flex flex-wrap justify-center gap-5"
+            >
               <Link href="/cars">
                 <Button
                   size="lg"
-                  // Tambahan efek shadow glow biru agar lebih premium
                   className="shadow-[0_0_20px_rgba(96,165,250,0.4)] hover:shadow-[0_0_30px_rgba(96,165,250,0.7)] hover:-translate-y-1 transition-all duration-300"
                 >
                   Lihat Semua Mobil
@@ -116,14 +133,14 @@ export const HomeView = () => {
                   Jelajahi Koleksi
                 </Button>
               </a>
-            </div>
+            </motion.div>
           </div>
         </Container>
       </div>
 
-      {/* Featured Cars */}
+      {/* ── Featured Cars ── */}
       <Section background="brown" className="relative overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background */}
         <div className="absolute inset-0 z-0">
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -131,19 +148,20 @@ export const HomeView = () => {
           />
           <div className="absolute inset-0 bg-linear-to-br from-black/70 via-gray-900/40 to-black/70" />
         </div>
-        {/* Decorative background elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
         </div>
+
         <Container className="relative z-10">
-          <div
+          {/* Section heading */}
+          <motion.div
             id="featured"
-            className={`mb-12 text-center transform transition-all duration-1000 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
+            ref={featuredRef}
+            initial={{ opacity: 0, y: 40 }}
+            animate={featuredInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="mb-12 text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
               Koleksi Unggulan
@@ -151,11 +169,11 @@ export const HomeView = () => {
             <p className="text-gray-100 text-lg">
               Temukan mobil-mobil terbaik kami yang siap anda bawa pulang
             </p>
-          </div>
+          </motion.div>
 
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[1, 2, 3, 4].map((i) => (
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                 <div
                   key={i}
                   className="bg-muted rounded-2xl overflow-hidden border border-border shadow-lg"
@@ -187,11 +205,7 @@ export const HomeView = () => {
               {carsData?.data?.slice(0, 8).map((car, index) => (
                 <div
                   key={car.id}
-                  className={`transform transition-all duration-700 ${
-                    isVisible
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-10 opacity-0"
-                  }`}
+                  className={`transform transition-all duration-700`}
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
                   <CarCard car={car} />
@@ -200,12 +214,13 @@ export const HomeView = () => {
             </div>
           )}
 
-          <div
-            className={`text-center mt-12 transform transition-all duration-1000 delay-1000 ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
+          {/* View all button */}
+          <motion.div
+            ref={viewAllRef}
+            initial={{ opacity: 0 }}
+            animate={viewAllInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center mt-12"
           >
             <Link href="/cars">
               <Button
@@ -216,9 +231,10 @@ export const HomeView = () => {
                 Lihat Semua Inventaris
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </Container>
       </Section>
+
       <Testimonial />
       <FindUs />
 

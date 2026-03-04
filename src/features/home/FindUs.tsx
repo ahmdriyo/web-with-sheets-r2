@@ -93,7 +93,7 @@ const FindUs = () => {
     <Section className="relative overflow-hidden dark:bg-gray-900! bg-white!">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" />
-        <div className="absolute inset-0 bg-linear-to-br from-black/80 via-gray-900/60 to-black/80" />
+        <div className="absolute inset-0 bg-linear-to-br dark:from-black/80 dark:via-gray-900/60 dark:to-black/80 from-gray-200 via-gray-300/60 to-gray-300/80" />
       </div>
       <div className="absolute inset-0 opacity-10 z-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full blur-3xl"></div>
@@ -104,10 +104,10 @@ const FindUs = () => {
           {/* Map Section */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+              <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-3">
                 Temukan Kami
               </h2>
-              <p className="text-white text-lg">
+              <p className="text-black dark:text-whitetext-lg">
                 Kunjungi showroom kami atau hubungi kami untuk informasi lebih
               </p>
             </div>
@@ -126,10 +126,10 @@ const FindUs = () => {
           </div>
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              <h3 className="text-2xl md:text-3xl font-bold text-black dark:text-white mb-3">
                 Kirim Pesan Kepada Kami
               </h3>
-              <p className="text-white">
+              <p className="text-black dark:text-white">
                 Punya pertanyaan? Isi formulir di bawah ini dan kami akan segera
                 menghubungi Anda kembali.
               </p>
@@ -138,7 +138,7 @@ const FindUs = () => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-white mb-2"
+                  className="block text-sm font-medium text-black dark:text-white mb-2"
                 >
                   Your Name <span className="text-red-400">*</span>
                 </label>
@@ -156,7 +156,7 @@ const FindUs = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-white mb-2"
+                  className="block text-sm font-medium text-black dark:text-white mb-2"
                 >
                   Alamat Email<span className="text-red-400">*</span>
                 </label>
@@ -174,7 +174,7 @@ const FindUs = () => {
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-white mb-2"
+                  className="block text-sm font-medium text-black dark:text-white mb-2"
                 >
                   Nomor Telpon (Optional)
                 </label>
@@ -191,7 +191,7 @@ const FindUs = () => {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-white mb-2"
+                  className="block text-sm font-medium text-black dark:text-white mb-2"
                 >
                   Pesan Kamu <span className="text-red-400">*</span>
                 </label>
@@ -203,7 +203,7 @@ const FindUs = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground rounded-lg focus:ring-2 focus:ring-ring focus:border-primary outline-none transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-white dark:bg-[#18181b] border border-border text-foreground placeholder:text-muted-foreground rounded-lg focus:ring-2 focus:ring-ring focus:border-primary outline-none transition-all duration-200 resize-none"
                 />
               </div>
               <Button

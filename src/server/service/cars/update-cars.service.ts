@@ -34,7 +34,7 @@ export async function updateCar(id: string, req: Request) {
     const model = (formData.get("model") as string) || existingCar.model;
     const year = formData.has("year")
       ? Number(formData.get("year"))
-      : existingCar.year;
+      : Number(existingCar.year);
     const price = formData.has("price")
       ? Number(formData.get("price"))
       : existingCar.price;

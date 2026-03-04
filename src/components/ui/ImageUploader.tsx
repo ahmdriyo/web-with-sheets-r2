@@ -82,8 +82,8 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         onClick={handleClick}
         className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all ${
           isDragging
-            ? "border-purple-500 bg-purple-900/10"
-            : "border-zinc-700 hover:border-purple-600 hover:bg-zinc-800/30"
+            ? "border-primary bg-primary/10"
+            : "border-border hover:border-primary hover:bg-muted/50"
         }`}
       >
         <input
@@ -96,9 +96,9 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         />
 
         <div className="flex flex-col items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-zinc-800 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
             <svg
-              className="w-6 h-6 text-zinc-400"
+              className="w-6 h-6 text-muted-foreground"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -112,12 +112,12 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
             </svg>
           </div>
           <div>
-            <p className="text-sm font-medium text-white mb-1">
+            <p className="text-sm font-medium text-foreground mb-1">
               {isDragging
                 ? "Drop images here"
                 : "Click to upload or drag and drop"}
             </p>
-            <p className="text-xs text-zinc-500">
+            <p className="text-xs text-muted-foreground">
               PNG, JPG or WEBP (Max {maxImages} images)
             </p>
           </div>
@@ -129,7 +129,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {images.map((image, index) => (
             <div key={image.id} className="relative group">
-              <div className="aspect-square rounded-lg overflow-hidden bg-zinc-800 border border-zinc-700">
+              <div className="aspect-square rounded-lg overflow-hidden bg-muted border border-border">
                 <Image
                   src={image.url}
                   alt={`Upload ${index + 1}`}
@@ -173,7 +173,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
       )}
 
       {/* Helper Text */}
-      <p className="text-xs text-zinc-500">
+      <p className="text-xs text-muted-foreground">
         First image will be used as the primary image. You can upload up to{" "}
         {maxImages} images.
       </p>

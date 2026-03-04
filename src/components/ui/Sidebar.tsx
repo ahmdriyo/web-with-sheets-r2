@@ -157,9 +157,9 @@ export const Sidebar: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-black border-r border-zinc-800 flex flex-col">
+    <aside className="fixed left-0 top-0 h-screen w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
       {/* Logo */}
-      <div className="px-6 py-6 border-b border-zinc-800">
+      <div className="px-6 py-6 border-b border-sidebar-border">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-linear-to-br from-purple-600 to-purple-800 flex items-center justify-center">
             <svg
@@ -177,8 +177,10 @@ export const Sidebar: React.FC = () => {
             </svg>
           </div>
           <div>
-            <h2 className="text-white font-semibold text-lg">Showroom</h2>
-            <p className="text-xs text-zinc-500">Admin Panel</p>
+            <h2 className="text-sidebar-foreground font-semibold text-lg">
+              Showroom
+            </h2>
+            <p className="text-xs text-sidebar-muted-foreground">Admin Panel</p>
           </div>
         </div>
       </div>
@@ -194,8 +196,8 @@ export const Sidebar: React.FC = () => {
                 href={item.href}
                 className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
                   isActive
-                    ? "bg-purple-900/30 text-purple-300 border border-purple-800/50"
-                    : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/50"
+                    ? "bg-primary/15 text-primary border border-primary/30"
+                    : "text-sidebar-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-accent"
                 }`}
               >
                 {item.icon}
@@ -207,14 +209,18 @@ export const Sidebar: React.FC = () => {
       </nav>
 
       {/* Footer */}
-      <div className="px-6 py-4 border-t border-zinc-800">
+      <div className="px-6 py-4 border-t border-sidebar-border">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-full bg-linear-to-br from-purple-600 to-purple-800 flex items-center justify-center text-white text-sm font-semibold">
             A
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-white truncate">Admin</p>
-            <p className="text-xs text-zinc-500 truncate">Administrator</p>
+            <p className="text-sm font-medium text-sidebar-foreground truncate">
+              Admin
+            </p>
+            <p className="text-xs text-sidebar-muted-foreground truncate">
+              Administrator
+            </p>
           </div>
         </div>
         <button
@@ -222,7 +228,7 @@ export const Sidebar: React.FC = () => {
             await clearTokens();
             window.location.href = "/admin-showroom/login";
           }}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-zinc-700 text-zinc-400 hover:text-white transition-all text-sm font-medium"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-secondary hover:bg-accent border border-border hover:border-accent text-muted-foreground hover:text-foreground transition-all text-sm font-medium"
         >
           <svg
             className="w-4 h-4"

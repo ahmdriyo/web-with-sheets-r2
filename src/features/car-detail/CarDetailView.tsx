@@ -43,13 +43,13 @@ export const CarDetailView: React.FC<CarDetailViewProps> = ({ slug }) => {
   const whatsappMessage = `Halo, saya tertarik dengan ${carTitle}`;
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-background">
       <Section className="py-8 md:py-12">
         <Container>
           {/* Back Button */}
           <button
             onClick={() => router.back()}
-            className="inline-flex items-center gap-2 mb-6 px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg shadow-sm transition-all duration-200 hover:shadow group cursor-pointer"
+            className="inline-flex items-center gap-2 mb-6 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground bg-card hover:bg-muted border border-border rounded-lg shadow-sm transition-all duration-200 hover:shadow group cursor-pointer"
           >
             <FaArrowLeft className="w-4 h-4" />
             <p className="text-md font-semibold">Kembali</p>

@@ -29,12 +29,12 @@ export const Dialog: React.FC<DialogProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-overlay backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Dialog */}
-      <div className="relative bg-zinc-900 rounded-xl shadow-2xl w-full max-w-md border border-zinc-800">
+      <div className="relative bg-card rounded-xl shadow-2xl w-full max-w-md border border-border">
         {/* Icon */}
         <div className="flex justify-center pt-6">
           <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
@@ -56,8 +56,10 @@ export const Dialog: React.FC<DialogProps> = ({
 
         {/* Content */}
         <div className="px-6 py-4 text-center">
-          <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>
-          <p className="text-sm text-zinc-400">{message}</p>
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            {title}
+          </h3>
+          <p className="text-sm text-muted-foreground">{message}</p>
         </div>
 
         {/* Actions */}
@@ -65,7 +67,7 @@ export const Dialog: React.FC<DialogProps> = ({
           <button
             onClick={onClose}
             disabled={isLoading}
-            className="flex-1 px-4 py-2.5 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            className="flex-1 px-4 py-2.5 rounded-lg border border-border text-card-foreground hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
           >
             {cancelText}
           </button>

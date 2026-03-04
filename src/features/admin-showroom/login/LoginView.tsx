@@ -94,7 +94,7 @@ const LoginView = () => {
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-linear-to-br from-purple-600 to-purple-800 mb-4 shadow-lg shadow-purple-500/50">
               <svg
-                className="w-10 h-10 text-white"
+                className="w-10 h-10 text-foreground"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -107,7 +107,7 @@ const LoginView = () => {
                 />
               </svg>
             </div>
-            <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Welcome Back</h1>
             <p className="text-purple-200">Sign in to your admin account</p>
           </div>
 
@@ -140,7 +140,7 @@ const LoginView = () => {
                   onChange={handleChange}
                   className={`w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border ${
                     errors.username ? "border-red-400" : "border-white/20"
-                  } text-white placeholder-purple-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none`}
+                  } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
                   placeholder="Enter your username"
                   autoComplete="username"
                 />
@@ -190,7 +190,7 @@ const LoginView = () => {
                   onChange={handleChange}
                   className={`w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border ${
                     errors.password ? "border-red-400" : "border-white/20"
-                  } text-white placeholder-purple-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none`}
+                  } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
                   placeholder="Enter your password"
                   autoComplete="current-password"
                 />
@@ -216,12 +216,12 @@ const LoginView = () => {
             <button
               type="submit"
               disabled={loginMutation.isPending}
-              className="w-full bg-linear-to-r from-purple-600 to-purple-800 text-white py-3 px-6 rounded-lg font-semibold text-lg shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 hover:from-purple-700 hover:to-purple-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="w-full bg-linear-to-r from-purple-600 to-purple-800 text-foreground py-3 px-6 rounded-lg font-semibold text-lg shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 hover:from-purple-700 hover:to-purple-900 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:ring-offset-background transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {loginMutation.isPending ? (
                 <>
                   <svg
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-foreground"
                     fill="none"
                     viewBox="0 0 24 24"
                   >

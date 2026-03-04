@@ -161,14 +161,14 @@ export const CarsAdminView: React.FC = () => {
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-2">Cars</h2>
-            <p className="text-zinc-400">
+            <h2 className="text-2xl font-bold text-foreground mb-2">Cars</h2>
+            <p className="text-muted-foreground">
               Manage vehicles available in your showroom
             </p>
           </div>
           <button
             onClick={handleAddClick}
-            className="px-5 py-2.5 bg-linear-to-r from-purple-600 to-purple-700 text-white rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition-all flex items-center gap-2 shadow-lg shadow-purple-900/30"
+            className="px-5 py-2.5 bg-linear-to-r from-purple-600 to-purple-700 text-foreground rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition-all flex items-center gap-2 shadow-lg shadow-purple-900/30"
           >
             <svg
               className="w-5 h-5"

@@ -25,7 +25,7 @@ export const CarInfo: React.FC<CarInfoProps> = ({ car, whatsappNumber }) => {
     <div className="space-y-8">
       {/* Price */}
       <div>
-        <div className="text-4xl md:text-5xl font-bold text-black mb-2">
+        <div className="text-4xl md:text-5xl font-bold text-foreground mb-2">
           {formatPrice(car.price)}
         </div>
         <Badge
@@ -42,65 +42,65 @@ export const CarInfo: React.FC<CarInfoProps> = ({ car, whatsappNumber }) => {
 
       {/* Title */}
       <div>
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
           {carTitle}
         </h1>
-        <h4 className="text-lg font-semibold text-gray-600">
+        <h4 className="text-lg font-semibold text-muted-foreground">
           Category : {car.category}
         </h4>
       </div>
 
       {/* Key Specs Grid */}
-      <div className="grid grid-cols-2 gap-4 p-6 bg-gray-50 rounded-xl">
+      <div className="grid grid-cols-2 gap-4 p-6 bg-muted rounded-xl">
         <div>
-          <div className="text-sm text-gray-600 mb-1">Brand</div>
-          <div className="font-semibold text-gray-900">{car.brand}</div>
+          <div className="text-sm text-muted-foreground mb-1">Brand</div>
+          <div className="font-semibold text-foreground">{car.brand}</div>
         </div>
         <div>
-          <div className="text-sm text-gray-600 mb-1">Model</div>
-          <div className="font-semibold text-gray-900">{car.model}</div>
+          <div className="text-sm text-muted-foreground mb-1">Model</div>
+          <div className="font-semibold text-foreground">{car.model}</div>
         </div>
         <div>
-          <div className="text-sm text-gray-600 mb-1">Year</div>
-          <div className="font-semibold text-gray-900">{car.year}</div>
+          <div className="text-sm text-muted-foreground mb-1">Year</div>
+          <div className="font-semibold text-foreground">{car.year}</div>
         </div>
         <div>
-          <div className="text-sm text-gray-600 mb-1">Mileage</div>
-          <div className="font-semibold text-gray-900">
+          <div className="text-sm text-muted-foreground mb-1">Mileage</div>
+          <div className="font-semibold text-foreground">
             {car.mileage.toLocaleString("id-ID")} km
           </div>
         </div>
         <div>
-          <div className="text-sm text-gray-600 mb-1">Transmission</div>
-          <div className="font-semibold text-gray-900 capitalize">
+          <div className="text-sm text-muted-foreground mb-1">Transmission</div>
+          <div className="font-semibold text-foreground capitalize">
             {car.transmission}
           </div>
         </div>
         <div>
-          <div className="text-sm text-gray-600 mb-1">Fuel Type</div>
-          <div className="font-semibold text-gray-900 capitalize">
+          <div className="text-sm text-muted-foreground mb-1">Fuel Type</div>
+          <div className="font-semibold text-foreground capitalize">
             {car.fuel_type}
           </div>
         </div>
         <div>
-          <div className="text-sm text-gray-600 mb-1">Seats</div>
-          <div className="font-semibold text-gray-900">{car.seats}</div>
+          <div className="text-sm text-muted-foreground mb-1">Seats</div>
+          <div className="font-semibold text-foreground">{car.seats}</div>
         </div>
         {car.engine_cc && (
           <div>
-            <div className="text-sm text-gray-600 mb-1">Engine</div>
-            <div className="font-semibold text-gray-900">
+            <div className="text-sm text-muted-foreground mb-1">Engine</div>
+            <div className="font-semibold text-foreground">
               {car.engine_cc} cc
             </div>
           </div>
         )}
         <div>
-          <div className="text-sm text-gray-600 mb-1">Color</div>
-          <div className="font-semibold text-gray-900">{car.color}</div>
+          <div className="text-sm text-muted-foreground mb-1">Color</div>
+          <div className="font-semibold text-foreground">{car.color}</div>
         </div>
         <div>
-          <div className="text-sm text-gray-600 mb-1">Condition</div>
-          <div className="font-semibold text-gray-900 capitalize">
+          <div className="text-sm text-muted-foreground mb-1">Condition</div>
+          <div className="font-semibold text-foreground capitalize">
             {car.condition}
           </div>
         </div>
@@ -108,8 +108,8 @@ export const CarInfo: React.FC<CarInfoProps> = ({ car, whatsappNumber }) => {
 
       {/* Description */}
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Deskripsi</h2>
-        <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+        <h2 className="text-2xl font-bold text-foreground mb-4">Deskripsi</h2>
+        <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
           {car.description}
         </p>
       </div>

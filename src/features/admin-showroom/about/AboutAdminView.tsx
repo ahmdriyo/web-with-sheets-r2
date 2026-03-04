@@ -98,8 +98,8 @@ export const AboutAdminView = () => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-white mb-2">About Us</h2>
-          <p className="text-zinc-400">
+          <h2 className="text-2xl font-bold text-foreground mb-2">About Us</h2>
+          <p className="text-muted-foreground">
             Configure your company information and statistics
           </p>
         </div>
@@ -128,14 +128,14 @@ export const AboutAdminView = () => {
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
                 </svg>
-                <p className="text-zinc-400">Loading about data...</p>
+                <p className="text-muted-foreground">Loading about data...</p>
               </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Title */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Title <span className="text-red-400">*</span>
                 </label>
                 <input
@@ -144,9 +144,9 @@ export const AboutAdminView = () => {
                   value={formData.title}
                   onChange={handleChange}
                   placeholder="e.g., About Our Company"
-                  className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border ${
-                    errors.title ? "border-red-500" : "border-zinc-700"
-                  } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+                  className={`w-full px-4 py-3 rounded-lg bg-muted border ${
+                    errors.title ? "border-red-500" : "border-border"
+                  } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
                 />
                 {errors.title && (
                   <p className="mt-2 text-sm text-red-400">{errors.title}</p>
@@ -155,7 +155,7 @@ export const AboutAdminView = () => {
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Description <span className="text-red-400">*</span>
                 </label>
                 <textarea
@@ -164,9 +164,9 @@ export const AboutAdminView = () => {
                   onChange={handleChange}
                   placeholder="Tell your company story..."
                   rows={4}
-                  className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border ${
-                    errors.description ? "border-red-500" : "border-zinc-700"
-                  } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none resize-none`}
+                  className={`w-full px-4 py-3 rounded-lg bg-muted border ${
+                    errors.description ? "border-red-500" : "border-border"
+                  } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none resize-none`}
                 />
                 {errors.description && (
                   <p className="mt-2 text-sm text-red-400">
@@ -177,7 +177,7 @@ export const AboutAdminView = () => {
 
               {/* Our Mission */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Our Mission <span className="text-red-400">*</span>
                 </label>
                 <textarea
@@ -186,9 +186,9 @@ export const AboutAdminView = () => {
                   onChange={handleChange}
                   placeholder="What is your company mission?"
                   rows={3}
-                  className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border ${
-                    errors.ourMission ? "border-red-500" : "border-zinc-700"
-                  } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none resize-none`}
+                  className={`w-full px-4 py-3 rounded-lg bg-muted border ${
+                    errors.ourMission ? "border-red-500" : "border-border"
+                  } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none resize-none`}
                 />
                 {errors.ourMission && (
                   <p className="mt-2 text-sm text-red-400">
@@ -199,7 +199,7 @@ export const AboutAdminView = () => {
 
               {/* Our Vision */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Our Vision <span className="text-red-400">*</span>
                 </label>
                 <textarea
@@ -208,9 +208,9 @@ export const AboutAdminView = () => {
                   onChange={handleChange}
                   placeholder="What is your company vision?"
                   rows={3}
-                  className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border ${
-                    errors.ourVision ? "border-red-500" : "border-zinc-700"
-                  } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none resize-none`}
+                  className={`w-full px-4 py-3 rounded-lg bg-muted border ${
+                    errors.ourVision ? "border-red-500" : "border-border"
+                  } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none resize-none`}
                 />
                 {errors.ourVision && (
                   <p className="mt-2 text-sm text-red-400">
@@ -220,9 +220,9 @@ export const AboutAdminView = () => {
               </div>
 
               {/* Statistics Section */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-zinc-700">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-border">
                 <div>
-                  <label className="block text-sm font-medium text-zinc-300 mb-2">
+                  <label className="block text-sm font-medium text-card-foreground mb-2">
                     Cars Sold
                   </label>
                   <input
@@ -231,12 +231,12 @@ export const AboutAdminView = () => {
                     value={formData.carsSold}
                     onChange={handleChange}
                     placeholder="e.g., 1000+"
-                    className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                    className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-zinc-300 mb-2">
+                  <label className="block text-sm font-medium text-card-foreground mb-2">
                     Happy Customers
                   </label>
                   <input
@@ -245,12 +245,12 @@ export const AboutAdminView = () => {
                     value={formData.happyCustomers}
                     onChange={handleChange}
                     placeholder="e.g., 500+"
-                    className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                    className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-zinc-300 mb-2">
+                  <label className="block text-sm font-medium text-card-foreground mb-2">
                     Years Experience
                   </label>
                   <input
@@ -259,23 +259,23 @@ export const AboutAdminView = () => {
                     value={formData.yearsExperience}
                     onChange={handleChange}
                     placeholder="e.g., 10+"
-                    className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                    className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
                   />
                 </div>
               </div>
 
               {/* Actions */}
-              <div className="flex items-center justify-end pt-6 border-t border-zinc-800">
+              <div className="flex items-center justify-end pt-6 border-t border-border">
                 <div className="flex gap-3">
                   <button
                     type="submit"
                     disabled={isSaving}
-                    className="px-5 py-2.5 bg-linear-to-r from-purple-600 to-purple-700 text-white rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
+                    className="px-5 py-2.5 bg-linear-to-r from-purple-600 to-purple-700 text-foreground rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
                   >
                     {isSaving ? (
                       <>
                         <svg
-                          className="animate-spin h-4 w-4 text-white"
+                          className="animate-spin h-4 w-4 text-foreground"
                           fill="none"
                           viewBox="0 0 24 24"
                         >

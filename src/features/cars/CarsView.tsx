@@ -50,7 +50,7 @@ export const CarsView = () => {
     return yearList;
   }, [currentYear]);
 
-  const limit = 8;
+  const limit = 16;
 
   // Debounce search query
   const debouncedSearch = useDebounce(searchQuery, 500);
@@ -159,7 +159,7 @@ export const CarsView = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-background">
       {/* Header with Background */}
       <div className="relative min-h-[40vh] flex items-center">
         {/* Background Image with Overlay */}
@@ -183,7 +183,7 @@ export const CarsView = () => {
       </div>
 
       {/* Search & Filters */}
-      <Section className="bg-zinc-900 shadow-sm py-16!">
+      <Section className="bg-card shadow-sm py-16!">
         <Container>
           <div className="space-y-4">
             {/* Search */}
@@ -195,7 +195,7 @@ export const CarsView = () => {
                 setSearchQuery(e.target.value);
                 setPage(1); // Reset to first page on search
               }}
-              className="w-full bg-zinc-800 border-zinc-700 text-white placeholder:text-gray-400 focus:ring-white focus:border-white"
+              className="w-full"
             />
 
             {/* Filters */}
@@ -275,7 +275,7 @@ export const CarsView = () => {
               selectedFuel ||
               selectedTransmission ||
               selectedYear) && (
-              <div className="text-sm text-gray-400">
+              <div className="text-sm text-muted-foreground">
                 Menampilkan {totalItems} hasil
                 {debouncedSearch && ` untuk "${debouncedSearch}"`}
               </div>
@@ -285,46 +285,46 @@ export const CarsView = () => {
       </Section>
 
       {/* Cars Grid */}
-      <Section className="bg-zinc-900! pt-4!">
+      <Section className="bg-card! pt-4! dark:border-b-2 dark:border-gray-800 border-b-2 border-gray-200">
         <Container>
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div
                   key={i}
-                  className="bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-700 shadow-lg"
+                  className="bg-muted rounded-2xl overflow-hidden border border-border shadow-lg"
                 >
                   <div className="relative">
                     {/* Image Skeleton */}
-                    <div className="w-full h-56 bg-zinc-700 animate-pulse relative overflow-hidden">
-                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-zinc-600/50 to-transparent animate-shimmer"></div>
+                    <div className="w-full h-56 bg-accent animate-pulse relative overflow-hidden">
+                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-muted-foreground/20 to-transparent animate-shimmer"></div>
                     </div>
                     {/* Badge Skeleton */}
-                    <div className="absolute top-4 left-4 w-20 h-6 bg-zinc-600 rounded-full animate-pulse"></div>
+                    <div className="absolute top-4 left-4 w-20 h-6 bg-accent rounded-full animate-pulse"></div>
                   </div>
                   <div className="p-5 space-y-4">
                     {/* Category Badge Skeleton */}
-                    <div className="w-16 h-5 bg-zinc-700 rounded-full animate-pulse"></div>
+                    <div className="w-16 h-5 bg-accent rounded-full animate-pulse"></div>
                     {/* Brand & Model Skeleton */}
                     <div className="space-y-2">
-                      <div className="h-6 bg-zinc-700 rounded-lg w-3/4 animate-pulse"></div>
-                      <div className="h-8 bg-zinc-700 rounded-lg w-full animate-pulse"></div>
+                      <div className="h-6 bg-accent rounded-lg w-3/4 animate-pulse"></div>
+                      <div className="h-8 bg-accent rounded-lg w-full animate-pulse"></div>
                     </div>
                     {/* Button Skeleton */}
-                    <div className="h-11 bg-zinc-700 rounded-lg w-full animate-pulse mt-4"></div>
+                    <div className="h-11 bg-accent rounded-lg w-full animate-pulse mt-4"></div>
                   </div>
                 </div>
               ))}
             </div>
           ) : carsData?.data && carsData.data.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {carsData.data.map((car) => (
                 <CarCard key={car.id} car={car} />
               ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-xl text-gray-400">
+              <p className="text-xl text-muted-foreground">
                 Tidak ada mobil yang cocok dengan kriteria Anda. Coba ubah kata
                 kunci pencarian atau filter Anda.
               </p>
@@ -337,17 +337,17 @@ export const CarsView = () => {
               <button
                 onClick={() => setPage(Math.max(1, page - 1))}
                 disabled={page === 1}
-                className="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white disabled:opacity-50 hover:bg-zinc-800 transition-colors"
+                className="px-4 py-2 rounded-lg bg-card border border-border text-foreground disabled:opacity-50 hover:bg-muted transition-colors"
               >
                 Sebelumnya
               </button>
-              <div className="flex items-center px-4 py-2 text-sm text-gray-300">
+              <div className="flex items-center px-4 py-2 text-sm text-muted-foreground">
                 Halaman {page} dari {totalPages}
               </div>
               <button
                 onClick={() => setPage(Math.min(totalPages, page + 1))}
                 disabled={page === totalPages}
-                className="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-white disabled:opacity-50 hover:bg-zinc-800 transition-colors"
+                className="px-4 py-2 rounded-lg bg-card border border-border text-foreground disabled:opacity-50 hover:bg-muted transition-colors"
               >
                 Selanjutnya
               </button>
@@ -355,7 +355,6 @@ export const CarsView = () => {
           )}
         </Container>
       </Section>
-
       {/* WhatsApp Button */}
       {whatsappNumber && <WhatsAppButton phoneNumber={whatsappNumber} />}
     </div>

@@ -24,3 +24,4 @@ export { Card } from "./Card";
 export { Pagination } from "./Pagination";
 export { FilterSelect } from "./FilterSelect";
 export type { FilterOption } from "./FilterSelect";
+export { ThemeToggle } from "./ThemeToggle";

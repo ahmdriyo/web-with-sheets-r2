@@ -63,10 +63,10 @@ export const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div className="flex items-center justify-between mt-6 px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-lg">
-      <div className="text-sm text-zinc-400">
-        Page <span className="font-medium text-white">{currentPage}</span> of{" "}
-        <span className="font-medium text-white">{totalPages}</span>
+    <div className="flex items-center justify-between mt-6 px-4 py-3 bg-card/50 border border-border rounded-lg">
+      <div className="text-sm text-muted-foreground">
+        Page <span className="font-medium text-foreground">{currentPage}</span>{" "}
+        of <span className="font-medium text-foreground">{totalPages}</span>
       </div>
 
       <div className="flex items-center gap-2">
@@ -76,8 +76,8 @@ export const Pagination: React.FC<PaginationProps> = ({
           disabled={currentPage === 1 || isLoading}
           className={`px-3 py-2 rounded-lg font-medium transition-all flex items-center gap-2 ${
             currentPage === 1 || isLoading
-              ? "bg-zinc-800/50 text-zinc-600 cursor-not-allowed"
-              : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white"
+              ? "bg-muted/50 text-muted-foreground cursor-not-allowed"
+              : "bg-muted text-card-foreground hover:bg-accent hover:text-foreground"
           }`}
         >
           <svg
@@ -103,7 +103,7 @@ export const Pagination: React.FC<PaginationProps> = ({
               return (
                 <span
                   key={`ellipsis-${index}`}
-                  className="px-3 py-2 text-zinc-500"
+                  className="px-3 py-2 text-muted-foreground"
                 >
                   ...
                 </span>
@@ -117,8 +117,8 @@ export const Pagination: React.FC<PaginationProps> = ({
                 disabled={isLoading}
                 className={`px-3 py-2 rounded-lg font-medium transition-all ${
                   currentPage === page
-                    ? "bg-purple-600 text-white"
-                    : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-card-foreground hover:bg-accent hover:text-foreground"
                 } ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
               >
                 {page}
@@ -133,8 +133,8 @@ export const Pagination: React.FC<PaginationProps> = ({
           disabled={currentPage === totalPages || isLoading}
           className={`px-3 py-2 rounded-lg font-medium transition-all flex items-center gap-2 ${
             currentPage === totalPages || isLoading
-              ? "bg-zinc-800/50 text-zinc-600 cursor-not-allowed"
-              : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white"
+              ? "bg-muted/50 text-muted-foreground cursor-not-allowed"
+              : "bg-muted text-card-foreground hover:bg-accent hover:text-foreground"
           }`}
         >
           Next

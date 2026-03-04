@@ -6,7 +6,7 @@ interface TableProps {
 
 export const Table: React.FC<TableProps> = ({ children }) => {
   return (
-    <div className="overflow-x-auto rounded-lg border border-zinc-800">
+    <div className="overflow-x-auto rounded-lg border border-border">
       <table className="w-full">{children}</table>
     </div>
   );
@@ -18,9 +18,7 @@ interface TableHeaderProps {
 
 export const TableHeader: React.FC<TableHeaderProps> = ({ children }) => {
   return (
-    <thead className="bg-zinc-900/50 border-b border-zinc-800">
-      {children}
-    </thead>
+    <thead className="bg-card/50 border-b border-border">{children}</thead>
   );
 };
 
@@ -29,7 +27,7 @@ interface TableBodyProps {
 }
 
 export const TableBody: React.FC<TableBodyProps> = ({ children }) => {
-  return <tbody className="divide-y divide-zinc-800">{children}</tbody>;
+  return <tbody className="divide-y divide-border">{children}</tbody>;
 };
 
 interface TableRowProps {
@@ -42,7 +40,7 @@ export const TableRow: React.FC<TableRowProps> = ({
   className = "",
 }) => {
   return (
-    <tr className={`hover:bg-zinc-900/30 transition-colors ${className}`}>
+    <tr className={`hover:bg-card/30 transition-colors ${className}`}>
       {children}
     </tr>
   );
@@ -59,7 +57,7 @@ export const TableHead: React.FC<TableHeadProps> = ({
 }) => {
   return (
     <th
-      className={`px-6 py-4 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider ${className}`}
+      className={`px-6 py-4 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider ${className}`}
     >
       {children}
     </th>
@@ -76,7 +74,7 @@ export const TableCell: React.FC<TableCellProps> = ({
   className = "",
 }) => {
   return (
-    <td className={`px-6 py-4 text-sm text-zinc-300 ${className}`}>
+    <td className={`px-6 py-4 text-sm text-card-foreground ${className}`}>
       {children}
     </td>
   );

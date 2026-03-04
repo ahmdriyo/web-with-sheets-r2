@@ -59,7 +59,7 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
       <div className="space-y-4">
         {/* Main Image */}
         <div
-          className="relative aspect-4/3 overflow-hidden rounded-2xl bg-gray-100 border border-gray-100 cursor-pointer group"
+          className="relative aspect-4/3 overflow-hidden rounded-2xl bg-muted border border-border cursor-pointer group"
           onClick={() => openLightbox(selectedImage)}
         >
           <Image
@@ -101,8 +101,8 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
                 onClick={() => setSelectedImage(index)}
                 className={`aspect-square overflow-hidden rounded-lg border-2 transition-all ${
                   selectedImage === index
-                    ? "border-black"
-                    : "border-gray-200 hover:border-gray-400"
+                    ? "border-foreground"
+                    : "border-border hover:border-muted-foreground"
                 }`}
               >
                 <Image

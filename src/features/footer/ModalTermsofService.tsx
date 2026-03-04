@@ -19,15 +19,15 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
       title="Syarat dan Ketentuan"
       size="lg"
     >
-      <div className="space-y-6 text-gray-300">
+      <div className="space-y-6 text-muted-foreground">
         {/* Terakhir Diperbarui */}
-        <div className="text-sm text-gray-400">
+        <div className="text-sm text-muted-foreground">
           <p>Terakhir Diperbarui: 17 Februari 2026</p>
         </div>
 
         {/* Pendahuluan */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             1. Persetujuan terhadap Ketentuan
           </h2>
           <p className="text-sm leading-relaxed">
@@ -40,7 +40,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Penggunaan Layanan */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             2. Penggunaan Layanan Kami
           </h2>
           <p className="text-sm leading-relaxed">Anda setuju untuk:</p>
@@ -61,7 +61,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Informasi Kendaraan */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             3. Informasi dan Ketersediaan Kendaraan
           </h2>
           <p className="text-sm leading-relaxed">
@@ -89,7 +89,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Harga dan Pembayaran */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             4. Harga dan Pembayaran
           </h2>
           <p className="text-sm leading-relaxed">
@@ -111,7 +111,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Test Drive */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             5. Test Drive dan Inspeksi
           </h2>
           <p className="text-sm leading-relaxed">
@@ -136,7 +136,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Kekayaan Intelektual */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             6. Kekayaan Intelektual
           </h2>
           <p className="text-sm leading-relaxed">
@@ -160,7 +160,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Batasan Tanggung Jawab */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             7. Batasan Tanggung Jawab
           </h2>
           <p className="text-sm leading-relaxed">
@@ -185,7 +185,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Garansi */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">8. Garansi</h2>
+          <h2 className="text-xl font-semibold text-foreground">8. Garansi</h2>
           <p className="text-sm leading-relaxed">
             Kecuali dinyatakan secara eksplisit dalam bentuk tertulis:
           </p>
@@ -204,7 +204,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Komunikasi Pengguna */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             9. Komunikasi Pengguna
           </h2>
           <p className="text-sm leading-relaxed">
@@ -228,7 +228,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Hukum yang Berlaku */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             10. Hukum yang Berlaku
           </h2>
           <p className="text-sm leading-relaxed">
@@ -239,7 +239,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Perubahan Ketentuan */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             11. Perubahan Ketentuan
           </h2>
           <p className="text-sm leading-relaxed">
@@ -252,7 +252,9 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Penghentian */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">12. Penghentian</h2>
+          <h2 className="text-xl font-semibold text-foreground">
+            12. Penghentian
+          </h2>
           <p className="text-sm leading-relaxed">Kami berhak untuk:</p>
           <ul className="list-disc list-inside space-y-2 text-sm pl-4">
             <li>
@@ -269,7 +271,7 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
 
         {/* Informasi Kontak */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-foreground">
             13. Informasi Kontak
           </h2>
           <p className="text-sm leading-relaxed">
@@ -278,23 +280,25 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
           </p>
           <ul className="list-none space-y-2 text-sm pl-4">
             <li>
-              <strong className="text-white">Situs Web:</strong> Melalui
+              <strong className="text-foreground">Situs Web:</strong> Melalui
               formulir kontak kami
             </li>
             <li>
-              <strong className="text-white">WhatsApp:</strong> Tersedia di
+              <strong className="text-foreground">WhatsApp:</strong> Tersedia di
               situs web kami
             </li>
             <li>
-              <strong className="text-white">Showroom:</strong> Kunjungi kami
-              pada jam kerja
+              <strong className="text-foreground">Showroom:</strong> Kunjungi
+              kami pada jam kerja
             </li>
           </ul>
         </section>
 
         {/* Keterpisahan */}
         <section className="space-y-3">
-          <h2 className="text-xl font-semibold text-white">14. Keterpisahan</h2>
+          <h2 className="text-xl font-semibold text-foreground">
+            14. Keterpisahan
+          </h2>
           <p className="text-sm leading-relaxed">
             Jika ada ketentuan dalam syarat ini yang dianggap tidak dapat
             dilaksanakan atau tidak valid, ketentuan tersebut akan dibatasi atau
@@ -304,8 +308,8 @@ export const ModalTermsofService: React.FC<ModalTermsofServiceProps> = ({
         </section>
 
         {/* Persetujuan */}
-        <section className="space-y-3 border-t border-zinc-800 pt-6">
-          <p className="text-sm leading-relaxed text-gray-400">
+        <section className="space-y-3 border-t border-border pt-6">
+          <p className="text-sm leading-relaxed text-muted-foreground">
             Dengan menggunakan situs web dan layanan kami, Anda mengakui bahwa
             Anda telah membaca, memahami, dan setuju untuk terikat oleh Syarat
             dan Ketentuan ini.

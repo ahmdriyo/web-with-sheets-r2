@@ -87,8 +87,8 @@ const SiteSettingsView = () => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-white mb-2">Site Settings</h2>
-          <p className="text-zinc-400">
+          <h2 className="text-2xl font-bold text-foreground mb-2">Site Settings</h2>
+          <p className="text-muted-foreground">
             Configure your showroom contact information and details
           </p>
         </div>
@@ -117,14 +117,14 @@ const SiteSettingsView = () => {
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
                 </svg>
-                <p className="text-zinc-400">Loading settings...</p>
+                <p className="text-muted-foreground">Loading settings...</p>
               </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* WhatsApp Number */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   WhatsApp Number <span className="text-red-400">*</span>
                 </label>
                 <input
@@ -133,11 +133,11 @@ const SiteSettingsView = () => {
                   value={formData.whatsapp_number}
                   onChange={handleChange}
                   placeholder="e.g., 081234567890"
-                  className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border ${
+                  className={`w-full px-4 py-3 rounded-lg bg-muted border ${
                     errors.whatsapp_number
                       ? "border-red-500"
-                      : "border-zinc-700"
-                  } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+                      : "border-border"
+                  } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
                 />
                 {errors.whatsapp_number && (
                   <p className="mt-2 text-sm text-red-400">
@@ -148,7 +148,7 @@ const SiteSettingsView = () => {
 
               {/* Email */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Email <span className="text-red-400">*</span>
                 </label>
                 <input
@@ -157,9 +157,9 @@ const SiteSettingsView = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="e.g., contact@showroom.com"
-                  className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border ${
-                    errors.email ? "border-red-500" : "border-zinc-700"
-                  } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+                  className={`w-full px-4 py-3 rounded-lg bg-muted border ${
+                    errors.email ? "border-red-500" : "border-border"
+                  } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
                 />
                 {errors.email && (
                   <p className="mt-2 text-sm text-red-400">{errors.email}</p>
@@ -168,7 +168,7 @@ const SiteSettingsView = () => {
 
               {/* Showroom Address */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Showroom Address
                 </label>
                 <textarea
@@ -177,13 +177,13 @@ const SiteSettingsView = () => {
                   onChange={handleChange}
                   placeholder="e.g., Jl. Raya No. 123, Jakarta"
                   rows={3}
-                  className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none resize-none"
+                  className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none resize-none"
                 />
               </div>
 
               {/* Instagram */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Instagram Handle
                 </label>
                 <div className="relative">
@@ -193,14 +193,14 @@ const SiteSettingsView = () => {
                     value={formData.instagram}
                     onChange={handleChange}
                     placeholder="e.g., showroom_official"
-                    className="w-full pl-4 pr-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                    className="w-full pl-4 pr-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
                   />
                 </div>
               </div>
 
               {/* Google Maps */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Google Maps Link
                 </label>
                 <input
@@ -209,11 +209,11 @@ const SiteSettingsView = () => {
                   value={formData.google_maps}
                   onChange={handleChange}
                   placeholder="e.g., https://maps.google.com/..."
-                  className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                  className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Embed Google Maps URL
                 </label>
                 <input
@@ -222,13 +222,13 @@ const SiteSettingsView = () => {
                   value={formData.embed_maps}
                   onChange={handleChange}
                   placeholder="e.g., https://maps.google.com/..."
-                  className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                  className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
                 />
               </div>
 
               {/* Opening Hours */}
               <div>
-                <label className="block text-sm font-medium text-zinc-300 mb-2">
+                <label className="block text-sm font-medium text-card-foreground mb-2">
                   Opening Hours
                 </label>
                 <input
@@ -237,22 +237,22 @@ const SiteSettingsView = () => {
                   value={formData.opening_hours}
                   onChange={handleChange}
                   placeholder="e.g., Mon-Fri: 9AM-6PM, Sat: 10AM-4PM"
-                  className="w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                  className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
                 />
               </div>
 
               {/* Actions */}
-              <div className="flex items-center justify-end pt-6 border-t border-zinc-800">
+              <div className="flex items-center justify-end pt-6 border-t border-border">
                 <div className="flex gap-3">
                   <button
                     type="submit"
                     disabled={isSaving}
-                    className="px-5 py-2.5 bg-linear-to-r from-purple-600 to-purple-700 text-white rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
+                    className="px-5 py-2.5 bg-linear-to-r from-purple-600 to-purple-700 text-foreground rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 cursor-pointer"
                   >
                     {isSaving ? (
                       <>
                         <svg
-                          className="animate-spin h-4 w-4 text-white"
+                          className="animate-spin h-4 w-4 text-foreground"
                           fill="none"
                           viewBox="0 0 24 24"
                         >

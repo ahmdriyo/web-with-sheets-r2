@@ -53,13 +53,13 @@ export const FilterSelect: React.FC<FilterSelectProps> = ({
         type="button"
         onClick={() => !disabled && setIsOpen((prev) => !prev)}
         disabled={disabled}
-        className={`w-full px-4 py-3 rounded-lg bg-zinc-800 border border-zinc-700 text-left text-white focus:ring-2 focus:ring-white focus:border-white transition-all flex items-center justify-between gap-2 ${
+        className={`w-full px-4 py-3 rounded-lg bg-muted border border-border text-left text-foreground focus:ring-2 focus:ring-ring focus:border-ring transition-all flex items-center justify-between gap-2 ${
           disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-        } ${value ? "text-white" : "text-gray-400"}`}
+        } ${value ? "text-foreground" : "text-muted-foreground"}`}
       >
         <span className="truncate text-sm">{selectedLabel}</span>
         <svg
-          className={`w-4 h-4 shrink-0 text-gray-400 transition-transform duration-200 ${
+          className={`w-4 h-4 shrink-0 text-muted-foreground transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
           fill="none"
@@ -76,14 +76,16 @@ export const FilterSelect: React.FC<FilterSelectProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute z-50 mt-1 w-full rounded-lg bg-zinc-800 border border-zinc-700 shadow-xl overflow-hidden">
-          <div className="max-h-[300px] overflow-y-auto scrollbar-thin">
+        <div className="absolute z-50 mt-1 w-full rounded-lg bg-popover border border-border shadow-xl overflow-hidden">
+          <div className="max-h-75 overflow-y-auto scrollbar-thin">
             {/* Placeholder / "All" option */}
             <button
               type="button"
               onClick={() => handleSelect("")}
-              className={`w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-zinc-700 ${
-                !value ? "bg-zinc-700 text-white font-medium" : "text-gray-300"
+              className={`w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-accent ${
+                !value
+                  ? "bg-accent text-foreground font-medium"
+                  : "text-card-foreground"
               }`}
             >
               {placeholder}
@@ -93,10 +95,10 @@ export const FilterSelect: React.FC<FilterSelectProps> = ({
                 key={opt.value}
                 type="button"
                 onClick={() => handleSelect(opt.value)}
-                className={`w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-zinc-700 ${
+                className={`w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-accent ${
                   value === opt.value
-                    ? "bg-zinc-700 text-white font-medium"
-                    : "text-gray-300"
+                    ? "bg-accent text-foreground font-medium"
+                    : "text-card-foreground"
                 }`}
               >
                 {opt.label}

@@ -9,7 +9,7 @@ export function mapRowToCar(row: string[]): Cars {
     slug: row[CARS_COLUMNS.SLUG] ?? "",
     brand: row[CARS_COLUMNS.BRAND] ?? "",
     model: row[CARS_COLUMNS.MODEL] ?? "",
-    year: Number(row[CARS_COLUMNS.YEAR] ?? 0),
+    year: row[CARS_COLUMNS.YEAR]?.toString() ?? "0",
     price: Number(row[CARS_COLUMNS.PRICE] ?? 0),
     mileage: Number(row[CARS_COLUMNS.MILEAGE] ?? 0),
     transmission: (row[CARS_COLUMNS.TRANSMISSION] ?? "manual") as

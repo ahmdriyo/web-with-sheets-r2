@@ -40,20 +40,20 @@ export const Modal: React.FC<ModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-overlay backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Modal */}
       <div
-        className={`relative bg-zinc-900 rounded-xl shadow-2xl w-full ${sizeClasses[size]} border border-zinc-800 my-8`}
+        className={`relative bg-card rounded-xl shadow-2xl w-full ${sizeClasses[size]} border border-border my-8`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-800 sticky top-0 bg-zinc-900 z-10 rounded-t-xl">
-          <h3 className="text-lg font-semibold text-white">{title}</h3>
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border sticky top-0 bg-card z-10 rounded-t-xl">
+          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
           <button
             onClick={onClose}
-            className="text-zinc-400 hover:text-white transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             <svg
               className="w-5 h-5"

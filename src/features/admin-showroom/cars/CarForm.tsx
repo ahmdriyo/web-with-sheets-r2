@@ -39,7 +39,7 @@ export const CarForm: React.FC<CarFormProps> = ({
     title: "",
     brand: "",
     model: "",
-    year: new Date().getFullYear(),
+    year: new Date().getFullYear().toString(),
     price: "",
     mileage: "",
     transmission: "automatic" as "automatic" | "manual",
@@ -79,7 +79,7 @@ export const CarForm: React.FC<CarFormProps> = ({
           title: car.title || "",
           brand: car.brand || "",
           model: car.model || "",
-          year: car.year || new Date().getFullYear(),
+          year: String(car.year || new Date().getFullYear()),
           price: car.price?.toString() || "",
           mileage: car.mileage?.toString() || "",
           transmission: car.transmission || "automatic",
@@ -108,7 +108,7 @@ export const CarForm: React.FC<CarFormProps> = ({
           title: "",
           brand: "",
           model: "",
-          year: new Date().getFullYear(),
+          year: String(new Date().getFullYear()),
           price: "",
           mileage: "",
           transmission: "automatic",
@@ -154,7 +154,7 @@ export const CarForm: React.FC<CarFormProps> = ({
     if (!formData.category.trim()) newErrors.category = "Category is required";
     if (!formData.price || Number(formData.price) <= 0)
       newErrors.price = "Price must be greater than 0";
-    if (!formData.year || formData.year < 1900) newErrors.year = "Invalid year";
+    if (!formData.year || Number(formData.year) < 1900) newErrors.year = "Invalid year";
 
     // For create mode, require at least one image
     if (!car && images.length === 0) {
@@ -198,10 +198,10 @@ export const CarForm: React.FC<CarFormProps> = ({
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Section 1: Basic Info */}
-        <Card title="Basic Information" className="border-0 bg-zinc-800/50">
+        <Card title="Basic Information" className="border-0 bg-muted/50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Title <span className="text-red-400">*</span>
               </label>
               <input
@@ -210,9 +210,9 @@ export const CarForm: React.FC<CarFormProps> = ({
                 value={formData.title}
                 onChange={handleChange}
                 placeholder="e.g., Toyota Fortuner VRZ TRD"
-                className={`w-full px-4 py-2.5 rounded-lg bg-zinc-900 border ${
-                  errors.title ? "border-red-500" : "border-zinc-700"
-                } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+                className={`w-full px-4 py-2.5 rounded-lg bg-card border ${
+                  errors.title ? "border-red-500" : "border-border"
+                } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
               />
               {errors.title && (
                 <p className="mt-1 text-sm text-red-400">{errors.title}</p>
@@ -220,16 +220,16 @@ export const CarForm: React.FC<CarFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Category <span className="text-red-400">*</span>
               </label>
               <select
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className={`w-full px-4 py-2.5 rounded-lg bg-zinc-900 border ${
-                  errors.category ? "border-red-500" : "border-zinc-700"
-                } text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+                className={`w-full px-4 py-2.5 rounded-lg bg-card border ${
+                  errors.category ? "border-red-500" : "border-border"
+                } text-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
               >
                 <option value="">Select category</option>
                 {categoriesData?.data?.map((cat) => (
@@ -244,7 +244,7 @@ export const CarForm: React.FC<CarFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Brand <span className="text-red-400">*</span>
               </label>
               <select
@@ -264,9 +264,9 @@ export const CarForm: React.FC<CarFormProps> = ({
                     setErrors((prev) => ({ ...prev, brand: "", model: "" }));
                   }
                 }}
-                className={`w-full px-4 py-2.5 rounded-lg bg-zinc-900 border ${
-                  errors.brand ? "border-red-500" : "border-zinc-700"
-                } text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+                className={`w-full px-4 py-2.5 rounded-lg bg-card border ${
+                  errors.brand ? "border-red-500" : "border-border"
+                } text-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
               >
                 <option value="">Select a brand</option>
                 {brandsData?.data?.map((brand) => (
@@ -281,7 +281,7 @@ export const CarForm: React.FC<CarFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Model <span className="text-red-400">*</span>
               </label>
               <select
@@ -295,9 +295,9 @@ export const CarForm: React.FC<CarFormProps> = ({
                   }
                 }}
                 disabled={!selectedBrandId}
-                className={`w-full px-4 py-2.5 rounded-lg bg-zinc-900 border ${
-                  errors.model ? "border-red-500" : "border-zinc-700"
-                } text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed`}
+                className={`w-full px-4 py-2.5 rounded-lg bg-card border ${
+                  errors.model ? "border-red-500" : "border-border"
+                } text-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 <option value="">
                   {selectedBrandId ? "Select a model" : "Select a brand first"}
@@ -312,14 +312,14 @@ export const CarForm: React.FC<CarFormProps> = ({
                 <p className="mt-1 text-sm text-red-400">{errors.model}</p>
               )}
               {selectedBrandId && filteredModels.length === 0 && (
-                <p className="mt-1 text-sm text-zinc-400">
+                <p className="mt-1 text-sm text-muted-foreground">
                   No models available for this brand
                 </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Year <span className="text-red-400">*</span>
               </label>
               <input
@@ -329,9 +329,9 @@ export const CarForm: React.FC<CarFormProps> = ({
                 onChange={handleChange}
                 min="1900"
                 max={new Date().getFullYear() + 1}
-                className={`w-full px-4 py-2.5 rounded-lg bg-zinc-900 border ${
-                  errors.year ? "border-red-500" : "border-zinc-700"
-                } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+                className={`w-full px-4 py-2.5 rounded-lg bg-card border ${
+                  errors.year ? "border-red-500" : "border-border"
+                } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
               />
               {errors.year && (
                 <p className="mt-1 text-sm text-red-400">{errors.year}</p>
@@ -339,7 +339,7 @@ export const CarForm: React.FC<CarFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Price (IDR) <span className="text-red-400">*</span>
               </label>
               <input
@@ -348,9 +348,9 @@ export const CarForm: React.FC<CarFormProps> = ({
                 value={formData.price}
                 onChange={handleChange}
                 placeholder="e.g., 500000000"
-                className={`w-full px-4 py-2.5 rounded-lg bg-zinc-900 border ${
-                  errors.price ? "border-red-500" : "border-zinc-700"
-                } text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none`}
+                className={`w-full px-4 py-2.5 rounded-lg bg-card border ${
+                  errors.price ? "border-red-500" : "border-border"
+                } text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none`}
               />
               {errors.price && (
                 <p className="mt-1 text-sm text-red-400">{errors.price}</p>
@@ -358,7 +358,7 @@ export const CarForm: React.FC<CarFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Mileage (km)
               </label>
               <input
@@ -367,24 +367,24 @@ export const CarForm: React.FC<CarFormProps> = ({
                 value={formData.mileage}
                 onChange={handleChange}
                 placeholder="e.g., 15000"
-                className="w-full px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
               />
             </div>
           </div>
         </Card>
 
         {/* Section 2: Vehicle Details */}
-        <Card title="Vehicle Details" className="border-0 bg-zinc-800/50">
+        <Card title="Vehicle Details" className="border-0 bg-muted/50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Transmission
               </label>
               <select
                 name="transmission"
                 value={formData.transmission}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
               >
                 <option value="automatic">Automatic</option>
                 <option value="manual">Manual</option>
@@ -392,14 +392,14 @@ export const CarForm: React.FC<CarFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Fuel Type
               </label>
               <select
                 name="fuel_type"
                 value={formData.fuel_type}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
               >
                 <option value="bensin">Bensin</option>
                 <option value="diesel">Diesel</option>
@@ -409,14 +409,14 @@ export const CarForm: React.FC<CarFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Condition
               </label>
               <select
                 name="condition"
                 value={formData.condition}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
               >
                 <option value="new">New</option>
                 <option value="used">Used</option>
@@ -424,7 +424,7 @@ export const CarForm: React.FC<CarFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Seats
               </label>
               <input
@@ -434,12 +434,12 @@ export const CarForm: React.FC<CarFormProps> = ({
                 onChange={handleChange}
                 min="2"
                 max="50"
-                className="w-full px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Engine CC
               </label>
               <input
@@ -448,12 +448,12 @@ export const CarForm: React.FC<CarFormProps> = ({
                 value={formData.engine_cc}
                 onChange={handleChange}
                 placeholder="e.g., 2755"
-                className="w-full px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Color
               </label>
               <input
@@ -462,24 +462,24 @@ export const CarForm: React.FC<CarFormProps> = ({
                 value={formData.color}
                 onChange={handleChange}
                 placeholder="e.g., White Pearl"
-                className="w-full px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
               />
             </div>
           </div>
         </Card>
 
         {/* Section 3: Status */}
-        <Card title="Status & Visibility" className="border-0 bg-zinc-800/50">
+        <Card title="Status & Visibility" className="border-0 bg-muted/50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">
+              <label className="block text-sm font-medium text-card-foreground mb-2">
                 Status
               </label>
               <select
                 name="status"
                 value={formData.status}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-700 text-white focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none"
+                className="w-full px-4 py-2.5 rounded-lg bg-card border border-border text-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none"
               >
                 <option value="available">Available</option>
                 <option value="sold">Sold</option>
@@ -494,9 +494,9 @@ export const CarForm: React.FC<CarFormProps> = ({
                   name="is_featured"
                   checked={formData.is_featured}
                   onChange={handleChange}
-                  className="w-5 h-5 rounded border-zinc-700 bg-zinc-900 text-purple-600 focus:ring-2 focus:ring-purple-600 focus:ring-offset-0"
+                  className="w-5 h-5 rounded border-border bg-card text-purple-600 focus:ring-2 focus:ring-ring focus:ring-offset-0"
                 />
-                <span className="text-sm font-medium text-zinc-300">
+                <span className="text-sm font-medium text-card-foreground">
                   Featured Vehicle
                 </span>
               </label>
@@ -505,19 +505,19 @@ export const CarForm: React.FC<CarFormProps> = ({
         </Card>
 
         {/* Section 4: Description */}
-        <Card title="Description" className="border-0 bg-zinc-800/50">
+        <Card title="Description" className="border-0 bg-muted/50">
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
             rows={5}
             placeholder="Describe the vehicle condition, features, and any additional details..."
-            className="w-full px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all outline-none resize-none"
+            className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-all outline-none resize-none"
           />
         </Card>
 
         {/* Section 5: Images */}
-        <Card title="Vehicle Images" className="border-0 bg-zinc-800/50">
+        <Card title="Vehicle Images" className="border-0 bg-muted/50">
           <ImageUploader images={images} onChange={setImages} maxImages={10} />
           {errors.images && (
             <p className="mt-2 text-sm text-red-400">{errors.images}</p>
@@ -530,19 +530,19 @@ export const CarForm: React.FC<CarFormProps> = ({
             type="button"
             onClick={onClose}
             disabled={isLoading}
-            className="flex-1 px-5 py-2.5 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+            className="flex-1 px-5 py-2.5 rounded-lg border border-border text-card-foreground hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={isLoading}
-            className="flex-1 px-5 py-2.5 bg-linear-to-r from-purple-600 to-purple-700 text-white rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="flex-1 px-5 py-2.5 bg-linear-to-r from-purple-600 to-purple-700 text-foreground rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {isLoading ? (
               <>
                 <svg
-                  className="animate-spin h-4 w-4 text-white"
+                  className="animate-spin h-4 w-4 text-foreground"
                   fill="none"
                   viewBox="0 0 24 24"
                 >

@@ -10,11 +10,13 @@ interface TopBarProps {
 
 export const TopBar: React.FC<TopBarProps> = ({ title, subtitle }) => {
   return (
-    <div className="h-16 border-b border-zinc-800 bg-zinc-950 flex items-center justify-between px-8">
+    <div className="h-16 border-b border-border bg-background flex items-center justify-between px-8">
       {/* Title Section */}
       <div>
-        <h1 className="text-xl font-semibold text-white">{title}</h1>
-        {subtitle && <p className="text-sm text-zinc-500">{subtitle}</p>}
+        <h1 className="text-xl font-semibold text-foreground">{title}</h1>
+        {subtitle && (
+          <p className="text-sm text-muted-foreground">{subtitle}</p>
+        )}
       </div>
 
       {/* Right Section */}

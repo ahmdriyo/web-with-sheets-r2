@@ -6,9 +6,10 @@ import { useCars } from "@/src/hooks/useCars";
 import { useSiteSettings } from "@/src/hooks/useSiteSettings";
 import { useEffect, useState } from "react";
 import FindUs from "./FindUs";
+import Testimonial from "./Testimonial";
 
 export const HomeView = () => {
-  const { data: carsData, isLoading } = useCars(1, 6);
+  const { data: carsData, isLoading } = useCars(1, 8);
   const { data: settingsData } = useSiteSettings();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -17,6 +18,30 @@ export const HomeView = () => {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+  const words = [
+    "Impian Anda",
+    "Keluarga Anda",
+    "Masa Depan Anda",
+    "Petualangan Anda",
+  ];
+
+  // 2. State untuk mengontrol urutan kata dan status animasi (fade)
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  // 3. Logika interval untuk mengganti teks setiap 3 detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // Mulai animasi menghilang (fade out)
+
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % words.length); // Pindah ke kata berikutnya
+        setFade(true); // Mulai animasi muncul (fade in)
+      }, 500); // Waktu 500ms ini harus sinkron dengan durasi transisi di Tailwind
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [words.length]);
 
   return (
     <div className="min-h-screen">
@@ -39,34 +64,45 @@ export const HomeView = () => {
         </div>
 
         {/* Hero Content */}
-        <Container className="relative z-10">
+        <Container className="relative z-10 flex flex-col items-center justify-center">
           <div
-            className={`max-w-3xl transform transition-all duration-1000 ${
+            // Tambahkan mx-auto dan text-center di sini
+            className={`max-w-4xl mx-auto text-center transform transition-all duration-1000 ${
               isVisible
                 ? "translate-y-0 opacity-100"
                 : "translate-y-10 opacity-0"
             }`}
           >
-            <div className="inline-block mb-4 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 animate-fade-in">
-              <span className="text-white text-sm font-medium">
+            <div className="inline-block mb-6 px-5 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 animate-fade-in shadow-lg">
+              <span className="text-white text-sm font-semibold tracking-wide uppercase">
                 Showroom Mobil Premium
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-              Temukan Mobil{" "}
-              <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-                Impian Anda Hari Ini
+            <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-2xl">
+              Temukan Mobil <br className="hidden md:block" />{" "}
+              {/* Line break agar rapi di layar besar */}
+              {/* Elemen teks yang berganti */}
+              <span
+                className={`inline-block transition-all duration-500 bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient ${
+                  fade
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 -translate-y-5"
+                }`}
+              >
+                {words[index]}
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-100 mb-8 leading-relaxed drop-shadow-lg">
+            <p className="text-xl md:text-2xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
               Pilihan kendaraan berkualitas premium. Setiap mobil diperiksa,
               setiap detail diperhatikan.
             </p>
-            <div className="flex flex-wrap gap-4">
+            {/* Tambahkan justify-center agar tombol ikut rata tengah */}
+            <div className="flex flex-wrap justify-center gap-5">
               <Link href="/cars">
                 <Button
                   size="lg"
-                  className="shadow-2xl text-black hover:bg-gray-100 hover:scale-105 transition-transform duration-300"
+                  // Tambahan efek shadow glow biru agar lebih premium
+                  className="shadow-[0_0_20px_rgba(96,165,250,0.4)] hover:shadow-[0_0_30px_rgba(96,165,250,0.7)] hover:-translate-y-1 transition-all duration-300"
                 >
                   Lihat Semua Mobil
                 </Button>
@@ -75,7 +111,7 @@ export const HomeView = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="shadow-2xl border-white text-white hover:bg-white/10 hover:scale-105 transition-transform duration-300"
+                  className="shadow-2xl border-white/50 text-white hover:bg-white/15 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm"
                 >
                   Jelajahi Koleksi
                 </Button>
@@ -118,37 +154,37 @@ export const HomeView = () => {
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3].map((i) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-700 shadow-lg"
+                  className="bg-muted rounded-2xl overflow-hidden border border-border shadow-lg"
                 >
                   <div className="relative">
                     {/* Image Skeleton */}
-                    <div className="w-full h-56 bg-zinc-700 animate-pulse relative overflow-hidden">
-                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-zinc-600/50 to-transparent animate-shimmer"></div>
+                    <div className="w-full h-56 bg-accent animate-pulse relative overflow-hidden">
+                      <div className="absolute inset-0 bg-linear-to-r from-transparent via-muted-foreground/20 to-transparent animate-shimmer"></div>
                     </div>
                     {/* Badge Skeleton */}
-                    <div className="absolute top-4 left-4 w-20 h-6 bg-zinc-600 rounded-full animate-pulse"></div>
+                    <div className="absolute top-4 left-4 w-20 h-6 bg-accent rounded-full animate-pulse"></div>
                   </div>
                   <div className="p-5 space-y-4">
                     {/* Category Badge Skeleton */}
-                    <div className="w-16 h-5 bg-zinc-700 rounded-full animate-pulse"></div>
+                    <div className="w-16 h-5 bg-accent rounded-full animate-pulse"></div>
                     {/* Brand & Model Skeleton */}
                     <div className="space-y-2">
-                      <div className="h-6 bg-zinc-700 rounded-lg w-3/4 animate-pulse"></div>
-                      <div className="h-8 bg-zinc-700 rounded-lg w-full animate-pulse"></div>
+                      <div className="h-6 bg-accent rounded-lg w-3/4 animate-pulse"></div>
+                      <div className="h-8 bg-accent rounded-lg w-full animate-pulse"></div>
                     </div>
                     {/* Button Skeleton */}
-                    <div className="h-11 bg-zinc-700 rounded-lg w-full animate-pulse mt-4"></div>
+                    <div className="h-11 bg-accent rounded-lg w-full animate-pulse mt-4"></div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {carsData?.data?.slice(0, 6).map((car, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {carsData?.data?.slice(0, 8).map((car, index) => (
                 <div
                   key={car.id}
                   className={`transform transition-all duration-700 ${
@@ -183,6 +219,7 @@ export const HomeView = () => {
           </div>
         </Container>
       </Section>
+      <Testimonial />
       <FindUs />
 
       {/* WhatsApp Button */}

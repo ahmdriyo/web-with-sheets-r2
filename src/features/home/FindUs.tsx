@@ -90,7 +90,7 @@ const FindUs = () => {
   };
 
   return (
-    <Section background="dark" className="relative overflow-hidden">
+    <Section className="relative overflow-hidden dark:bg-gray-900! bg-white!">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" />
         <div className="absolute inset-0 bg-linear-to-br from-black/80 via-gray-900/60 to-black/80" />
@@ -107,11 +107,11 @@ const FindUs = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
                 Temukan Kami
               </h2>
-              <p className="text-gray-300 text-lg">
+              <p className="text-white text-lg">
                 Kunjungi showroom kami atau hubungi kami untuk informasi lebih
               </p>
             </div>
-            <div className="w-full h-120 rounded-2xl overflow-hidden shadow-2xl border border-zinc-700">
+            <div className="w-full h-120 rounded-2xl overflow-hidden shadow-2xl border border-border">
               <iframe
                 src={settings?.embed_maps}
                 width="100%"
@@ -129,7 +129,7 @@ const FindUs = () => {
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
                 Kirim Pesan Kepada Kami
               </h3>
-              <p className="text-gray-300">
+              <p className="text-white">
                 Punya pertanyaan? Isi formulir di bawah ini dan kami akan segera
                 menghubungi Anda kembali.
               </p>
@@ -138,7 +138,7 @@ const FindUs = () => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-sm font-medium text-white mb-2"
                 >
                   Your Name <span className="text-red-400">*</span>
                 </label>
@@ -150,13 +150,13 @@ const FindUs = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full bg-zinc-800/50 border-zinc-700 text-white placeholder:text-gray-500 focus:border-blue-500"
+                  className="w-full bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-primary"
                 />
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-sm font-medium text-white mb-2"
                 >
                   Alamat Email<span className="text-red-400">*</span>
                 </label>
@@ -168,13 +168,13 @@ const FindUs = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full bg-zinc-800/50 border-zinc-700 text-white placeholder:text-gray-500 focus:border-blue-500"
+                  className="w-full bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-primary"
                 />
               </div>
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-sm font-medium text-white mb-2"
                 >
                   Nomor Telpon (Optional)
                 </label>
@@ -185,13 +185,13 @@ const FindUs = () => {
                   placeholder="+62 812-3456-7890"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full bg-zinc-800/50 border-zinc-700 text-white placeholder:text-gray-500 focus:border-blue-500"
+                  className="w-full bg-muted/50 border-border text-foreground placeholder:text-muted-foreground focus:border-primary"
                 />
               </div>
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-sm font-medium text-white mb-2"
                 >
                   Pesan Kamu <span className="text-red-400">*</span>
                 </label>
@@ -203,13 +203,13 @@ const FindUs = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-700 text-white placeholder:text-gray-500 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 bg-muted/50 border border-border text-foreground placeholder:text-muted-foreground rounded-lg focus:ring-2 focus:ring-ring focus:border-primary outline-none transition-all duration-200 resize-none"
                 />
               </div>
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-gray-800 text-white hover:bg-gray-900"
+                className="w-full"
                 disabled={isPending}
               >
                 {isPending ? (

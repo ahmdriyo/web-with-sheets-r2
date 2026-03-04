@@ -12,10 +12,10 @@ export const Section: React.FC<SectionProps> = ({
   background = "white",
 }) => {
   const bgStyles = {
-    white: "bg-white",
-    gray: "bg-gray-50",
-    brown: "!bg-gray-800",
-    dark: "bg-gray-900",
+    white: "bg-background",
+    gray: "bg-card",
+    brown: "!bg-muted",
+    dark: "bg-card",
   };
 
   return (

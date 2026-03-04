@@ -14,18 +14,17 @@ export const Badge: React.FC<BadgeProps> = ({
   className = "",
 }) => {
   const variantStyles: Record<string, string> = {
-    default:
-      "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 ring-1 ring-gray-300/50",
+    default: "bg-muted text-muted-foreground ring-1 ring-border",
     success:
-      "bg-gradient-to-r from-emerald-50 to-emerald-100 text-emerald-700 ring-1 ring-emerald-300/50 shadow-[0_0_8px_rgba(16,185,129,0.15)]",
+      "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-300/50 shadow-[0_0_8px_rgba(16,185,129,0.15)] dark:bg-emerald-900/30 dark:text-emerald-300 dark:ring-emerald-700/50",
     warning:
-      "bg-gradient-to-r from-amber-50 to-amber-100 text-amber-700 ring-1 ring-amber-300/50 shadow-[0_0_8px_rgba(245,158,11,0.15)]",
+      "bg-amber-50 text-amber-700 ring-1 ring-amber-300/50 shadow-[0_0_8px_rgba(245,158,11,0.15)] dark:bg-amber-900/30 dark:text-amber-300 dark:ring-amber-700/50",
     denger:
-      "bg-gradient-to-r from-rose-50 to-rose-100 text-rose-700 ring-1 ring-rose-300/50 shadow-[0_0_8px_rgba(244,63,94,0.15)]",
+      "bg-rose-50 text-rose-700 ring-1 ring-rose-300/50 shadow-[0_0_8px_rgba(244,63,94,0.15)] dark:bg-rose-900/30 dark:text-rose-300 dark:ring-rose-700/50",
   };
 
   const dotColors: Record<string, string> = {
-    default: "bg-gray-400",
+    default: "bg-muted-foreground",
     success: "bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.5)]",
     warning: "bg-amber-500 shadow-[0_0_6px_rgba(245,158,11,0.5)]",
     denger: "bg-rose-500 shadow-[0_0_6px_rgba(244,63,94,0.5)]",

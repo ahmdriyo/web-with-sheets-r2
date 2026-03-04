@@ -64,7 +64,7 @@ export const BrandsTable: React.FC<BrandsTableProps> = ({
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          <p className="text-zinc-400">Loading brands...</p>
+          <p className="text-muted-foreground">Loading brands...</p>
         </div>
       </div>
     );
@@ -72,9 +72,9 @@ export const BrandsTable: React.FC<BrandsTableProps> = ({
 
   if (!brands || brands.length === 0) {
     return (
-      <div className="text-center py-12 border border-zinc-800 rounded-lg">
+      <div className="text-center py-12 border border-border rounded-lg">
         <svg
-          className="w-12 h-12 text-zinc-700 mx-auto mb-4"
+          className="w-12 h-12 text-muted-foreground mx-auto mb-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -86,10 +86,10 @@ export const BrandsTable: React.FC<BrandsTableProps> = ({
             d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
           />
         </svg>
-        <h3 className="text-lg font-medium text-zinc-300 mb-2">
+        <h3 className="text-lg font-medium text-card-foreground mb-2">
           No brands yet
         </h3>
-        <p className="text-zinc-500">
+        <p className="text-muted-foreground">
           Get started by creating your first brand
         </p>
       </div>
@@ -110,7 +110,7 @@ export const BrandsTable: React.FC<BrandsTableProps> = ({
         {brands.map((brand) => (
           <TableRow key={brand.id}>
             <TableCell>
-              <span className="font-medium text-white">{brand.name}</span>
+              <span className="font-medium text-foreground">{brand.name}</span>
             </TableCell>
             <TableCell>{formatDate(brand.created_at)}</TableCell>
             <TableCell>{formatDate(brand.updated_at)}</TableCell>
@@ -119,7 +119,7 @@ export const BrandsTable: React.FC<BrandsTableProps> = ({
                 {/* Edit Button */}
                 <button
                   onClick={() => onEdit(brand)}
-                  className="p-2 text-zinc-400 hover:text-purple-400 hover:bg-purple-900/20 rounded-lg transition-all group relative"
+                  className="p-2 text-muted-foreground hover:text-purple-400 hover:bg-purple-900/20 rounded-lg transition-all group relative"
                   title="Edit brand"
                 >
                   <svg
@@ -135,7 +135,7 @@ export const BrandsTable: React.FC<BrandsTableProps> = ({
                       d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                     />
                   </svg>
-                  <span className="absolute -top-8 right-0 bg-zinc-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  <span className="absolute -top-8 right-0 bg-muted text-foreground text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Edit
                   </span>
                 </button>
@@ -143,7 +143,7 @@ export const BrandsTable: React.FC<BrandsTableProps> = ({
                 {/* Delete Button */}
                 <button
                   onClick={() => onDelete(brand)}
-                  className="p-2 text-zinc-400 hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all group relative"
+                  className="p-2 text-muted-foreground hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all group relative"
                   title="Delete brand"
                 >
                   <svg
@@ -159,7 +159,7 @@ export const BrandsTable: React.FC<BrandsTableProps> = ({
                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                     />
                   </svg>
-                  <span className="absolute -top-8 right-0 bg-zinc-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  <span className="absolute -top-8 right-0 bg-muted text-foreground text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Delete
                   </span>
                 </button>

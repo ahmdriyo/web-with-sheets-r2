@@ -18,7 +18,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   action,
 }) => {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-background">
       <Sidebar />
       <div className="ml-64">
         <TopBar title={title} subtitle={subtitle} action={action} />

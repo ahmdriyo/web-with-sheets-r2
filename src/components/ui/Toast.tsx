@@ -31,15 +31,15 @@ export const Toast: React.FC<ToastProps> = ({
   if (!isVisible) return null;
 
   const colors = {
-    success: "border-purple-700 bg-purple-900/20",
-    error: "border-red-700 bg-red-900/20",
-    info: "border-zinc-700 bg-zinc-800/50",
+    success: "border-primary bg-primary/10",
+    error: "border-destructive bg-destructive/10",
+    info: "border-border bg-card",
   };
 
   const icons = {
     success: (
       <svg
-        className="w-5 h-5 text-purple-400"
+        className="w-5 h-5 text-primary"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -69,7 +69,7 @@ export const Toast: React.FC<ToastProps> = ({
     ),
     info: (
       <svg
-        className="w-5 h-5 text-zinc-400"
+        className="w-5 h-5 text-muted-foreground"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -90,10 +90,10 @@ export const Toast: React.FC<ToastProps> = ({
         className={`${colors[type]} border rounded-lg px-4 py-3 shadow-lg backdrop-blur-sm flex items-center gap-3 min-w-72`}
       >
         {icons[type]}
-        <p className="text-sm text-white flex-1">{message}</p>
+        <p className="text-sm text-foreground flex-1">{message}</p>
         <button
           onClick={onClose}
-          className="text-zinc-400 hover:text-white transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors"
         >
           <svg
             className="w-4 h-4"

@@ -20,9 +20,9 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
 
   return (
     <Link href={`/cars/${car.slug}`} className="group block">
-      <div className="bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-700 hover:border-gray-600">
+      <div className="bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-border hover:border-accent">
         {/* Image */}
-        <div className="relative aspect-4/3 overflow-hidden bg-gray-800">
+        <div className="relative aspect-4/3 overflow-hidden bg-muted">
           <Image
             src={car.primary_image_url || car.image_urls[0]}
             alt={car.title}
@@ -36,17 +36,17 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
         {/* Content */}
         <div className="p-5">
           {/* Price */}
-          <div className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">
+          <div className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
             {formatPrice(car.price)}
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold text-gray-100 mb-3 line-clamp-1 group-hover:text-white transition-colors duration-300">
+          <h3 className="text-lg font-semibold text-card-foreground mb-3 line-clamp-1 group-hover:text-foreground transition-colors duration-300">
             {car.brand} {car.model} {car.title}
           </h3>
 
           {/* Specs */}
-          <div className="flex items-center gap-2 text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-card-foreground transition-colors duration-300">
             <span>{car.year}</span>
             <span>•</span>
             <span className="capitalize">{car.transmission}</span>
@@ -55,7 +55,7 @@ export const CarCard: React.FC<CarCardProps> = ({ car }) => {
           </div>
 
           {/* Mileage */}
-          <div className="mt-3 text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+          <div className="mt-3 text-sm text-muted-foreground group-hover:text-card-foreground transition-colors duration-300">
             {car.mileage.toLocaleString("id-ID")} km
           </div>
         </div>

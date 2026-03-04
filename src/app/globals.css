@@ -1,28 +1,173 @@
 @import "tailwindcss";
 
+/* ── Tailwind v4: enable class-based dark mode ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ══════════════════════════════════════════════════
+   SEMANTIC DESIGN TOKENS — LIGHT MODE (default)
+   ══════════════════════════════════════════════════ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Surfaces ── */
+  --background: #ffffff; /* page background */
+  --card: #f9fafb; /* elevated surfaces (gray-50) */
+  --muted: #f3f4f6; /* subtle backgrounds (gray-100) */
+  --popover: #ffffff; /* overlays, dropdowns */
+
+  /* ── Foregrounds ── */
+  --foreground: #0a0a0a; /* primary text (zinc-950) */
+  --card-foreground: #18181b; /* card text (zinc-900) */
+  --muted-foreground: #71717a; /* secondary text (zinc-500) */
+  --popover-foreground: #0a0a0a;
+
+  /* ── Borders & Inputs ── */
+  --border: #e4e4e7; /* default borders (zinc-200) */
+  --input: #d4d4d8; /* input borders (zinc-300) */
+  --ring: #7c3aed; /* focus rings (purple-600) */
+
+  /* ── Primary Action (purple brand) ── */
+  --primary: #7c3aed; /* purple-600 */
+  --primary-foreground: #ffffff;
+
+  /* ── Secondary ── */
+  --secondary: #f4f4f5; /* zinc-100 */
+  --secondary-foreground: #18181b; /* zinc-900 */
+
+  /* ── Accent (hover states) ── */
+  --accent: #e4e4e7; /* zinc-200 */
+  --accent-foreground: #18181b; /* zinc-900 */
+
+  /* ── Destructive ── */
+  --destructive: #dc2626; /* red-600 */
+  --destructive-foreground: #ffffff;
+
+  /* ── Sidebar (admin) ── */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-border: #e4e4e7;
+  --sidebar-muted: #f4f4f5;
+  --sidebar-muted-foreground: #71717a;
+  --sidebar-accent: #f3f4f6;
+
+  /* ── Nav & Footer ── */
+  --nav: #ffffff;
+  --nav-foreground: #0a0a0a;
+  --nav-muted: #71717a;
+  --nav-border: #e4e4e7;
+
+  /* ── Overlay ── */
+  --overlay: rgba(0, 0, 0, 0.5);
 }
 
+/* ══════════════════════════════════════════════════
+   SEMANTIC DESIGN TOKENS — DARK MODE
+   ══════════════════════════════════════════════════ */
+.dark {
+  /* ── Surfaces ── */
+  --background: #09090b; /* zinc-950 */
+  --card: #18181b; /* zinc-900 */
+  --muted: #27272a; /* zinc-800 */
+  --popover: #18181b;
+
+  /* ── Foregrounds ── */
+  --foreground: #fafafa; /* zinc-50 */
+  --card-foreground: #e4e4e7; /* zinc-200 */
+  --muted-foreground: #a1a1aa; /* zinc-400 */
+  --popover-foreground: #fafafa;
+
+  /* ── Borders & Inputs ── */
+  --border: #3f3f46; /* zinc-700 */
+  --input: #3f3f46; /* zinc-700 */
+  --ring: #8b5cf6; /* purple-500 (brighter for dark) */
+
+  /* ── Primary Action ── */
+  --primary: #8b5cf6; /* purple-500 */
+  --primary-foreground: #ffffff;
+
+  /* ── Secondary ── */
+  --secondary: #27272a; /* zinc-800 */
+  --secondary-foreground: #fafafa;
+
+  /* ── Accent ── */
+  --accent: #3f3f46; /* zinc-700 */
+  --accent-foreground: #fafafa;
+
+  /* ── Destructive ── */
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  /* ── Sidebar (admin) ── */
+  --sidebar: #09090b;
+  --sidebar-foreground: #fafafa;
+  --sidebar-border: #27272a;
+  --sidebar-muted: #18181b;
+  --sidebar-muted-foreground: #a1a1aa;
+  --sidebar-accent: #27272a;
+
+  /* ── Nav & Footer ── */
+  --nav: #09090b;
+  --nav-foreground: #fafafa;
+  --nav-muted: #a1a1aa;
+  --nav-border: #27272a;
+
+  /* ── Overlay ── */
+  --overlay: rgba(0, 0, 0, 0.7);
+}
+
+/* ── Register all tokens with Tailwind ── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-muted-foreground: var(--sidebar-muted-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+
+  --color-nav: var(--nav);
+  --color-nav-foreground: var(--nav-foreground);
+  --color-nav-muted: var(--nav-muted);
+  --color-nav-border: var(--nav-border);
+
+  --color-overlay: var(--overlay);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 /* Custom Animations for About Page */

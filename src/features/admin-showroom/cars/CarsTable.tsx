@@ -42,7 +42,7 @@ export const CarsTable: React.FC<CarsTableProps> = ({
       case "booked":
         return "bg-yellow-900/30 text-yellow-300 border-yellow-800/50";
       default:
-        return "bg-zinc-800 text-zinc-300 border-zinc-700";
+        return "bg-muted text-card-foreground border-border";
     }
   };
 
@@ -69,7 +69,7 @@ export const CarsTable: React.FC<CarsTableProps> = ({
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          <p className="text-zinc-400">Loading cars...</p>
+          <p className="text-muted-foreground">Loading cars...</p>
         </div>
       </div>
     );
@@ -77,9 +77,9 @@ export const CarsTable: React.FC<CarsTableProps> = ({
 
   if (!cars || cars.length === 0) {
     return (
-      <div className="text-center py-12 border border-zinc-800 rounded-lg">
+      <div className="text-center py-12 border border-border rounded-lg">
         <svg
-          className="w-12 h-12 text-zinc-700 mx-auto mb-4"
+          className="w-12 h-12 text-muted-foreground mx-auto mb-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -91,8 +91,8 @@ export const CarsTable: React.FC<CarsTableProps> = ({
             d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
           />
         </svg>
-        <h3 className="text-lg font-medium text-zinc-300 mb-2">No cars yet</h3>
-        <p className="text-zinc-500">
+        <h3 className="text-lg font-medium text-card-foreground mb-2">No cars yet</h3>
+        <p className="text-muted-foreground">
           Get started by adding your first vehicle
         </p>
       </div>
@@ -117,7 +117,7 @@ export const CarsTable: React.FC<CarsTableProps> = ({
           <TableRow key={car.id}>
             <TableCell>
               <div className="flex items-center gap-3">
-                <div className="w-16 h-16 rounded-lg overflow-hidden bg-zinc-800 border border-zinc-700 shrink-0">
+                <div className="w-16 h-16 rounded-lg overflow-hidden bg-muted border border-border shrink-0">
                   {car.primary_image_url ? (
                     <Image
                       src={car.primary_image_url}
@@ -129,7 +129,7 @@ export const CarsTable: React.FC<CarsTableProps> = ({
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
                       <svg
-                        className="w-6 h-6 text-zinc-600"
+                        className="w-6 h-6 text-muted-foreground"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -145,22 +145,22 @@ export const CarsTable: React.FC<CarsTableProps> = ({
                   )}
                 </div>
                 <div>
-                  <p className="font-medium text-white">{car.title}</p>
-                  <p className="text-sm text-zinc-500">{car.model}</p>
+                  <p className="font-medium text-foreground">{car.title}</p>
+                  <p className="text-sm text-muted-foreground">{car.model}</p>
                 </div>
               </div>
             </TableCell>
             <TableCell>
-              <span className="text-zinc-300">{car.category}</span>
+              <span className="text-card-foreground">{car.category}</span>
             </TableCell>
             <TableCell>
-              <span className="text-zinc-300">{car.brand}</span>
+              <span className="text-card-foreground">{car.brand}</span>
             </TableCell>
             <TableCell>
-              <span className="text-zinc-300">{car.year}</span>
+              <span className="text-card-foreground">{car.year}</span>
             </TableCell>
             <TableCell>
-              <span className="font-medium text-white">
+              <span className="font-medium text-foreground">
                 {formatPrice(car.price)}
               </span>
             </TableCell>
@@ -178,7 +178,7 @@ export const CarsTable: React.FC<CarsTableProps> = ({
                 {/* Edit Button */}
                 <button
                   onClick={() => onEdit(car)}
-                  className="p-2 text-zinc-400 hover:text-purple-400 hover:bg-purple-900/20 rounded-lg transition-all group relative"
+                  className="p-2 text-muted-foreground hover:text-purple-400 hover:bg-purple-900/20 rounded-lg transition-all group relative"
                   title="Edit car"
                 >
                   <svg
@@ -199,7 +199,7 @@ export const CarsTable: React.FC<CarsTableProps> = ({
                 {/* Delete Button */}
                 <button
                   onClick={() => onDelete(car)}
-                  className="p-2 text-zinc-400 hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all group relative"
+                  className="p-2 text-muted-foreground hover:text-red-400 hover:bg-red-900/20 rounded-lg transition-all group relative"
                   title="Delete car"
                 >
                   <svg

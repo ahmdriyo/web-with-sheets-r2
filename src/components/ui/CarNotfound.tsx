@@ -4,14 +4,14 @@ import { Container } from "./Container";
 
 const CarNotfound = () => {
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white flex items-center justify-center">
+    <div className="min-h-screen bg-background flex items-center justify-center">
       <Container>
         <div className="max-w-md mx-auto text-center py-12">
           {/* Icon */}
           <div className="mb-6 flex justify-center">
-            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center">
+            <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center">
               <svg
-                className="w-12 h-12 text-gray-400"
+                className="w-12 h-12 text-muted-foreground"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -26,12 +26,12 @@ const CarNotfound = () => {
             </div>
           </div>
 
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">
+          <h2 className="text-3xl font-bold text-foreground mb-3">
             Car Not Found
           </h2>
 
           {/* Description */}
-          <p className="text-lg text-gray-600 mb-8">
+          <p className="text-lg text-muted-foreground mb-8">
             The car you&#39;re looking for doesn&#39;t exist or may have been
             removed.
           </p>
